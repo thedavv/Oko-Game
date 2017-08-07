@@ -1,7 +1,7 @@
 package model.cardfactory;
 
-import model.card.Color;
-import model.card.Value;
+import model.cardproperty.Color;
+import model.cardproperty.Value;
 
 public interface Card {
 	//public void draw(CardHandler ch);

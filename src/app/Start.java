@@ -6,8 +6,8 @@ import java.util.List;
 
 import handler.*;
 import model.*;
-import model.card.*;
 import model.cardfactory.*;
+import model.cardproperty.*;
 import util.DimensionsException;
 import util.Settings;
 
