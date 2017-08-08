@@ -90,8 +90,24 @@ public class Const {
 	/**
 	 * Size of a card x and y
 	 * */
-	
 	public static final int CARD_SIZE_X = 15;
 	public static final int CARD_SIZE_Y = 12;
+	
+	/**
+	 * Card print settings
+	 * */
+	public static final int SPACE_BETWEEN_PLAYERS = 7;
+	public static final boolean PLAYER_PRINTOUT_STYLE = true;
+	
+	/**
+	 * CardFactoryHandlerConstants
+	 * */
+	public static final int DRAW_TOP_LINE = 1;
+	public static final int DRAW_BOTTOM_LINE = 2;
+	public static final int DRAW_NUMBER_LINE = 3;
+	public static final int DRAW_COLOR_LINE = 4;
+	public static final int DRAW_EMPTY_LINE = 5;
+	
+	
 	
 }
