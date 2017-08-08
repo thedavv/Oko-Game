@@ -1,7 +1,6 @@
 package handler;
 
 import model.Player;
-import model.cardfactory.Card;
 import util.Const;
 
 public class CardFactoryHandler {
@@ -26,7 +25,7 @@ public class CardFactoryHandler {
 			sb.append(Const.SP);
 		}
 		sb.append("COMPUTER CARDS:");
-		
+
 		System.out.println(sb);
 		System.out.println(drawTopLine(player) + "       " + drawTopLine(computer));
 		System.out.println(drawNumberLine(player) + "       " + drawNumberLine(computer));
@@ -39,8 +38,28 @@ public class CardFactoryHandler {
 		System.out.println(drawBottomLine(player) + "       " + drawBottomLine(computer));
 	}
 
-	private static String drawTopLine(Player player){
+	public void drawBothPlayersSecondStyle(Player player, Player computer){
+		int cardSize = player.getCards().size() * 3 + Const.CARD_SIZE_X - 3 - 13 + 7;
+		StringBuilder sb = new StringBuilder();
+		sb.append("PLAYER CARDS:");
+		for (int i = 0; i < cardSize; i++) {
+			sb.append(Const.SP);
+		}
+		sb.append("COMPUTER CARDS:");
 
+		System.out.println(sb);
+		System.out.println(drawTopLine(player) + "       " + drawTopLineSecondStyle(computer));
+		System.out.println(drawNumberLine(player) + "       " + drawNumberLineSecondStyle(computer));
+		System.out.println(drawColorLine(player) + "       " + drawColorLineSecondStyle(computer));
+		for (int i = 0; i < Const.CARD_SIZE_Y-6; i++) {
+			System.out.println(drawEmptyLine(player) + "       "  + drawEmptyLineSecondStyle(computer));
+		}
+		System.out.println(drawNumberLine(player) + "       " + drawNumberLineSecondStyle(computer));
+		System.out.println(drawColorLine(player) + "       " + drawColorLineSecondStyle(computer));
+		System.out.println(drawBottomLine(player) + "       " + drawBottomLineSecondStyle(computer));
+	}
+
+	private static String drawTopLine(Player player){
 		StringBuilder line = new StringBuilder();
 		int cardCount = player.getCards().size();
 
@@ -95,11 +114,13 @@ public class CardFactoryHandler {
 				for(int j = 0; j < Const.CARD_SIZE_X - 2 * ( 1 + cardLabelLenght) - 1; j++){
 					line.append(Const.SP);
 				}
+				if(cardLabelLenght > 1){
+					line.append(Const.SP);
+				}
 				line.append(cardLabel);
 			}
 			line.append(Const.VL);
 		}
-
 
 		return line.toString();
 	}
@@ -109,7 +130,6 @@ public class CardFactoryHandler {
 		int cardCount = player.getCards().size();
 
 		line.append(Const.VL);
-
 		for(int i = 0; i < cardCount; i++){
 			char cardColor = player.getCards().get(i).getColor().getColor();
 
@@ -123,8 +143,6 @@ public class CardFactoryHandler {
 				line.append(cardColor);
 			}
 		}
-
-
 		line.append(Const.SP);
 		line.append(Const.VL);
 
@@ -150,4 +168,113 @@ public class CardFactoryHandler {
 		return line.toString();
 	}
 
+	private static String drawTopLineSecondStyle(Player player){
+		StringBuilder line = new StringBuilder();
+		int cardCount = player.getCards().size();
+
+		line.append(Const.TLC);
+		for(int i = 0; i < cardCount; i++){
+			if(i == 0){
+				for (int j = 0; j < Const.CARD_SIZE_X - 2; j++) {
+					line.append(Const.HL);
+				}
+			} else{
+				line.append(Const.TJ).append(Const.HL).append(Const.HL);
+			}
+		}
+		line.append(Const.TRC);
+
+		return line.toString();
+	}
+
+	private static String drawBottomLineSecondStyle(Player player){
+		StringBuilder line = new StringBuilder();
+		int cardCount = player.getCards().size();
+
+		line.append(Const.BLC);
+		for(int i = 0; i < cardCount; i++){
+			if(i == 0){
+				for (int j = 0; j < Const.CARD_SIZE_X - 2; j++) {
+					line.append(Const.HL);
+				}
+			} else{
+
+				line.append(Const.BJ).append(Const.HL).append(Const.HL);
+			}
+		}
+		line.append(Const.BRC);
+
+		return line.toString();
+	}
+
+	private static String drawNumberLineSecondStyle(Player player){//TODO
+		StringBuilder line = new StringBuilder();
+		int cardCount = player.getCards().size();
+
+		line.append(Const.VL);
+		for (int i = 0; i < cardCount; i++) {
+			String cardLabel = player.getCards().get(i).getValue().getLabel();
+			int cardLabelLenght = cardLabel.length();
+			line.append(cardLabel);
+
+			for(int j = 0; j < 2 - cardLabelLenght; j++){
+				line.append(Const.SP);
+			}
+			if(i == 0){
+				for(int j = 0; j < Const.CARD_SIZE_X - 2 * ( 1 + cardLabelLenght)-1; j++){
+					line.append(Const.SP);
+					
+				}
+				if(cardLabelLenght > 1){
+					line.append(Const.SP);
+				}
+				line.append(cardLabel);
+			}
+			line.append(Const.VL);
+		}
+
+		return line.toString();
+	}
+
+	private static String drawColorLineSecondStyle(Player player){
+		StringBuilder line = new StringBuilder();
+		int cardCount = player.getCards().size();
+
+		line.append(Const.VL);
+		for(int i = 0; i < cardCount; i++){
+			char cardColor = player.getCards().get(i).getColor().getColor();
+
+			if ( i == 0){
+				line.append(Const.SP).append(cardColor);
+				for (int j = 0; j < Const.CARD_SIZE_X - 6; j++) {
+					line.append(Const.SP);
+				}
+				line.append(cardColor).append(Const.SP);
+			} else{
+				line.append(Const.VL).append(Const.SP).append(cardColor);
+			}
+		}
+		line.append(Const.VL);
+
+		return line.toString();
+	}
+
+	private static String drawEmptyLineSecondStyle(Player player){
+		StringBuilder line = new StringBuilder();
+		int cardCount = player.getCards().size();
+
+		line.append(Const.VL);
+		for(int i = 0; i < cardCount; i++){
+			if( i == 0){
+				for (int j = 0; j < Const.CARD_SIZE_X - 2; j++) {
+					line.append(Const.SP);
+				}
+			} else{
+				line.append(Const.VL).append(Const.SP).append(Const.SP);
+			}
+		}
+		line.append(Const.VL);
+
+		return line.toString();
+	}
 }
