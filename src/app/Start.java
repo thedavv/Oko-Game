@@ -126,6 +126,7 @@ public class Start {//TODO implement settings to card factory
 		
 		cards.add(sevenHearths);
 		cards.add(eightHearths);
+		cards.add(tenDiamonds);
 		cards.add(nineClubs);
 		cards2.add(tenDiamonds);
 		cards2.add(nineClubs);
@@ -140,6 +141,7 @@ public class Start {//TODO implement settings to card factory
 		//ch.drawPlayer(player);
 		ch.drawGameBoard(player, computer, 1);
 		ch.drawGameBoard(player, computer, 2);
+		ch.drawGameBoard(player, computer, 3);
 	}
 }
 

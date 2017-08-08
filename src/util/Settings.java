@@ -4,7 +4,7 @@ public class Settings { //TODO rework to static variables
 	private static Settings instance;
 	private int cardSizeX;
 	private int cardSizeY;
-	private int spaceBetweenPlayers;
+	private int spaceBetweenPlayers;//TODO add exception for setting space too low
 
 	private Settings(){
 		this.cardSizeX = Const.CARD_SIZE_X;
