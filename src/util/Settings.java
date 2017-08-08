@@ -1,6 +1,6 @@
 package util;
 
-public class Settings {
+public class Settings { //TODO rework to static variables
 	private static Settings instance;
 	private int cardSizeX;
 	private int cardSizeY;
