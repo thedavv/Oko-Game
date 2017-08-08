@@ -4,12 +4,12 @@ public class Settings {
 	private static Settings instance;
 	private int cardSizeX;
 	private int cardSizeY;
-	//private String spaceBetweenPlayers;
+	private int spaceBetweenPlayers;
 
 	private Settings(){
 		this.cardSizeX = Const.CARD_SIZE_X;
 		this.cardSizeY = Const.CARD_SIZE_Y;
-		//this.setSpaceBetweenPlayers(Const.SPACE_BETWEEN_PLAYERS);
+		this.spaceBetweenPlayers = Const.SPACE_BETWEEN_PLAYERS;
 	}
 
 	public static Settings getInstance(){
@@ -37,7 +37,13 @@ public class Settings {
 		return cardSizeY;
 	}
 
+	public int getSpaceBetweenPlayers() {
+		return spaceBetweenPlayers;
+	}
 
+	public void setSpaceBetweenPlayers(int spaceBetweenPlayers) {
+		this.spaceBetweenPlayers = spaceBetweenPlayers;
+	}
 
 	
 	
