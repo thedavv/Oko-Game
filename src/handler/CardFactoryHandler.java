@@ -2,8 +2,13 @@ package handler;
 
 import model.Player;
 import util.Const;
+import util.Settings;
 
-public class CardFactoryHandler {
+//TODO coments
+public class CardFactoryHandler {//TODO ad constructor for settings
+	private static Settings settings = Settings.getInstance();
+	
+	//TODO refactor draw player methods
 	@Deprecated
 	public void drawPlayer(Player player){
 		System.out.println(drawTopLine(player));
@@ -17,6 +22,7 @@ public class CardFactoryHandler {
 		System.out.println(drawBottomLine(player));
 	}
 
+	@Deprecated
 	public void drawBothPlayers(Player player, Player computer){
 		int cardSize = player.getCards().size() * 3 + Const.CARD_SIZE_X - 3 - 13 + 7;
 		StringBuilder sb = new StringBuilder();
@@ -27,17 +33,18 @@ public class CardFactoryHandler {
 		sb.append("COMPUTER CARDS:");
 
 		System.out.println(sb);
-		System.out.println(drawTopLine(player) + "       " + drawTopLine(computer));
-		System.out.println(drawNumberLine(player) + "       " + drawNumberLine(computer));
-		System.out.println(drawColorLine(player) + "       " + drawColorLine(computer));
+		System.out.println(drawTopLine(player) + setSpaceBetweenPlayers() + drawTopLine(computer));
+		System.out.println(drawNumberLine(player) + setSpaceBetweenPlayers() + drawNumberLine(computer));
+		System.out.println(drawColorLine(player) + setSpaceBetweenPlayers() + drawColorLine(computer));
 		for (int i = 0; i < Const.CARD_SIZE_Y-6; i++) {
-			System.out.println(drawEmptyLine(player) + "       "  + drawEmptyLine(computer));
+			System.out.println(drawEmptyLine(player) + setSpaceBetweenPlayers()  + drawEmptyLine(computer));
 		}
-		System.out.println(drawNumberLine(player) + "       " + drawNumberLine(computer));
-		System.out.println(drawColorLine(player) + "       " + drawColorLine(computer));
-		System.out.println(drawBottomLine(player) + "       " + drawBottomLine(computer));
+		System.out.println(drawNumberLine(player) + setSpaceBetweenPlayers() + drawNumberLine(computer));
+		System.out.println(drawColorLine(player) + setSpaceBetweenPlayers() + drawColorLine(computer));
+		System.out.println(drawBottomLine(player) + setSpaceBetweenPlayers() + drawBottomLine(computer));
 	}
 
+	@Deprecated
 	public void drawBothPlayersSecondStyle(Player player, Player computer){
 		int cardSize = player.getCards().size() * 3 + Const.CARD_SIZE_X - 3 - 13 + 7;
 		StringBuilder sb = new StringBuilder();
@@ -48,17 +55,26 @@ public class CardFactoryHandler {
 		sb.append("COMPUTER CARDS:");
 
 		System.out.println(sb);
-		System.out.println(drawTopLine(player) + "       " + drawTopLineSecondStyle(computer));
-		System.out.println(drawNumberLine(player) + "       " + drawNumberLineSecondStyle(computer));
-		System.out.println(drawColorLine(player) + "       " + drawColorLineSecondStyle(computer));
+		System.out.println(drawTopLine(player) + setSpaceBetweenPlayers() + drawTopLineSecondStyle(computer));
+		System.out.println(drawNumberLine(player) + setSpaceBetweenPlayers() + drawNumberLineSecondStyle(computer));
+		System.out.println(drawColorLine(player) + setSpaceBetweenPlayers() + drawColorLineSecondStyle(computer));
 		for (int i = 0; i < Const.CARD_SIZE_Y-6; i++) {
-			System.out.println(drawEmptyLine(player) + "       "  + drawEmptyLineSecondStyle(computer));
+			System.out.println(drawEmptyLine(player) + setSpaceBetweenPlayers()  + drawEmptyLineSecondStyle(computer));
 		}
-		System.out.println(drawNumberLine(player) + "       " + drawNumberLineSecondStyle(computer));
-		System.out.println(drawColorLine(player) + "       " + drawColorLineSecondStyle(computer));
-		System.out.println(drawBottomLine(player) + "       " + drawBottomLineSecondStyle(computer));
+		System.out.println(drawNumberLine(player) + setSpaceBetweenPlayers() + drawNumberLineSecondStyle(computer));
+		System.out.println(drawColorLine(player) + setSpaceBetweenPlayers() + drawColorLineSecondStyle(computer));
+		System.out.println(drawBottomLine(player) + setSpaceBetweenPlayers() + drawBottomLineSecondStyle(computer));
 	}
 
+	public void drawGameBoard(Player player, Player computer, int drawingStyle){
+		if(drawingStyle == 1){
+			drawBothPlayers( player,  computer);
+		} else{
+			drawBothPlayersSecondStyle( player,  computer);
+		}
+	}
+	
+	//TODO refactor draw line methods
 	private static String drawTopLine(Player player){
 		StringBuilder line = new StringBuilder();
 		int cardCount = player.getCards().size();
@@ -207,7 +223,7 @@ public class CardFactoryHandler {
 		return line.toString();
 	}
 
-	private static String drawNumberLineSecondStyle(Player player){//TODO
+	private static String drawNumberLineSecondStyle(Player player){
 		StringBuilder line = new StringBuilder();
 		int cardCount = player.getCards().size();
 
@@ -276,5 +292,15 @@ public class CardFactoryHandler {
 		line.append(Const.VL);
 
 		return line.toString();
+	}
+
+	private static String setSpaceBetweenPlayers(){
+		StringBuilder sb = new StringBuilder();
+		
+		for (int i = 0; i < settings.getSpaceBetweenPlayers(); i++) {
+			sb.append(Const.SP);
+		}
+		
+		return sb.toString();
 	}
 }
