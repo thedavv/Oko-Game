@@ -2,6 +2,12 @@ package model.cardproperty;
 
 import util.Const;
 
+/**
+ * @author David Racek
+ *
+ *Enum that contains values of the cards
+ *
+ */
 public enum Value {
 	SEVEN(Const.SEVEN), EIGHT(Const.EIGHT), NINE(Const.NINE), TEN(Const.TEN), JACK(Const.JACK), QUEEN(Const.QUEEN), KING(Const.KING), ACE(Const.ACE);
 

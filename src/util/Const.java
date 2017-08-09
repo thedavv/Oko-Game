@@ -108,6 +108,11 @@ public class Const {
 	public static final int DRAW_COLOR_LINE = 4;
 	public static final int DRAW_EMPTY_LINE = 5;
 	
-	
+	/**
+	 * Constants for drawGameBoard method in handler package
+	 * */
+	public static final int DRAW_PLAYERS_CARDS_SAME_WAY = 1;
+	public static final int  DRAW_PLAYERS_CARDS_MIRROR_WAY = 2;
+	public static final int DRAW_PLAYERS_CARDS_OPOSITE_WAY = 3;
 	
 }

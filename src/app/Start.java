@@ -55,7 +55,8 @@ public class Start {//TODO implement settings to card factory
 		
 		CardFactoryHandler ch = new CardFactoryHandler();
 		//ch.drawPlayer(player);
-		ch.drawBothPlayers(player, computer);
+		//ch.drawBothPlayers(player, computer);
+		ch.drawGameBoard(player, computer, 1);
 	}
 	
 	private static void test2(){
@@ -83,7 +84,8 @@ public class Start {//TODO implement settings to card factory
 		
 		CardFactoryHandler ch = new CardFactoryHandler();
 		//ch.drawPlayer(player);
-		ch.drawBothPlayers(player, computer);
+		//ch.drawBothPlayers(player, computer);
+		ch.drawGameBoard(player, computer, 1);
 	}
 	
 	private static void test3(){
@@ -111,7 +113,8 @@ public class Start {//TODO implement settings to card factory
 		
 		CardFactoryHandler ch = new CardFactoryHandler();
 		//ch.drawPlayer(player);
-		ch.drawBothPlayersSecondStyle(player, computer);
+		//ch.drawBothPlayersSecondStyle(player, computer);
+		ch.drawGameBoard(player, computer, 2);
 	}
 	
 	private static void test4(){
