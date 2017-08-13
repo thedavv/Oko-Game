@@ -95,9 +95,9 @@ public class Start { //TODO test settings / change setings
 				break;
 			
 			// computers turn
-		    //TODO draw bug if starting with 2(same reference????) and begining with 2 null pointer		
+		    //TODO draw bug if starting with 2(same reference????) 
 			case "2":		
-				if(player.getCards() == null){ //TODO rework this condition
+				if(player.getCards() == null || player.getCards().size() < 1){ //TODO rework this condition
 					System.out.println("please draw a card before continuing");
 					break;
 				}
