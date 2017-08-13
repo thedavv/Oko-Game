@@ -75,8 +75,8 @@ public class CardFactoryHandler {//TODO ad constructor for settings, make settin
 		for (int i = 0; i < Const.CARD_SIZE_Y-6; i++) {
 			System.out.println(drawEmptyLine(player) + setSpaceBetweenPlayers()  + drawEmptyLineSecondStyle(computer));
 		}
-		System.out.println(drawNumberLine(player) + setSpaceBetweenPlayers() + drawNumberLineSecondStyle(computer));
 		System.out.println(drawColorLine(player) + setSpaceBetweenPlayers() + drawColorLineSecondStyle(computer));
+		System.out.println(drawNumberLine(player) + setSpaceBetweenPlayers() + drawNumberLineSecondStyle(computer));
 		System.out.println(drawBottomLine(player) + setSpaceBetweenPlayers() + drawBottomLineSecondStyle(computer));
 	}
 
@@ -88,8 +88,8 @@ public class CardFactoryHandler {//TODO ad constructor for settings, make settin
 		for (int i = 0; i < Const.CARD_SIZE_Y-6; i++) {
 			System.out.println(drawEmptyLineSecondStyle(player) + setSpaceBetweenPlayers()  + drawEmptyLine(computer));
 		}
-		System.out.println(drawNumberLineSecondStyle(player) + setSpaceBetweenPlayers() + drawNumberLine(computer));
 		System.out.println(drawColorLineSecondStyle(player) + setSpaceBetweenPlayers() + drawColorLine(computer));
+		System.out.println(drawNumberLineSecondStyle(player) + setSpaceBetweenPlayers() + drawNumberLine(computer));
 		System.out.println(drawBottomLineSecondStyle(player) + setSpaceBetweenPlayers() + drawBottomLine(computer));
 	}
 
@@ -253,11 +253,20 @@ public class CardFactoryHandler {//TODO ad constructor for settings, make settin
 		for (int i = 0; i < cardCount; i++) {
 			String cardLabel = player.getCards().get(i).getValue().getLabel();
 			int cardLabelLenght = cardLabel.length();
-			line.append(cardLabel);
-
-			for(int j = 0; j < 2 - cardLabelLenght; j++){
-				line.append(Const.SP);
+			
+			if(i == 0){
+				line.append(cardLabel);
+				for(int j = 0; j < 2 - cardLabelLenght; j++){
+					line.append(Const.SP);
+				}
+			} else{
+				for(int j = 0; j < 2 - cardLabelLenght; j++){
+					line.append(Const.SP);
+				}
+				line.append(cardLabel);
 			}
+			
+			
 			if(i == 0){
 				for(int j = 0; j < Const.CARD_SIZE_X - 2 * ( 1 + cardLabelLenght)-1; j++){
 					line.append(Const.SP);
