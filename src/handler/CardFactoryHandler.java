@@ -10,7 +10,7 @@ import util.Settings;
  * Class handling the printing out game board. It contains clases that will printout gameboard with different styles
  *
  */
-public class CardFactoryHandler {//TODO ad constructor for settings
+public class CardFactoryHandler {//TODO ad constructor for settings, make settings change
 	private static Settings settings = Settings.getInstance();
 
 	//TODO refactor draw player methods
@@ -55,7 +55,7 @@ public class CardFactoryHandler {//TODO ad constructor for settings
 	 * private methods for printing out gameboard styles
 	 * */
 	private void drawBothPlayers(Player player, Player computer){
-		System.out.println(drawPlayerNames(player));
+		System.out.println(drawPlayerNames(player, computer));
 		System.out.println(drawTopLine(player) + setSpaceBetweenPlayers() + drawTopLine(computer));
 		System.out.println(drawNumberLine(player) + setSpaceBetweenPlayers() + drawNumberLine(computer));
 		System.out.println(drawColorLine(player) + setSpaceBetweenPlayers() + drawColorLine(computer));
@@ -68,7 +68,7 @@ public class CardFactoryHandler {//TODO ad constructor for settings
 	}
 
 	private void drawBothPlayersSecondStyle(Player player, Player computer){
-		System.out.println(drawPlayerNames(player));
+		System.out.println(drawPlayerNames(player, computer));
 		System.out.println(drawTopLine(player) + setSpaceBetweenPlayers() + drawTopLineSecondStyle(computer));
 		System.out.println(drawNumberLine(player) + setSpaceBetweenPlayers() + drawNumberLineSecondStyle(computer));
 		System.out.println(drawColorLine(player) + setSpaceBetweenPlayers() + drawColorLineSecondStyle(computer));
@@ -81,7 +81,7 @@ public class CardFactoryHandler {//TODO ad constructor for settings
 	}
 
 	private void drawBothPlayersThirdStyle(Player player, Player computer){
-		System.out.println(drawPlayerNames(player));
+		System.out.println(drawPlayerNames(player, computer));
 		System.out.println(drawTopLineSecondStyle(player) + setSpaceBetweenPlayers() + drawTopLine(computer));
 		System.out.println(drawNumberLineSecondStyle(player) + setSpaceBetweenPlayers() + drawNumberLine(computer));
 		System.out.println(drawColorLineSecondStyle(player) + setSpaceBetweenPlayers() + drawColorLine(computer));
@@ -330,14 +330,14 @@ public class CardFactoryHandler {//TODO ad constructor for settings
 		return sb.toString();
 	}
 
-	private static String drawPlayerNames(Player player){
+	private static String drawPlayerNames(Player player, Player computer){
 		int cardSize = player.getCards().size() * 3 + Const.CARD_SIZE_X - 3 - 13 + 7;
 		StringBuilder sb = new StringBuilder();
-		sb.append("PLAYER CARDS:");
+		sb.append(player.getName().toUpperCase() + " CARDS:");
 		for (int i = 0; i < cardSize; i++) {
 			sb.append(Const.SP);
 		}
-		sb.append("COMPUTER CARDS:");
+		sb.append(computer.getName().toUpperCase() +" CARDS:");
 
 		return sb.toString();
 	}
