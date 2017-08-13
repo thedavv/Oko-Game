@@ -15,7 +15,7 @@ import util.Settings;
 
 public class Start { //TODO test settings / change setings / Bug with drawing cards from deck
 	//helper variables
-	private static Settings   s 				= Settings.getInstance();
+	private static Settings   gameSettings 		= Settings.getInstance();
 	static int 				  playerHandValue   = 0; 	
 	static int 				  computerHandValue = 0; 	
 	static boolean    		  endProgram		= false;
@@ -25,9 +25,9 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 	static List<Card> 		  computerHand      = new ArrayList<>();
 
 	// variables from settings
-	static Deck 			  deck 		        = s.getDeck();
-	static Player 			  player 		    = s.getPlayer();
-	static Player 			  computer 		    = s.getComputer();
+	static Deck 			  cardDeck 		    = gameSettings.getDeck();
+	static Player 			  player 		    = gameSettings.getPlayer();
+	static Player 			  computer 		    = gameSettings.getComputer();
 
 	//handlers
 	static CardFactoryHandler printCardHandler  = new CardFactoryHandler(); 
@@ -64,8 +64,8 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 	 * Methods responsible for program flow
 	 * */
 	private static void resetRound(){
-		deck.addCardsToStack(playerHand);               	 		 // add cards to pile
-		deck.addCardsToStack(computerHand);  
+		cardDeck.addCardsToStack(playerHand);               	 		 // add cards to pile
+		cardDeck.addCardsToStack(computerHand);  
 		
 		playerHand.clear(); 								 		 // drop hand
 		computerHand.clear();							
@@ -79,7 +79,7 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 	}
 
 	private static void startRound(Scanner sc){
-		while (!endGame) {
+		while (!endGame) { // TODO shuffle cards from stack dont create another deck
 			if(ruleSetHandler.isHandMorethanMaxValue(playerHand)){ // TODO update Bank
 				overFlowPrintout();
 				resetRound();	
@@ -95,7 +95,6 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 				break;
 			
 			// computers turn
-		    //TODO draw bug if starting with 2(same reference????) 
 			case "2":		
 				if(player.getCards() == null || player.getCards().size() < 1){ //TODO rework this condition
 					System.out.println("please draw a card before continuing");
@@ -125,9 +124,12 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 		} 
 	}
 
+	/**
+	 * methods that simulate player turn. Retun hand value
+	 * */
 	private static int computersTurn(int playerHandValue){	//TODO dont count if player has overflow	
 		
-		System.out.println(playerHandValue);
+		//System.out.println(playerHandValue);
 		boolean overflow = false;
 
 		while (true) {																//simple computer logic
@@ -138,19 +140,17 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 			} else if(playerHandValue < computerHandValue){
 				break;
 			} else{
-				computerHand.add(deck.getCard());		
+				computerHand.add(cardDeck.getCard());		
 				computerHandValue = ruleSetHandler.countCardsInHand(computerHand);
 			}
 		}
 		computer.setCards(computerHand);					 						// set computers hand
 		
-		
 		return computerHandValue;
 	}
 
-	// returns hand value count
 	private static int playerTurn(){ 
-		playerHand.add(deck.getCard()); 					 // player draws a card
+		playerHand.add(cardDeck.getCard()); 					 // player draws a card
 		player.setCards(playerHand);
 		playerHandValue = ruleSetHandler.countCardsInHand(playerHand);
 		printCardHandler.drawPlayer(player);

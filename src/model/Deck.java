@@ -53,7 +53,7 @@ public class Deck {
 		return deck.remove(0);
 	}
 	
-	public void addCardsToStack(List<Card> hand){//TODO add cards here after round is over
+	public void addCardsToStack(List<Card> hand){
 		for (Card card : hand) {
 			stack.add(card);
 		}
