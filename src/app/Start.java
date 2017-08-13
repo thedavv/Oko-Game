@@ -13,7 +13,7 @@ import util.Const;
 import util.DimensionsException;
 import util.Settings;
 
-public class Start { //TODO test settings / change setings
+public class Start { //TODO test settings / change setings / Bug with drawing cards from deck
 	//helper variables
 	private static Settings   s 				= Settings.getInstance();
 	static int 				  playerHandValue   = 0; 	
@@ -115,6 +115,7 @@ public class Start { //TODO test settings / change setings
 			case "3": //TODO score
 				endGame = true;
 				resetRound();
+				
 				break;
 
 			default:
@@ -148,7 +149,7 @@ public class Start { //TODO test settings / change setings
 	}
 
 	// returns hand value count
-	private static int playerTurn(){
+	private static int playerTurn(){ 
 		playerHand.add(deck.getCard()); 					 // player draws a card
 		player.setCards(playerHand);
 		playerHandValue = ruleSetHandler.countCardsInHand(playerHand);
@@ -177,7 +178,7 @@ public class Start { //TODO test settings / change setings
 		System.out.println("║ Status                                            ║");
 		System.out.println("╠═══════════════════════════════════════════════════╣");
 		System.out.println("║                                                   ║");
-		System.out.println("║  Hand card value count   : unimplemented          ║");
+		System.out.println("║  Hand card value count   : " + playerHandValue + "    ║");
 		System.out.println("║  Player bank remaining   : unimplemented          ║");
 		System.out.println("║  Computer bank remaining : unimplemented          ║");
 		System.out.println("║                                                   ║");
@@ -197,7 +198,7 @@ public class Start { //TODO test settings / change setings
 
 	public static void endScreenPrintout(){//TODO final score
 		System.out.println("╠═══════════════════════════════════════════════════╣");
-		System.out.println("║ Game is Closing. Have a nice day                  ║");
+		System.out.println("║ Game is closing. Have a nice day                  ║");
 		System.out.println("╠═══════════════════════════════════════════════════╣");
 		System.out.println("║                                                   ║");
 		System.out.println("║ Final Score : unimplemented                       ║");
@@ -224,6 +225,7 @@ public class Start { //TODO test settings / change setings
 		System.out.println("║                                                   ║");
 		System.out.println("╚═══════════════════════════════════════════════════╝");
 	}
+	
 	public static void settingsMenuPrintout(){//TODO implement settings menu
 		System.out.println("╔═══════════════════════════════════════════════════╗");
 		System.out.println("║ Settings                                          ║");
@@ -233,5 +235,10 @@ public class Start { //TODO test settings / change setings
 		System.out.println("║                                                   ║");
 		System.out.println("╚═══════════════════════════════════════════════════╝");
 	}
+
+	public static void clearScreen() {  
+	    System.out.print("\033[H\033[2J");  
+	    System.out.flush();  
+	   }
 }
 

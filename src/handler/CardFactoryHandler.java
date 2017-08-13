@@ -289,7 +289,7 @@ public class CardFactoryHandler {//TODO ad constructor for settings, make settin
 				}
 				line.append(cardColor).append(Const.SP);
 			} else{
-				line.append(Const.VL).append(Const.SP).append(cardColor);
+				line.append(Const.VL).append(cardColor).append(Const.SP);
 			}
 		}
 		line.append(Const.VL);
