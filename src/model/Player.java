@@ -12,8 +12,14 @@ import model.cardfactory.Card;
  *
  */
 public class Player {
+	private String name;
 	private List<Card> cards;
-
+	
+	public Player(String name) {
+		this.name = name;
+	}
+	
+	//G + S
 	public List<Card> getCards() {
 		return cards;
 	}
@@ -21,4 +27,12 @@ public class Player {
 	public void setCards(List<Card> cards) {
 		this.cards = cards;
 	} 
+	
+	public String getName(){
+		return this.name;
+	}
+	
+	public void setName(String name){
+		this.name = name;
+	}
 }
