@@ -90,8 +90,8 @@ public class Const {
 	/**
 	 * Size of a card x and y
 	 * */
-	public static final int CARD_SIZE_X = 15;
-	public static final int CARD_SIZE_Y = 12;
+	public static final int CARD_SIZE_X = 10;
+	public static final int CARD_SIZE_Y = 8;
 	
 	/**
 	 * Card print settings
@@ -115,4 +115,9 @@ public class Const {
 	public static final int  DRAW_PLAYERS_CARDS_MIRROR_WAY = 2;
 	public static final int DRAW_PLAYERS_CARDS_OPOSITE_WAY = 3;
 	
+	/**
+	 * Ruleset
+	 * */
+	public static final int MAX_HAND_VALUE = 21;
+
 }
