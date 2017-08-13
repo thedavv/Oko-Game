@@ -93,8 +93,15 @@ public class Start { //TODO test settings / change setings
 			case "1": 												// players turn
 				playerTurn();
 				break;
-
-			case "2": 												// computers turn
+			
+			// computers turn
+		    //TODO draw bug if starting with 2(same reference????) and begining with 2 null pointer		
+			case "2":		
+				if(player.getCards() == null){ //TODO rework this condition
+					System.out.println("please draw a card before continuing");
+					break;
+				}
+				
 				System.out.println("Computers turn");
 				computersTurn(playerHandValue);						
 				printCardHandler.drawGameBoard(player, computer,	// printout board
