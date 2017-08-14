@@ -8,8 +8,6 @@ import java.util.Scanner;
 import handler.*;
 import handler.printhandler.CardPrintOut;
 import handler.printhandler.MenuPrintOut;
-import handler.printhandler.PrintOutFactory;
-import handler.printhandler.PrintOutMenu;
 import model.*;
 import model.cardfactory.*;
 import util.Const;
@@ -35,10 +33,9 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 	static Player 			    computer 		     = gameSettings.getComputer();
 
 	//  handlers
-	static PrintOutMenu 	    printOutFactory     = new PrintOutFactory();
-	static CardPrintOut 	    cardPrintoutHandler = printOutFactory.createCardPrintout();
-	static MenuPrintOut 	    menuPrintoutHandler = printOutFactory.createMenuPrintout();
-	static RuleSetHandler       ruleSetHandler      = new RuleSetHandler();
+	static CardPrintOut 	    cardPrintoutHandler  = new CardPrintOut();
+	static MenuPrintOut 	    menuPrintoutHandler  = new MenuPrintOut();
+	static RuleSetHandler       ruleSetHandler       = new RuleSetHandler();
 	
 
 	public static void main(String[] args) { //TODO score/start bank/Bet
