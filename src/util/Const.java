@@ -98,21 +98,28 @@ public class Const {
 	public static final int 	SPACE_BETWEEN_PLAYERS = 7;
 	public static final boolean PLAYER_PRINTOUT_STYLE = true;
 	
-	/**
-	 * CardFactoryHandlerConstants
-	 * */
-	public static final int DRAW_TOP_LINE    = 1;
-	public static final int DRAW_BOTTOM_LINE = 2;
-	public static final int DRAW_NUMBER_LINE = 3;
-	public static final int DRAW_COLOR_LINE  = 4;
-	public static final int DRAW_EMPTY_LINE  = 5;
+
+//	public static final int DRAW_TOP_LINE    = 1;
+//	public static final int DRAW_BOTTOM_LINE = 2;
+//	public static final int DRAW_NUMBER_LINE = 3;
+//	public static final int DRAW_COLOR_LINE  = 4;
+//	public static final int DRAW_EMPTY_LINE  = 5;
 	
 	/**
 	 * Constants for drawGameBoard method in handler package
 	 * */
 	public static final int DRAW_PLAYERS_CARDS_SAME_WAY    = 1;
-	public static final int  DRAW_PLAYERS_CARDS_MIRROR_WAY = 2;
+	public static final int DRAW_PLAYERS_CARDS_MIRROR_WAY  = 2;
 	public static final int DRAW_PLAYERS_CARDS_OPOSITE_WAY = 3;
+	
+	/**
+	 * Constants for menu printout
+	 * */
+	public static final int  DRAW_MENU_X_SIZE = 53;
+	public static final int  DRAW_MENU_Y_SIZE = 7;
+	public static final char LMJ         = 9568;     //left middle join
+	public static final char RMJ         = 9571;     //right middle join
+	
 	
 	/**
 	 * Ruleset

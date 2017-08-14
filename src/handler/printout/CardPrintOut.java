@@ -1,4 +1,4 @@
-package handler;
+package handler.printout;
 
 import model.Player;
 import util.Const;
@@ -10,7 +10,7 @@ import util.Settings;
  * Class handling the printing out game board. It contains clases that will printout gameboard with different styles
  *
  */
-public class CardFactoryHandler {//TODO ad constructor for settings, make settings change
+public class CardPrintOut {//TODO ad constructor for settings, make settings change printouts 
 	private static Settings settings = Settings.getInstance();
 
 	//TODO refactor draw player methods
@@ -350,4 +350,6 @@ public class CardFactoryHandler {//TODO ad constructor for settings, make settin
 
 		return sb.toString();
 	}
+
+
 }

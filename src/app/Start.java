@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import handler.*;
+import handler.printout.CardPrintOut;
+import handler.printout.MenuPrintoutHandler;
 import model.*;
 import model.cardfactory.*;
 import model.cardproperty.*;
@@ -15,42 +17,52 @@ import util.Settings;
 
 public class Start { //TODO test settings / change setings / Bug with drawing cards from deck
 	//helper variables
-	private static Settings   gameSettings 		= Settings.getInstance();
-	static int 				  playerHandValue   = 0; 	
-	static int 				  computerHandValue = 0; 	
-	static boolean    		  endProgram		= false;
-	static boolean    		  endGame 		    = false;
-	static String     		  input 			= "";
-	static List<Card> 		  playerHand 		= new ArrayList<>();
-	static List<Card> 		  computerHand      = new ArrayList<>();
+	private static Settings   	gameSettings 		 = Settings.getInstance();
+	static int 				  	playerHandValue  	 = 0; 	
+	static int 				  	computerHandValue 	 = 0; 	
+	static int 				  	playerBank		     = 0; //TODO implement in game logix
+	static int 				  	computerBank     	 = 0; //TODO implement in game logix
+	static int 					finalScore			 = 0; //TODO implement in game logix
+	static boolean    		  	endProgram			 = false;
+	static boolean    		  	endGame 		     = false;
+	static String     		  	input 				 = "";
+	static List<Card> 		    playerHand 			 = new ArrayList<>();
+	static List<Card> 		    computerHand      	 = new ArrayList<>();
 
 	// variables from settings
-	static Deck 			  cardDeck 		    = gameSettings.getDeck();
-	static Player 			  player 		    = gameSettings.getPlayer();
-	static Player 			  computer 		    = gameSettings.getComputer();
+	static Deck 			    cardDeck 		     = gameSettings.getDeck();
+	static Player 			    player 		         = gameSettings.getPlayer();
+	static Player 			    computer 		     = gameSettings.getComputer();
 
 	//handlers
-	static CardFactoryHandler printCardHandler  = new CardFactoryHandler(); 
-	static RuleSetHandler     ruleSetHandler    = new RuleSetHandler();
+	static CardPrintOut 	    cardPrintoutHandler  = new CardPrintOut(); 
+	static RuleSetHandler       ruleSetHandler       = new RuleSetHandler();
+	static MenuPrintoutHandler  menuPrintoutHandler  = new MenuPrintoutHandler();
 
 	public static void main(String[] args) { //TODO score/start bank/Bet
+		//		try {
+		//			gameSettings.setCardSize(10, 12);
+		//		} catch (DimensionsException e) {
+		//			e.printStackTrace();
+		//		}
+
 		Scanner sc = new Scanner(System.in);
 
 		while (!endProgram) {
-			mainMenuPrintout();
+			menuPrintoutHandler.mainMenuPrintout();
 			input = sc.next();
 			switch (input) {
 			case "1":
 				endGame = false;
-				startRound(sc);
+				startGame(sc);
 				break;
 
 			case "2":
-				settingsMenuPrintout();
+				menuPrintoutHandler.settingsMenuPrintout();
 				break;
 
 			case "3":
-				endScreenPrintout();
+				menuPrintoutHandler.endScreenPrintout(finalScore);
 				endProgram = true;
 				break;
 
@@ -66,61 +78,67 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 	private static void resetRound(){
 		cardDeck.addCardsToStack(playerHand);               	 		 // add cards to pile
 		cardDeck.addCardsToStack(computerHand);  
-		
+
 		playerHand.clear(); 								 		 // drop hand
 		computerHand.clear();							
-		
+
 		computer.setCards(playerHand);			        			 // clear players cards
 		player.setCards(computerHand);			
-		
+
 		computerHandValue = 0;										 // reset hand counts 
 		playerHandValue   = 0;
 
 	}
 
-	private static void startRound(Scanner sc){
+	private static void startGame(Scanner sc){
 		while (!endGame) { // TODO shuffle cards from stack dont create another deck
 			if(ruleSetHandler.isHandMorethanMaxValue(playerHand)){ // TODO update Bank
-				overFlowPrintout();
+				menuPrintoutHandler.overFlowPrintout(player.getName(), playerHandValue);
 				resetRound();	
 			}
 
-			statusMenuPrintout();
-			continueMenuPrintout();
+			menuPrintoutHandler.statusMenuPrintout(playerHandValue, playerBank, computerBank);
+			menuPrintoutHandler.continueMenuPrintout();
 
 			input = sc.next();
 			switch (input) {
 			case "1": 												// players turn
 				playerTurn();
 				break;
-			
+
 			// computers turn
-			case "2":		
+			case "2": //TODO update bank		
 				if(player.getCards() == null || player.getCards().size() < 1){ //TODO rework this condition
 					System.out.println("please draw a card before continuing");
 					break;
 				}
-				
+
 				System.out.println("Computers turn");
 				computersTurn(playerHandValue);						
-				printCardHandler.drawGameBoard(player, computer,	// printout board
+				cardPrintoutHandler.drawGameBoard(player, computer,			    	// printout board
 						Const.DRAW_PLAYERS_CARDS_MIRROR_WAY);  		
-				
-				System.out.println(playerHandValue +" "+ computerHandValue);
-				winRoundScreen();									// win screen
-				resetRound();										// reset hands
+
+				if(computerHandValue < 21 && computerHandValue > playerHandValue){  //TODO implement score
+					menuPrintoutHandler.winRoundScreen(computer.getName(),
+							player.getName(),playerHandValue,computerHandValue);	// win screen
+				} else{
+					menuPrintoutHandler.winRoundScreen(player.getName(),
+							computer.getName(),playerHandValue,computerHandValue);
+				}
+				resetRound();														// reset hands
 				break;
 
 			case "3": //TODO score
 				endGame = true;
 				resetRound();
-				
+
 				break;
 
 			default:
 				break;
 			}
-			
+
+
 		} 
 	}
 
@@ -128,14 +146,13 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 	 * methods that simulate player turn. Retun hand value
 	 * */
 	private static int computersTurn(int playerHandValue){	//TODO dont count if player has overflow	
-		
 		//System.out.println(playerHandValue);
 		boolean overflow = false;
 
 		while (true) {																//simple computer logic
 			overflow = ruleSetHandler.isHandMorethanMaxValue(computerHand);
 			if(overflow){															//is overflow?
-				overFlowPrintout();
+				menuPrintoutHandler.overFlowPrintout(player.getName(), playerHandValue);
 				break;
 			} else if(playerHandValue < computerHandValue){
 				break;
@@ -145,7 +162,7 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 			}
 		}
 		computer.setCards(computerHand);					 						// set computers hand
-		
+
 		return computerHandValue;
 	}
 
@@ -153,92 +170,11 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 		playerHand.add(cardDeck.getCard()); 					 // player draws a card
 		player.setCards(playerHand);
 		playerHandValue = ruleSetHandler.countCardsInHand(playerHand);
-		printCardHandler.drawPlayer(player);
+		cardPrintoutHandler.drawPlayer(player);
 
 		return playerHandValue;
 	}
 
-	/**
-	 * Methods for printing out menus 
-	 * */
-	public static void mainMenuPrintout(){//TODO finish handler for main menu
-		System.out.println("╔═══════════════════════════════════════════════════╗");
-		System.out.println("║ Main Menu                                         ║");
-		System.out.println("╠═══════════════════════════════════════════════════╣");
-		System.out.println("║                                                   ║");
-		System.out.println("║  1. NEW GAME                                      ║");
-		System.out.println("║  2. SETTINGS                                      ║");
-		System.out.println("║  3. EXIT                                          ║");
-		System.out.println("║                                                   ║");
-		System.out.println("╚═══════════════════════════════════════════════════╝");
-	}
 
-	public static void statusMenuPrintout(){ // TODO create dynamic drawn status menu and values
-		System.out.println("╔═══════════════════════════════════════════════════╗");
-		System.out.println("║ Status                                            ║");
-		System.out.println("╠═══════════════════════════════════════════════════╣");
-		System.out.println("║                                                   ║");
-		System.out.println("║  Hand card value count   : " + playerHandValue + "    ║");
-		System.out.println("║  Player bank remaining   : unimplemented          ║");
-		System.out.println("║  Computer bank remaining : unimplemented          ║");
-		System.out.println("║                                                   ║");
-	}
-
-	public static void continueMenuPrintout(){
-		System.out.println("╠═══════════════════════════════════════════════════╣");
-		System.out.println("║ Draw another Card?                                ║");
-		System.out.println("╠═══════════════════════════════════════════════════╣");
-		System.out.println("║                                                   ║");
-		System.out.println("║  1. Yes                                           ║");
-		System.out.println("║  2. No                                            ║");
-		System.out.println("║  3. EXIT TO MAIN MENU                             ║");
-		System.out.println("║                                                   ║");
-		System.out.println("╚═══════════════════════════════════════════════════╝");
-	} 
-
-	public static void endScreenPrintout(){//TODO final score
-		System.out.println("╠═══════════════════════════════════════════════════╣");
-		System.out.println("║ Game is closing. Have a nice day                  ║");
-		System.out.println("╠═══════════════════════════════════════════════════╣");
-		System.out.println("║                                                   ║");
-		System.out.println("║ Final Score : unimplemented                       ║");
-		System.out.println("║                                                   ║");
-		System.out.println("╚═══════════════════════════════════════════════════╝");
-	}
-
-	public static void overFlowPrintout(){ //TODO implement Player variable depending on actual player
-		System.out.println("╔═══════════════════════════════════════════════════╗");
-		System.out.println("║ Value of hand exeeds max value in ruleset         ║");
-		System.out.println("╠═══════════════════════════════════════════════════╣");
-		System.out.println("║                                                   ║");
-		System.out.println("║ Player Lost.                                      ║");
-		System.out.println("║                                                   ║");
-		System.out.println("╚═══════════════════════════════════════════════════╝");
-	}
-
-	public static void winRoundScreen(){ //TODO implement Player variable depending on actual player
-		System.out.println("╔═══════════════════════════════════════════════════╗");
-		System.out.println("║ Player won the round                              ║");
-		System.out.println("╠═══════════════════════════════════════════════════╣");
-		System.out.println("║                                                   ║");
-		System.out.println("║ Player with Value beat Player with Value          ║");
-		System.out.println("║                                                   ║");
-		System.out.println("╚═══════════════════════════════════════════════════╝");
-	}
-	
-	public static void settingsMenuPrintout(){//TODO implement settings menu
-		System.out.println("╔═══════════════════════════════════════════════════╗");
-		System.out.println("║ Settings                                          ║");
-		System.out.println("╠═══════════════════════════════════════════════════╣");
-		System.out.println("║                                                   ║");
-		System.out.println("║  1. Unimplemented                                 ║");
-		System.out.println("║                                                   ║");
-		System.out.println("╚═══════════════════════════════════════════════════╝");
-	}
-
-	public static void clearScreen() {  
-	    System.out.print("\033[H\033[2J");  
-	    System.out.flush();  
-	   }
 }
 

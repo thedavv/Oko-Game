@@ -12,14 +12,30 @@ import model.cardproperty.Value;
 public class Deck {
 	private static Deck instance;
 	private List<Card> deck = new ArrayList<>();
-	private List<Card> stack = new ArrayList<>();//thrown cards
-	
+	private List<Card> stack = new ArrayList<>();// pile of used cards
 	
 	private Deck(){
 		createDeck();
 		shuffleDeck(deck);
 	}
 	
+	//card manipulation
+	public Card getCard(){//TODO this will not work as intended(creates new deck with all cards) shuffle stack instead
+		if(deck.size()< 1){
+			createDeck();
+			shuffleDeck(deck);
+		}
+		
+		return deck.remove(0);
+	}
+	
+	public void addCardsToStack(List<Card> hand){
+		for (Card card : hand) {
+			stack.add(card);
+		}
+	}
+	
+	//G
 	public static Deck getInstance() {
 		if(instance == null){
 			instance = new Deck();
@@ -28,6 +44,7 @@ public class Deck {
 		return instance;
 	}
 
+	// deck handling
 	private void createDeck(){
 		CardFactory cf = new CardFactory();
 		Card card;
@@ -44,18 +61,5 @@ public class Deck {
 		Collections.shuffle(list);
 	}
 	
-	public Card getCard(){//TODO this will not work as intended(creates new deck with all cards) shuffle stack instead
-		if(deck.size()< 1){
-			createDeck();
-			shuffleDeck(deck);
-		}
-		
-		return deck.remove(0);
-	}
 	
-	public void addCardsToStack(List<Card> hand){
-		for (Card card : hand) {
-			stack.add(card);
-		}
-	}
 }

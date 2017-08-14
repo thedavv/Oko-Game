@@ -6,20 +6,22 @@ import model.Player;
 
 public class Settings { //TODO rework to static variables
 	private static Settings instance;
-	private int cardSizeX;
-	private int cardSizeY;
-	private int spaceBetweenPlayers;//TODO add exception for setting space too low
+	private int    cardSizeX;
+	private int    cardSizeY;
+	private int    spaceBetweenPlayers;//TODO add exception for setting space too low
 	private Player player;
 	private Player computer;
-	private Deck deck;
+	private Deck   deck;
+	
+	public static int menuLenght = Const.DRAW_MENU_X_SIZE;
 	
 	private Settings(){
-		this.cardSizeX = Const.CARD_SIZE_X;
-		this.cardSizeY = Const.CARD_SIZE_Y;
+		this.cardSizeX 			 = Const.CARD_SIZE_X;
+		this.cardSizeY 		     = Const.CARD_SIZE_Y;
 		this.spaceBetweenPlayers = Const.SPACE_BETWEEN_PLAYERS;
-		this.player = new Player("player");
-		this.computer = new Player("computer");
-		this.deck = Deck.getInstance();
+		this.player 			 = new Player("player");
+		this.computer 			 = new Player("computer");
+		this.deck 				 = Deck.getInstance();
 	}
 
 	public static Settings getInstance(){
