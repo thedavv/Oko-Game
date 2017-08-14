@@ -199,7 +199,6 @@ public class MenuPrintOut{
 	 * Helper draw methods
 	 * */
 	//TODO check if text has more chars than lenght
-	
 	public String drawLine(int menuLenght, char leftBorder, char rightBorder, char middleSection, String middleSectionText){
 		StringBuilder sb = new StringBuilder();
 

@@ -12,13 +12,11 @@ import handler.printhandler.PrintOutFactory;
 import handler.printhandler.PrintOutMenu;
 import model.*;
 import model.cardfactory.*;
-import model.cardproperty.*;
 import util.Const;
-import util.DimensionsException;
 import util.Settings;
 
 public class Start { //TODO test settings / change setings / Bug with drawing cards from deck
-	//helper variables
+	//  helper variables
 	private static Settings   	gameSettings 		 = Settings.getInstance();
 	static int 				  	playerHandValue  	 = 0; 	
 	static int 				  	computerHandValue 	 = 0; 	
@@ -31,12 +29,12 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 	static List<Card> 		    playerHand 			 = new ArrayList<>();
 	static List<Card> 		    computerHand      	 = new ArrayList<>();
 
-	// variables from settings
+	//  variables from settings
 	static Deck 			    cardDeck 		     = gameSettings.getDeck();
 	static Player 			    player 		         = gameSettings.getPlayer();
 	static Player 			    computer 		     = gameSettings.getComputer();
 
-	//handlers
+	//  handlers
 	static PrintOutMenu 	    printOutFactory     = new PrintOutFactory();
 	static CardPrintOut 	    cardPrintoutHandler = printOutFactory.createCardPrintout();
 	static MenuPrintOut 	    menuPrintoutHandler = printOutFactory.createMenuPrintout();
@@ -49,7 +47,6 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 		//		} catch (DimensionsException e) {
 		//			e.printStackTrace();
 		//		}
-		
 		Scanner sc = new Scanner(System.in);
 
 		while (!endProgram) {
@@ -99,7 +96,6 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 				menuPrintoutHandler.createOverflowPrintout(player.getName(), playerHandValue);
 				resetRound();	
 			}
-
 			menuPrintoutHandler.createStatusMenuPrintout(playerHandValue, playerBank, computerBank);
 			menuPrintoutHandler.createContinueMenuPrintout();
 
