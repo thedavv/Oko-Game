@@ -20,9 +20,9 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 	private static Settings   	gameSettings 		 = Settings.getInstance();
 	static int 				  	playerHandValue  	 = 0; 	
 	static int 				  	computerHandValue 	 = 0; 	
-	static int 				  	playerBank		     = 0; //TODO implement in game logix
-	static int 				  	computerBank     	 = 0; //TODO implement in game logix
-	static int 					finalScore			 = 0; //TODO implement in game logix
+	static int 				  	playerBank		     = 0; //TODO implement in game logic
+	static int 				  	computerBank     	 = 0; //TODO implement in game logic
+	static int 					finalScore			 = 0; //TODO implement in game logic
 	static boolean    		  	endProgram			 = false;
 	static boolean    		  	endGame 		     = false;
 	static String     		  	input 				 = "";
@@ -49,7 +49,7 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 		Scanner sc = new Scanner(System.in);
 
 		while (!endProgram) {
-			menuPrintoutHandler.mainMenuPrintout();
+			menuPrintoutHandler.createMainMenuPrintout();
 			input = sc.next();
 			switch (input) {
 			case "1":
@@ -58,11 +58,11 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 				break;
 
 			case "2":
-				menuPrintoutHandler.settingsMenuPrintout();
+				menuPrintoutHandler.createSettingsMenuPrintout();
 				break;
 
 			case "3":
-				menuPrintoutHandler.endScreenPrintout(finalScore);
+				menuPrintoutHandler.createEndScreenPrintout(finalScore);
 				endProgram = true;
 				break;
 
@@ -93,12 +93,12 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 	private static void startGame(Scanner sc){
 		while (!endGame) { // TODO shuffle cards from stack dont create another deck
 			if(ruleSetHandler.isHandMorethanMaxValue(playerHand)){ // TODO update Bank
-				menuPrintoutHandler.overFlowPrintout(player.getName(), playerHandValue);
+				menuPrintoutHandler.createOverflowPrintout(player.getName(), playerHandValue);
 				resetRound();	
 			}
 
-			menuPrintoutHandler.statusMenuPrintout(playerHandValue, playerBank, computerBank);
-			menuPrintoutHandler.continueMenuPrintout();
+			menuPrintoutHandler.createStatusMenuPrintout(playerHandValue, playerBank, computerBank);
+			menuPrintoutHandler.createContinueMenuPrintout();
 
 			input = sc.next();
 			switch (input) {
@@ -119,10 +119,10 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 						Const.DRAW_PLAYERS_CARDS_MIRROR_WAY);  		
 
 				if(computerHandValue < 21 && computerHandValue > playerHandValue){  //TODO implement score
-					menuPrintoutHandler.winRoundScreen(computer.getName(),
-							player.getName(),playerHandValue,computerHandValue);	// win screen
+					menuPrintoutHandler.createWinRoundScreen(computer.getName(),
+							player.getName(),computerHandValue,playerHandValue);	// win screen
 				} else{
-					menuPrintoutHandler.winRoundScreen(player.getName(),
+					menuPrintoutHandler.createWinRoundScreen(player.getName(),
 							computer.getName(),playerHandValue,computerHandValue);
 				}
 				resetRound();														// reset hands
@@ -152,7 +152,7 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 		while (true) {																//simple computer logic
 			overflow = ruleSetHandler.isHandMorethanMaxValue(computerHand);
 			if(overflow){															//is overflow?
-				menuPrintoutHandler.overFlowPrintout(player.getName(), playerHandValue);
+				menuPrintoutHandler.createOverflowPrintout(player.getName(), playerHandValue);
 				break;
 			} else if(playerHandValue < computerHandValue){
 				break;
