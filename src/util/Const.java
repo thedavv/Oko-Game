@@ -117,8 +117,8 @@ public class Const {
 	 * */
 	public static final int  DRAW_MENU_X_SIZE = 53;
 	public static final int  DRAW_MENU_Y_SIZE = 7;
-	public static final char LMJ         = 9568;     //left middle join
-	public static final char RMJ         = 9571;     //right middle join
+	public static final char LMJ        	  = 9568;     //left middle join
+	public static final char RMJ         	  = 9571;     //right middle join
 	
 	
 	/**

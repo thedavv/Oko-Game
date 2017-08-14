@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.Scanner;
 
 import handler.*;
-import handler.printout.CardPrintOut;
-import handler.printout.MenuPrintoutHandler;
+import handler.printhandler.CardPrintOut;
+import handler.printhandler.MenuPrintOut;
+import handler.printhandler.PrintOutFactory;
+import handler.printhandler.PrintOutMenu;
 import model.*;
 import model.cardfactory.*;
 import model.cardproperty.*;
@@ -35,9 +37,11 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 	static Player 			    computer 		     = gameSettings.getComputer();
 
 	//handlers
-	static CardPrintOut 	    cardPrintoutHandler  = new CardPrintOut(); 
-	static RuleSetHandler       ruleSetHandler       = new RuleSetHandler();
-	static MenuPrintoutHandler  menuPrintoutHandler  = new MenuPrintoutHandler();
+	static PrintOutMenu 	    printOutFactory     = new PrintOutFactory();
+	static CardPrintOut 	    cardPrintoutHandler = printOutFactory.createCardPrintout();
+	static MenuPrintOut 	    menuPrintoutHandler = printOutFactory.createMenuPrintout();
+	static RuleSetHandler       ruleSetHandler      = new RuleSetHandler();
+	
 
 	public static void main(String[] args) { //TODO score/start bank/Bet
 		//		try {
@@ -45,7 +49,7 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 		//		} catch (DimensionsException e) {
 		//			e.printStackTrace();
 		//		}
-
+		
 		Scanner sc = new Scanner(System.in);
 
 		while (!endProgram) {
@@ -87,7 +91,6 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 
 		computerHandValue = 0;										 // reset hand counts 
 		playerHandValue   = 0;
-
 	}
 
 	private static void startGame(Scanner sc){
@@ -137,13 +140,11 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 			default:
 				break;
 			}
-
-
 		} 
 	}
 
 	/**
-	 * methods that simulate player turn. Retun hand value
+	 * methods that simulate player turn. Return hand value
 	 * */
 	private static int computersTurn(int playerHandValue){	//TODO dont count if player has overflow	
 		//System.out.println(playerHandValue);
@@ -174,7 +175,5 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 
 		return playerHandValue;
 	}
-
-
 }
 

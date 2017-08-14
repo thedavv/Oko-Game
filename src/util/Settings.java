@@ -1,6 +1,5 @@
 package util;
 
-import handler.RuleSetHandler;
 import model.Deck;
 import model.Player;
 

@@ -1,9 +1,9 @@
-package handler.printout;
+package handler.printhandler;
 
 import util.Const;
 import util.Settings;
 
-public class MenuPrintoutHandler implements Printout{
+public class MenuPrintOut{
 	/**
 	 * Method for printing out main menu 
 	 * */
@@ -200,7 +200,6 @@ public class MenuPrintoutHandler implements Printout{
 	 * */
 	//TODO check if text has more chars than lenght
 	
-	@Override
 	public String drawLine(int menuLenght, char leftBorder, char rightBorder, char middleSection, String middleSectionText){
 		StringBuilder sb = new StringBuilder();
 
@@ -221,5 +220,6 @@ public class MenuPrintoutHandler implements Printout{
 
 		return sb.toString();
 	}
+
 
 }
