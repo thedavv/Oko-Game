@@ -16,11 +16,9 @@ public class RuleSetHandler {
 	 * @param hand players hand
 	 * @return	true if hand exceeded the max hand value defined in <code>Const</Settings> class
 	 */
+	@Deprecated
 	public boolean isHandMorethanMaxValue(List<Card> hand){
-		int handValue = 0;
-		for (Card card : hand) {
-			handValue += card.getValue().getIntValue();
-		}
+		int handValue = countCardsInHand(hand);
 		
 		return (handValue > Const.MAX_HAND_VALUE) ? true : false;
 	}
@@ -36,7 +34,16 @@ public class RuleSetHandler {
 		for (Card card : hand) {
 			handValue += card.getValue().getIntValue();
 		}
-		
 		return handValue;
+	}
+	
+	/**
+	 * Method for calculating if hand exceeded max hand value
+	 * 
+	 * @param handValue players cards value
+	 * @return	true if hand exceeded the max hand value defined in <code>Const</Settings> class
+	 */
+	public boolean isHandValueMoreThanMaxValue(int handValue){
+		return (handValue > Const.MAX_HAND_VALUE) ? true : false;
 	}
 }

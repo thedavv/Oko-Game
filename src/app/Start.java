@@ -36,7 +36,6 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 	static CardPrintOut 	    cardPrintoutHandler  = new CardPrintOut();
 	static MenuPrintOut 	    menuPrintoutHandler  = new MenuPrintOut();
 	static RuleSetHandler       ruleSetHandler       = new RuleSetHandler();
-	
 
 	public static void main(String[] args) { //TODO score/start bank/Bet
 		//		try {
@@ -89,7 +88,8 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 
 	private static void startGame(Scanner sc){
 		while (!endGame) { // TODO shuffle cards from stack dont create another deck
-			if(ruleSetHandler.isHandMorethanMaxValue(playerHand)){ // TODO update Bank
+			
+			if(ruleSetHandler.isHandValueMoreThanMaxValue(playerHandValue)){ // TODO update Bank
 				menuPrintoutHandler.createOverflowPrintout(player.getName(), playerHandValue);
 				resetRound();	
 			}
@@ -109,7 +109,6 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 					break;
 				}
 
-				System.out.println("Computers turn");
 				computersTurn(playerHandValue);						
 				cardPrintoutHandler.drawGameBoard(player, computer,			    	// printout board
 						Const.DRAW_PLAYERS_CARDS_MIRROR_WAY);  		
@@ -127,7 +126,6 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 			case "3": //TODO score
 				endGame = true;
 				resetRound();
-
 				break;
 
 			default:
@@ -141,12 +139,10 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 	 * */
 	private static int computersTurn(int playerHandValue){	//TODO dont count if player has overflow	
 		//System.out.println(playerHandValue);
-		boolean overflow = false;
 
 		while (true) {																//simple computer logic
-			overflow = ruleSetHandler.isHandMorethanMaxValue(computerHand);
-			if(overflow){															//is overflow?
-				menuPrintoutHandler.createOverflowPrintout(player.getName(), playerHandValue);
+			if(ruleSetHandler.isHandValueMoreThanMaxValue(computerHandValue)){		//is overflow?
+				menuPrintoutHandler.createOverflowPrintout(computer.getName(), computerHandValue);
 				break;
 			} else if(playerHandValue < computerHandValue){
 				break;

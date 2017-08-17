@@ -325,7 +325,7 @@ public class CardPrintOut {//TODO ad constructor for settings, make settings cha
 		return line.toString();
 	}
 
-	//TODO rework methods below for static space between players
+	//TODO rework methods below for non changing space between players
 	/**
 	 * Private methods for adjusting board printout with settings
 	 * */

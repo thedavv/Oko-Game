@@ -33,7 +33,7 @@ public class Settings { //TODO rework to static variables
 	public void setCardSize(int cardSizeX, int cardSizeY) throws DimensionsException{
 		if(cardSizeX < 6 || cardSizeY < 6){
 			throw new DimensionsException("Bad card size dimension. Min dimensions are [6,6] " + "card x-lenght: " 
-					+ cardSizeX + " card y-lenght: " + cardSizeY,new int[]{cardSizeX, cardSizeY});
+					+ cardSizeX + " card y-lenght: " + cardSizeY, new int[]{cardSizeX, cardSizeY});
 		}
 		this.cardSizeX =cardSizeX;
 		this.cardSizeY = cardSizeY;
