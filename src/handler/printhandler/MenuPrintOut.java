@@ -127,7 +127,7 @@ public class MenuPrintOut{
 
 		System.out.println(drawLine(Settings.menuLenght, Const.TLC, Const.TRC, Const.HL, null));
 		System.out.println(drawLine(Settings.menuLenght, Const.VL,  Const.VL,  Const.SP,
-				"Value of hand exeeds max value in ruleset = 21"));
+				"Value of hand exeeds max value in ruleset = " + Const.MAX_HAND_VALUE));
 		System.out.println(drawLine(Settings.menuLenght, Const.LMJ, Const.RMJ, Const.HL, null));
 		System.out.println(drawLine(Settings.menuLenght, Const.VL,  Const.VL,  Const.SP, null));
 		System.out.println(drawLine(Settings.menuLenght, Const.VL,  Const.VL,  Const.SP,

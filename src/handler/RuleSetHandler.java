@@ -10,7 +10,6 @@ import util.Const;
  * */
 public class RuleSetHandler {
 	
-	
 	/**
 	 * Method for calculating if hand exceeded max hand value
 	 * 

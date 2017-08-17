@@ -25,7 +25,6 @@ public class Deck {
 			createDeck();
 			shuffleDeck(deck);
 		}
-		
 		return deck.remove(0);
 	}
 	
