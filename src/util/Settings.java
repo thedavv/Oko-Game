@@ -14,6 +14,7 @@ public class Settings {
 	private Player			computer;
 	private Deck			deck;
 	private int				cardPartialSizeX;
+	private int				drawStyle;
 
 	public static int		menuLenght	= Const.DRAW_MENU_X_SIZE;
 
@@ -25,6 +26,7 @@ public class Settings {
 		this.computer = new Player("computer");
 		this.deck = Deck.getInstance();
 		this.cardPartialSizeX = Const.CARD_PARTIAL_SIZE_X;
+		this.drawStyle = Const.DRAW_PLAYERS_CARDS_MIRROR_WAY;
 	}
 
 	public static Settings getInstance() {
@@ -81,5 +83,13 @@ public class Settings {
 
 	public int getCardPartialSizeX() {
 		return cardPartialSizeX;
+	}
+
+	public int getDrawStyle() {
+		return drawStyle;
+	}
+
+	public void setDrawStyle(int drawStyle) {
+		this.drawStyle = drawStyle;
 	}
 }

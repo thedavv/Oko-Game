@@ -36,6 +36,7 @@ public class PlayerPrintout extends LinePrintout {
 		}
 		// append top line
 		sb.append(drawPlayerName(playerName, computerName, playerHandSize));
+		sb.append("\n");
 		sb.append(createCompleteLineLR(playerHandSize, settings.getCardSizeX(),
 				settings.getCardPartialSizeX(), String.valueOf(Const.TLC),
 				String.valueOf(Const.TRC), String.valueOf(Const.TJ),
@@ -141,6 +142,7 @@ public class PlayerPrintout extends LinePrintout {
 
 		// append top line
 		sb.append(drawPlayerName(playerName, computerName, playerHandSize));
+		sb.append("\n");
 		sb.append(createCompleteLineRL(playerHandSize, settings.getCardSizeX(),
 				settings.getCardPartialSizeX(), String.valueOf(Const.TLC),
 				String.valueOf(Const.TRC), String.valueOf(Const.TJ),
@@ -246,6 +248,7 @@ public class PlayerPrintout extends LinePrintout {
 
 		// append top line
 		sb.append(drawPlayerName(playerName, computerName, playerHandSize));
+		sb.append("\n");
 		sb.append(createCompleteLineRL(playerHandSize, settings.getCardSizeX(),
 				settings.getCardPartialSizeX(), String.valueOf(Const.TLC),
 				String.valueOf(Const.TRC), String.valueOf(Const.TJ),
@@ -351,6 +354,7 @@ public class PlayerPrintout extends LinePrintout {
 
 		// append top line
 		sb.append(drawPlayerName(playerName, computerName, playerHandSize));
+		sb.append("\n");
 		sb.append(createCompleteLineLR(playerHandSize, settings.getCardSizeX(),
 				settings.getCardPartialSizeX(), String.valueOf(Const.TLC),
 				String.valueOf(Const.TRC), String.valueOf(Const.TJ),
@@ -445,6 +449,7 @@ public class PlayerPrintout extends LinePrintout {
 		}
 		// append top line
 		sb.append(drawPlayerName(playerName));
+		sb.append("\n");
 		sb.append(createCompleteLineLR(playerHand.size(), settings.getCardSizeX(),
 				settings.getCardPartialSizeX(), String.valueOf(Const.TLC),
 				String.valueOf(Const.TRC), String.valueOf(Const.TJ),
@@ -504,6 +509,7 @@ public class PlayerPrintout extends LinePrintout {
 		}
 		// append top line
 		sb.append(drawPlayerName(playerName));
+		sb.append("\n");
 		sb.append(createCompleteLineRL(playerHand.size(), settings.getCardSizeX(),
 				settings.getCardPartialSizeX(), String.valueOf(Const.TLC),
 				String.valueOf(Const.TRC), String.valueOf(Const.TJ),

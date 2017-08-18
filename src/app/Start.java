@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import handler.*;
-import handler.printhandler.CardPrintOutOld;
 import handler.printhandler.MenuPrintOut;
+import handler.printhandler.card.GameBoardPrintout;
 import model.*;
 import model.cardfactory.*;
 import util.Const;
@@ -15,48 +15,31 @@ import util.Settings;
 public class Start { // TODO test settings / change setings / Bug with drawing
 						// cards from deck
 	// helper variables
-	private static Settings	gameSettings		= Settings.getInstance();
-	static int				playerHandValue		= 0;
-	static int				computerHandValue	= 0;
+	private static Settings		gameSettings				= Settings.getInstance();
+	static int					playerHandValue				= 0;
+	static int					computerHandValue			= 0;
 	// TODO implement game logic
-	static int				playerBank			= 0;
-	static int				computerBank		= 0;
-	static int				finalScore			= 0;
-	static boolean			endProgram			= false;
-	static boolean			endGame				= false;
-	static String			input				= "";
-	static List<Card>		playerHand			= new ArrayList<>();
-	static List<Card>		computerHand		= new ArrayList<>();
+	static int					playerBank					= 0;
+	static int					computerBank				= 0;
+	static int					finalScore					= 0;
+	static boolean				endProgram					= false;
+	static boolean				endGame						= false;
+	static String				input						= "";
+	static List<Card>			playerHand					= new ArrayList<>();
+	static List<Card>			computerHand				= new ArrayList<>();
 
 	// variables from settings
-	static Deck				cardDeck			= gameSettings.getDeck();
-	static Player			player				= gameSettings.getPlayer();
-	static Player			computer			= gameSettings.getComputer();
+	static Deck					cardDeck					= gameSettings.getDeck();
+	static Player				player						= gameSettings.getPlayer();
+	static Player				computer					= gameSettings.getComputer();
+	static int					drawingStyle				= gameSettings.getDrawStyle();
 
 	// handlers
-	static CardPrintOutOld	cardPrintoutHandler	= new CardPrintOutOld();
-	static MenuPrintOut		menuPrintoutHandler	= new MenuPrintOut();
-	static RuleSetHandler	ruleSetHandler		= new RuleSetHandler();
+	static GameBoardPrintout	gameboardPrintoutHandler	= new GameBoardPrintout();
+	static MenuPrintOut			menuPrintoutHandler			= new MenuPrintOut();
+	static RuleSetHandler		ruleSetHandler				= new RuleSetHandler();
 
 	public static void main(String[] args) { // TODO score/start bank/Bet
-		cardDeck.getCard();
-
-		playerHand.add(cardDeck.getCard());
-		playerHand.add(cardDeck.getCard());
-		playerHand.add(cardDeck.getCard());
-		playerHand.add(cardDeck.getCard());
-		playerHand.add(cardDeck.getCard());
-		computerHand.add(cardDeck.getCard());
-		computerHand.add(cardDeck.getCard());
-		computerHand.add(cardDeck.getCard());
-		player.setCards(playerHand);
-		computer.setCards(computerHand);
-		CardPrintOutOld.printOutPlayersSameStyleLR(player, computer);
-		CardPrintOutOld.printOutPlayersSameStyleRL(player, computer);
-		CardPrintOutOld.printOutPlayersStyleMirror(player, computer);
-		CardPrintOutOld.printOutPlayersStyleReverseMirror(player, computer);
-
-		// *******************************************
 		Scanner sc = new Scanner(System.in);
 
 		while (!endProgram) {
@@ -127,8 +110,7 @@ public class Start { // TODO test settings / change setings / Bug with drawing
 				}
 				computersTurn(playerHandValue);
 				// printout board
-				cardPrintoutHandler.drawGameBoard(player, computer,
-						Const.DRAW_PLAYERS_CARDS_MIRROR_WAY);
+				gameboardPrintoutHandler.drawGameBoard(drawingStyle, player, computer);
 
 				// TODO implement score
 				if (computerHandValue < 21 && computerHandValue > playerHandValue) {
@@ -184,7 +166,7 @@ public class Start { // TODO test settings / change setings / Bug with drawing
 		playerHand.add(cardDeck.getCard());
 		player.setCards(playerHand);
 		playerHandValue = ruleSetHandler.countCardsInHand(playerHand);
-		cardPrintoutHandler.drawPlayer(player);
+		gameboardPrintoutHandler.drawGameBoard(drawingStyle, player);
 
 		return playerHandValue;
 	}

@@ -38,6 +38,7 @@ public class GameBoardPrintout extends PlayerPrintout {
 
 	public void drawGameBoard(int style, Player player) {
 		List<Card> playerHand = new ArrayList<>();
+		playerHand.addAll(player.getCards());
 		String playerName = player.getName();
 
 		switch (style) {
