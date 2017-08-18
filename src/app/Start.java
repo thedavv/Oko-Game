@@ -27,7 +27,7 @@ public class Start { // TODO test settings / change setings
 	static List<Card>			computerHand				= new ArrayList<>();
 
 	// variables from settings
-	static int					finalScore					= gameSettings.getMaxScore();
+	static int					finalScore					= 0;
 	static Player				player						= gameSettings.getPlayer();
 	static Player				computer					= gameSettings.getComputer();
 	static int					drawingStyle				= gameSettings.getDrawStyle();
@@ -44,7 +44,7 @@ public class Start { // TODO test settings / change setings
 	static MenuPrintOut			menuPrintoutHandler			= new MenuPrintOut();
 	static RuleSetHandler		ruleSetHandler				= new RuleSetHandler();
 
-	public static void main(String[] args) { // TODO score/start bank/Bet
+	public static void main(String[] args) { // TODO Bet
 		Scanner sc = new Scanner(System.in);
 		cardDeck.addCards(deckHandler.createDeck());
 
@@ -54,6 +54,7 @@ public class Start { // TODO test settings / change setings
 			switch (input) {
 			case "1":
 				endGame = false;
+				finalScore = gameSettings.getMaxScore();
 				startGame(sc);
 				break;
 
@@ -148,8 +149,10 @@ public class Start { // TODO test settings / change setings
 				resetRound();
 				break;
 
-			case "3": // TODO score
+			case "3":
+				// playe has less score when he leaves the game early
 				endGame = true;
+				finalScore = gameSettings.getMaxScore() - finalScore;
 				resetRound();
 				break;
 

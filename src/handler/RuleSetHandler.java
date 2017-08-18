@@ -6,7 +6,7 @@ import model.cardfactory.Card;
 import util.Const;
 
 /**
- * Clas contains helpful methods for checking rules and handling the counts of
+ * Class contains helpful methods for checking rules and handling the counts of
  * cards in hand
  */
 public class RuleSetHandler {
