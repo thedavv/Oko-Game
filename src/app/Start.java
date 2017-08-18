@@ -102,9 +102,9 @@ public class Start { // TODO test settings / change setings / Bug with drawing
 
 	private static void startGame(Scanner sc) {
 		// TODO shuffle cards from stack dont create another deck
-		while (!endGame) { 
+		while (!endGame) {
 			// TODO update Bank
-			if (ruleSetHandler.isHandValueMoreThanMaxValue(playerHandValue)) { 
+			if (ruleSetHandler.isHandValueMoreThanMaxValue(playerHandValue)) {
 				menuPrintoutHandler.createOverflowPrintout(player.getName(),
 						playerHandValue);
 				resetRound();

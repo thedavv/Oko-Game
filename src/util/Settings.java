@@ -49,6 +49,7 @@ public class Settings {
 	public int getSpaceBetweenPlayers() {
 		return spaceBetweenPlayers;
 	}
+
 	// TODO exception for small large pace
 	public void setSpaceBetweenPlayers(int spaceBetweenPlayers) {
 		this.spaceBetweenPlayers = spaceBetweenPlayers;

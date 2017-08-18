@@ -10,6 +10,7 @@ import model.cardproperty.Value;
  */
 public interface Card {
 	public Value getValue();
+
 	public Color getColor();
-	
+
 }

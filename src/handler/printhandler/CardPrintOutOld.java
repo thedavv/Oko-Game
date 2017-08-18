@@ -74,61 +74,61 @@ public class CardPrintOutOld {// TODO ad constructor for settings, make settings
 		System.out.println(
 				drawTopLine(player) + setSpaceBetweenPlayers() + drawTopLine(computer));
 		System.out.println(drawNumberLine(player) + setSpaceBetweenPlayers()
-		+ drawNumberLine(computer));
+				+ drawNumberLine(computer));
 		System.out.println(drawColorLine(player) + setSpaceBetweenPlayers()
-		+ drawColorLine(computer));
+				+ drawColorLine(computer));
 		for (int i = 0; i < Const.CARD_SIZE_Y - 6; i++) {
 			System.out.println(drawEmptyLine(player) + setSpaceBetweenPlayers()
-			+ drawEmptyLine(computer));
+					+ drawEmptyLine(computer));
 		}
 		System.out.println(drawNumberLine(player) + setSpaceBetweenPlayers()
-		+ drawNumberLine(computer));
+				+ drawNumberLine(computer));
 		System.out.println(drawColorLine(player) + setSpaceBetweenPlayers()
-		+ drawColorLine(computer));
+				+ drawColorLine(computer));
 		System.out.println(drawBottomLine(player) + setSpaceBetweenPlayers()
-		+ drawBottomLine(computer));
+				+ drawBottomLine(computer));
 	}
 
 	@Deprecated
 	private void drawBothPlayersSecondStyle(Player player, Player computer) {
 		System.out.println(drawPlayerNames(player, computer));
 		System.out.println(drawTopLine(player) + setSpaceBetweenPlayers()
-		+ drawTopLineSecondStyle(computer));
+				+ drawTopLineSecondStyle(computer));
 		System.out.println(drawNumberLine(player) + setSpaceBetweenPlayers()
-		+ drawNumberLineSecondStyle(computer));
+				+ drawNumberLineSecondStyle(computer));
 		System.out.println(drawColorLine(player) + setSpaceBetweenPlayers()
-		+ drawColorLineSecondStyle(computer));
+				+ drawColorLineSecondStyle(computer));
 		for (int i = 0; i < Const.CARD_SIZE_Y - 6; i++) {
 			System.out.println(drawEmptyLine(player) + setSpaceBetweenPlayers()
-			+ drawEmptyLineSecondStyle(computer));
+					+ drawEmptyLineSecondStyle(computer));
 		}
 		System.out.println(drawColorLine(player) + setSpaceBetweenPlayers()
-		+ drawColorLineSecondStyle(computer));
+				+ drawColorLineSecondStyle(computer));
 		System.out.println(drawNumberLine(player) + setSpaceBetweenPlayers()
-		+ drawNumberLineSecondStyle(computer));
+				+ drawNumberLineSecondStyle(computer));
 		System.out.println(drawBottomLine(player) + setSpaceBetweenPlayers()
-		+ drawBottomLineSecondStyle(computer));
+				+ drawBottomLineSecondStyle(computer));
 	}
 
 	@Deprecated
 	private void drawBothPlayersThirdStyle(Player player, Player computer) {
 		System.out.println(drawPlayerNames(player, computer));
 		System.out.println(drawTopLineSecondStyle(player) + setSpaceBetweenPlayers()
-		+ drawTopLine(computer));
+				+ drawTopLine(computer));
 		System.out.println(drawNumberLineSecondStyle(player) + setSpaceBetweenPlayers()
-		+ drawNumberLine(computer));
+				+ drawNumberLine(computer));
 		System.out.println(drawColorLineSecondStyle(player) + setSpaceBetweenPlayers()
-		+ drawColorLine(computer));
+				+ drawColorLine(computer));
 		for (int i = 0; i < Const.CARD_SIZE_Y - 6; i++) {
 			System.out.println(drawEmptyLineSecondStyle(player) + setSpaceBetweenPlayers()
-			+ drawEmptyLine(computer));
+					+ drawEmptyLine(computer));
 		}
 		System.out.println(drawColorLineSecondStyle(player) + setSpaceBetweenPlayers()
-		+ drawColorLine(computer));
+				+ drawColorLine(computer));
 		System.out.println(drawNumberLineSecondStyle(player) + setSpaceBetweenPlayers()
-		+ drawNumberLine(computer));
+				+ drawNumberLine(computer));
 		System.out.println(drawBottomLineSecondStyle(player) + setSpaceBetweenPlayers()
-		+ drawBottomLine(computer));
+				+ drawBottomLine(computer));
 	}
 
 	/**
@@ -379,8 +379,8 @@ public class CardPrintOutOld {// TODO ad constructor for settings, make settings
 		List<String> playerColorStrings = new ArrayList<>();
 		List<String> computerValueStrings = new ArrayList<>();
 		List<String> computerColorStrings = new ArrayList<>();
-		int 		 playerHandSize 	= player.getCards().size();
-		int 		 computerHandSize	= computer.getCards().size();
+		int playerHandSize = player.getCards().size();
+		int computerHandSize = computer.getCards().size();
 
 		for (Card c : player.getCards()) {
 			playerColorStrings.add(String.valueOf(c.getColor().getColor()));
@@ -480,8 +480,8 @@ public class CardPrintOutOld {// TODO ad constructor for settings, make settings
 		List<String> playerColorStrings = new ArrayList<>();
 		List<String> computerValueStrings = new ArrayList<>();
 		List<String> computerColorStrings = new ArrayList<>();
-		int 		 playerHandSize 	= player.getCards().size();
-		int 		 computerHandSize	= computer.getCards().size();
+		int playerHandSize = player.getCards().size();
+		int computerHandSize = computer.getCards().size();
 
 		for (Card c : player.getCards()) {
 			playerColorStrings.add(String.valueOf(c.getColor().getColor()));
@@ -581,8 +581,8 @@ public class CardPrintOutOld {// TODO ad constructor for settings, make settings
 		List<String> playerColorStrings = new ArrayList<>();
 		List<String> computerValueStrings = new ArrayList<>();
 		List<String> computerColorStrings = new ArrayList<>();
-		int 		 playerHandSize 	= player.getCards().size();
-		int 		 computerHandSize	= computer.getCards().size();
+		int playerHandSize = player.getCards().size();
+		int computerHandSize = computer.getCards().size();
 
 		for (Card c : player.getCards()) {
 			playerColorStrings.add(String.valueOf(c.getColor().getColor()));
@@ -678,12 +678,12 @@ public class CardPrintOutOld {// TODO ad constructor for settings, make settings
 
 	public static void printOutPlayersStyleReverseMirror(Player player, Player computer) {
 		StringBuilder sb = new StringBuilder();
-		List<String> playerValueStrings   = new ArrayList<>();
-		List<String> playerColorStrings   = new ArrayList<>();
+		List<String> playerValueStrings = new ArrayList<>();
+		List<String> playerColorStrings = new ArrayList<>();
 		List<String> computerValueStrings = new ArrayList<>();
 		List<String> computerColorStrings = new ArrayList<>();
-		int 		 playerHandSize 	  = player.getCards().size();
-		int 		 computerHandSize     = computer.getCards().size();
+		int playerHandSize = player.getCards().size();
+		int computerHandSize = computer.getCards().size();
 
 		for (Card c : player.getCards()) {
 			playerColorStrings.add(String.valueOf(c.getColor().getColor()));

@@ -5,19 +5,20 @@ import util.Const;
 /**
  * @author David Racek
  *
- *Enum that contains color of the cards
+ *         Enum that contains color of the cards
  *
  */
-public enum Color{
-	SPADES(Const.SPADES), CLUBS(Const.CLUBS), HEARTHS(Const.HEARTHS), DIAMONDS(Const.DIAMONDS);
-	
+public enum Color {
+	SPADES(Const.SPADES), CLUBS(Const.CLUBS), HEARTHS(Const.HEARTHS), DIAMONDS(
+			Const.DIAMONDS);
+
 	private final char color;
-	
-	Color(char color){
+
+	Color(char color) {
 		this.color = color;
 	}
-	
-	public char getColor(){
+
+	public char getColor() {
 		return this.color;
 	}
 }
