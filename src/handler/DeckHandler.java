@@ -7,7 +7,6 @@ import model.cardfactory.Card;
 import model.cardfactory.CardFactory;
 import model.cardproperty.Color;
 import model.cardproperty.Value;
-import model.deck.Deck;
 
 public class DeckHandler {
 	public List<Card> createDeck() {
