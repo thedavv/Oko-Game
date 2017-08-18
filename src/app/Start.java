@@ -9,7 +9,7 @@ import handler.printhandler.MenuPrintOut;
 import handler.printhandler.card.GameBoardPrintout;
 import model.*;
 import model.cardfactory.*;
-import util.Const;
+import model.deck.Deck;
 import util.Settings;
 
 public class Start { // TODO test settings / change setings / Bug with drawing
@@ -29,18 +29,21 @@ public class Start { // TODO test settings / change setings / Bug with drawing
 	static List<Card>			computerHand				= new ArrayList<>();
 
 	// variables from settings
-	static Deck					cardDeck					= gameSettings.getDeck();
 	static Player				player						= gameSettings.getPlayer();
 	static Player				computer					= gameSettings.getComputer();
 	static int					drawingStyle				= gameSettings.getDrawStyle();
+	static Deck					cardDeck					= gameSettings.getDeck();
+	static Deck					cardPile					= gameSettings.getPile();
 
 	// handlers
+	static DeckHandler			deckHandler					= new DeckHandler();
 	static GameBoardPrintout	gameboardPrintoutHandler	= new GameBoardPrintout();
 	static MenuPrintOut			menuPrintoutHandler			= new MenuPrintOut();
 	static RuleSetHandler		ruleSetHandler				= new RuleSetHandler();
 
 	public static void main(String[] args) { // TODO score/start bank/Bet
 		Scanner sc = new Scanner(System.in);
+		cardDeck.addCards(deckHandler.createDeck());
 
 		while (!endProgram) {
 			menuPrintoutHandler.createMainMenuPrintout();
@@ -70,8 +73,9 @@ public class Start { // TODO test settings / change setings / Bug with drawing
 	 * Methods responsible for program flow
 	 */
 	private static void resetRound() {
-		cardDeck.addCardsToStack(playerHand); // add cards to pile
-		cardDeck.addCardsToStack(computerHand);
+
+		cardPile.addCards(playerHand);// add cards to pile
+		cardPile.addCards(computerHand);
 
 		playerHand.clear(); // drop hand
 		computerHand.clear();
@@ -151,6 +155,8 @@ public class Start { // TODO test settings / change setings / Bug with drawing
 			} else if (playerHandValue < computerHandValue) {
 				break;
 			} else {
+				// take card if deck is empty shuffle pile
+				isDeckEmpty();
 				computerHand.add(cardDeck.getCard());
 				computerHandValue = ruleSetHandler.countCardsInHand(computerHand);
 			}
@@ -162,12 +168,21 @@ public class Start { // TODO test settings / change setings / Bug with drawing
 	}
 
 	private static int playerTurn() {
-		// player draws a card
+		// take card if deck is empty shuffle pile
+		isDeckEmpty();
 		playerHand.add(cardDeck.getCard());
 		player.setCards(playerHand);
 		playerHandValue = ruleSetHandler.countCardsInHand(playerHand);
 		gameboardPrintoutHandler.drawGameBoard(drawingStyle, player);
 
 		return playerHandValue;
+	}
+
+	private static void isDeckEmpty() {
+		if (cardDeck.isEmpty()) {
+			cardDeck.addCards(cardPile.getAllCards());
+			cardDeck.shuffle();
+			cardPile.clear();
+		}
 	}
 }

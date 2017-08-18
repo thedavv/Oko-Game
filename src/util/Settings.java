@@ -1,7 +1,10 @@
 package util;
 
-import model.Deck;
+import handler.DeckHandler;
 import model.Player;
+import model.deck.CardDeck;
+import model.deck.CardDeckFactory;
+import model.deck.Deck;
 
 //TODO rework to static variables
 public class Settings {
@@ -12,11 +15,15 @@ public class Settings {
 	private int				spaceBetweenPlayers;
 	private Player			player;
 	private Player			computer;
-	private Deck			deck;
 	private int				cardPartialSizeX;
 	private int				drawStyle;
+	private Deck			deck;
+	private Deck			pile;
 
-	public static int		menuLenght	= Const.DRAW_MENU_X_SIZE;
+	// hanlers
+	private CardDeckFactory	cardDeckFactory	= new CardDeckFactory();
+
+	public static int		menuLenght		= Const.DRAW_MENU_X_SIZE;
 
 	private Settings() {
 		this.cardSizeX = Const.CARD_SIZE_X;
@@ -24,9 +31,10 @@ public class Settings {
 		this.spaceBetweenPlayers = Const.SPACE_BETWEEN_PLAYERS;
 		this.player = new Player("player");
 		this.computer = new Player("computer");
-		this.deck = Deck.getInstance();
 		this.cardPartialSizeX = Const.CARD_PARTIAL_SIZE_X;
 		this.drawStyle = Const.DRAW_PLAYERS_CARDS_MIRROR_WAY;
+		this.deck = cardDeckFactory.createCardDeck();
+		this.pile = cardDeckFactory.createCardStack();
 	}
 
 	public static Settings getInstance() {
@@ -55,10 +63,6 @@ public class Settings {
 	// TODO exception for small large pace
 	public void setSpaceBetweenPlayers(int spaceBetweenPlayers) {
 		this.spaceBetweenPlayers = spaceBetweenPlayers;
-	}
-
-	public Deck getDeck() {
-		return deck;
 	}
 
 	public Player getPlayer() {
@@ -92,4 +96,13 @@ public class Settings {
 	public void setDrawStyle(int drawStyle) {
 		this.drawStyle = drawStyle;
 	}
+
+	public Deck getDeck() {
+		return deck;
+	}
+
+	public Deck getPile() {
+		return pile;
+	}
+
 }
