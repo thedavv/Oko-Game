@@ -10,7 +10,9 @@ import handler.printhandler.CardPrintOut;
 import handler.printhandler.MenuPrintOut;
 import model.*;
 import model.cardfactory.*;
+import model.cardproperty.Value;
 import util.Const;
+import util.DimensionsException;
 import util.Settings;
 
 public class Start { //TODO test settings / change setings / Bug with drawing cards from deck
@@ -38,11 +40,31 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 	static RuleSetHandler       ruleSetHandler       = new RuleSetHandler();
 
 	public static void main(String[] args) { //TODO score/start bank/Bet
-		//		try {
-		//			gameSettings.setCardSize(10, 12);
-		//		} catch (DimensionsException e) {
-		//			e.printStackTrace();
-		//		}
+//				try {
+//					gameSettings.setCardSize(10, 12);
+//				} catch (DimensionsException e) {
+//					e.printStackTrace();
+//				}
+		Card c = cardDeck.getCard();
+		//CardPrintOut.drawCard(c.getColor(), Value.NINE, 3);//Const.CARD_SIZE_X
+		
+		playerHand.add(cardDeck.getCard());
+		playerHand.add(cardDeck.getCard());
+		playerHand.add(cardDeck.getCard());
+		playerHand.add(cardDeck.getCard());
+		playerHand.add(cardDeck.getCard());
+		System.out.print(CardPrintOut.createLeftSideOfLine(Const.CARD_SIZE_X / 2,  String.valueOf(Const.VL),  String.valueOf(Const.HL),  "10"));
+		System.out.print(CardPrintOut.createRightSideOfLine(Const.CARD_SIZE_X / 2,  String.valueOf(Const.VL),  String.valueOf(Const.VL),  "10"));
+		System.out.println();
+		System.out.println(CardPrintOut.createCompleteLineRL(playerHand.size(), Const.CARD_SIZE_X, Const.CARD_PARTIAL_SIZE_X, String.valueOf(Const.TLC), String.valueOf(Const.TRC),String.valueOf(Const.TJ), String.valueOf(Const.HL), null));
+		List<String> valueStrings = new ArrayList<>();
+		for (Card ca : playerHand) {
+			valueStrings.add(String.valueOf(c.getValue().getLabel()));
+		}
+		System.out.println(CardPrintOut.createCompleteLineLR(playerHand.size(), Const.CARD_SIZE_X, Const.CARD_PARTIAL_SIZE_X, String.valueOf(Const.TLC), String.valueOf(Const.TRC),String.valueOf(Const.TJ), String.valueOf(Const.HL), valueStrings));
+		System.out.println(CardPrintOut.createStringRepresentationOfPlayersHand(playerHand));
+		System.out.println(CardPrintOut.createStringRepresentationOfOfPlayersHandSecondStyle(playerHand));		
+		//*******************************************
 		Scanner sc = new Scanner(System.in);
 
 		while (!endProgram) {
@@ -108,7 +130,6 @@ public class Start { //TODO test settings / change setings / Bug with drawing ca
 					System.out.println("please draw a card before continuing");
 					break;
 				}
-
 				computersTurn(playerHandValue);						
 				cardPrintoutHandler.drawGameBoard(player, computer,			    	// printout board
 						Const.DRAW_PLAYERS_CARDS_MIRROR_WAY);  		

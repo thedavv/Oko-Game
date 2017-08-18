@@ -91,6 +91,7 @@ public class Const {
 	 * */
 	public static final int CARD_SIZE_X = 10;
 	public static final int CARD_SIZE_Y = 8;
+	public static final int CARD_PARTIAL_SIZE_X = 3;
 	
 	/**
 	 * Card print settings
