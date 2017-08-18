@@ -6,33 +6,29 @@ import model.deck.Deck;
 
 //TODO rework to static variables
 public class Settings {
+	public static int		menuLenght				= Const.DRAW_MENU_X_SIZE;
+
 	private static Settings	instance;
-	private int				cardSizeX;
-	private int				cardSizeY;
+	private int				cardSizeX				= Const.CARD_SIZE_X;
+	private int				cardSizeY				= Const.CARD_SIZE_Y;
 	// TODO add exception for setting space too low
-	private int				spaceBetweenPlayers;
-	private Player			player;
-	private Player			computer;
-	private int				cardPartialSizeX;
-	private int				drawStyle;
+	private int				spaceBetweenPlayers		= Const.SPACE_BETWEEN_PLAYERS;
+	private Player			player					= new Player("player");
+	private Player			computer				= new Player("computer");
+	private int				cardPartialSizeX		= Const.CARD_PARTIAL_SIZE_X;
+	private int				drawStyle				= Const.DRAW_PLAYERS_CARDS_MIRROR_WAY;
+	private int				playersBeginingMoney	= Const.PLAYERS_MONEY_BEGINING;
+	private int				computersBeginingMoney	= Const.PLAYERS_MONEY_BEGINING;
+	private int				maxScore				= Const.MAX_SCORE;
+	
 	private Deck			deck;
 	private Deck			pile;
-
-	// hanlers
-	private CardDeckFactory	cardDeckFactory	= new CardDeckFactory();
-
-	public static int		menuLenght		= Const.DRAW_MENU_X_SIZE;
+	// handlers
+	private CardDeckFactory	cardDeckFactory			= new CardDeckFactory();
 
 	private Settings() {
-		this.cardSizeX = Const.CARD_SIZE_X;
-		this.cardSizeY = Const.CARD_SIZE_Y;
-		this.spaceBetweenPlayers = Const.SPACE_BETWEEN_PLAYERS;
-		this.player = new Player("player");
-		this.computer = new Player("computer");
-		this.cardPartialSizeX = Const.CARD_PARTIAL_SIZE_X;
-		this.drawStyle = Const.DRAW_PLAYERS_CARDS_MIRROR_WAY;
 		this.deck = cardDeckFactory.createCardDeck();
-		this.pile = cardDeckFactory.createCardStack();
+		this.pile = cardDeckFactory.createCardDeck();
 	}
 
 	public static Settings getInstance() {
@@ -102,5 +98,26 @@ public class Settings {
 	public Deck getPile() {
 		return pile;
 	}
+
+	public int getPlayersBeginingMoney() {
+		return playersBeginingMoney;
+	}
+
+	public void setPlayersBeginingMoney(int playersBeginingMoney) {
+		this.playersBeginingMoney = playersBeginingMoney;
+	}
+
+	public int getComputersBeginingMoney() {
+		return computersBeginingMoney;
+	}
+
+	public void setComputersBeginingMoney(int computersBeginingMoney) {
+		this.computersBeginingMoney = computersBeginingMoney;
+	}
+	
+	public int getMaxScore() {
+		return maxScore;
+	}
+
 
 }

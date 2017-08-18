@@ -121,5 +121,7 @@ public class Const {
 	 * Ruleset
 	 */
 	public static final int		MAX_HAND_VALUE								= 21;
-
+	public static final int		PLAYERS_MONEY_BEGINING						= 50;
+	public static final int		MAX_SCORE									= 1000;
 }
+

@@ -12,16 +12,14 @@ import model.cardfactory.*;
 import model.deck.Deck;
 import util.Settings;
 
-public class Start { // TODO test settings / change setings / Bug with drawing
-						// cards from deck
+public class Start { // TODO test settings / change setings
 	// helper variables
 	private static Settings		gameSettings				= Settings.getInstance();
 	static int					playerHandValue				= 0;
 	static int					computerHandValue			= 0;
+	static int					bet							= 0;
 	// TODO implement game logic
-	static int					playerBank					= 0;
-	static int					computerBank				= 0;
-	static int					finalScore					= 0;
+
 	static boolean				endProgram					= false;
 	static boolean				endGame						= false;
 	static String				input						= "";
@@ -29,11 +27,16 @@ public class Start { // TODO test settings / change setings / Bug with drawing
 	static List<Card>			computerHand				= new ArrayList<>();
 
 	// variables from settings
+	static int					finalScore					= gameSettings.getMaxScore();
 	static Player				player						= gameSettings.getPlayer();
 	static Player				computer					= gameSettings.getComputer();
 	static int					drawingStyle				= gameSettings.getDrawStyle();
 	static Deck					cardDeck					= gameSettings.getDeck();
 	static Deck					cardPile					= gameSettings.getPile();
+	static int					playerBank					= gameSettings
+			.getPlayersBeginingMoney();
+	static int					computerBank				= gameSettings
+			.getPlayersBeginingMoney();;
 
 	// handlers
 	static DeckHandler			deckHandler					= new DeckHandler();
@@ -94,8 +97,22 @@ public class Start { // TODO test settings / change setings / Bug with drawing
 			if (ruleSetHandler.isHandValueMoreThanMaxValue(playerHandValue)) {
 				menuPrintoutHandler.createOverflowPrintout(player.getName(),
 						playerHandValue);
+				substractLostValue(bet);
 				resetRound();
 			}
+			// TODO winning screen
+			if (isBankZero(playerBank)) {
+				endGame = true;
+				break;
+			} else if (isBankZero(computerBank)) {
+				endGame = true;
+				break;
+			}
+
+			// TODO bet Screem
+			// input = sc.next();
+			bet = 4;
+
 			menuPrintoutHandler.createStatusMenuPrintout(playerHandValue, playerBank,
 					computerBank);
 			menuPrintoutHandler.createContinueMenuPrintout();
@@ -116,12 +133,14 @@ public class Start { // TODO test settings / change setings / Bug with drawing
 				// printout board
 				gameboardPrintoutHandler.drawGameBoard(drawingStyle, player, computer);
 
-				// TODO implement score
+				// player Lost substract winnings
 				if (computerHandValue < 21 && computerHandValue > playerHandValue) {
-					// win screen
+					substractLostValue(bet);
 					menuPrintoutHandler.createWinRoundScreen(computer.getName(),
 							player.getName(), computerHandValue, playerHandValue);
 				} else {
+					// PlayerWon add score and winnings
+					addWonValue(bet);
 					menuPrintoutHandler.createWinRoundScreen(player.getName(),
 							computer.getName(), playerHandValue, computerHandValue);
 				}
@@ -184,5 +203,20 @@ public class Start { // TODO test settings / change setings / Bug with drawing
 			cardDeck.shuffle();
 			cardPile.clear();
 		}
+	}
+
+	private static void addWonValue(int bet) {
+		playerBank += bet;
+		computerBank -= bet;
+	}
+
+	private static void substractLostValue(int bet) {
+		playerBank -= bet;
+		computerBank += bet;
+		finalScore -= 20;
+	}
+
+	private static boolean isBankZero(int playerBank) {
+		return (playerBank <= 0) ? true : false;
 	}
 }
