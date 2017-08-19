@@ -1,6 +1,6 @@
 package handler.printhandler.menu;
 
-public class LinePrintOut {
+public class LineCreation {
 	public String drawLine(int menuLenght, char leftBorder, char rightBorder,
 			char middleSection, String middleSectionText) {
 		StringBuilder sb = new StringBuilder();

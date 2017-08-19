@@ -1,5 +1,5 @@
 package handler.printhandler.menu;
 
-public class MenuPrintOut {
-
+public class MenuPrintOut extends MenuCreation{
+	
 }

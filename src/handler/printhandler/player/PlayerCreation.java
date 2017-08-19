@@ -1,4 +1,4 @@
-package handler.printhandler.card;
+package handler.printhandler.player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import model.cardfactory.Card;
 import util.Const;
 import util.Settings;
 
-public class PlayerPrintout extends LinePrintout {
+public class PlayerCreation extends LineCreation {
 	private static Settings settings = Settings.getInstance();
 
 	/**

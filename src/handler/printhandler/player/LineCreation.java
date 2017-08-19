@@ -1,8 +1,8 @@
-package handler.printhandler.card;
+package handler.printhandler.player;
 
 import java.util.List;
 
-public class LinePrintout {
+public class LineCreation {
 	/**
 	 * private methods for creating card lines
 	 */

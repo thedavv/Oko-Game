@@ -1,4 +1,4 @@
-package handler.printhandler.card;
+package handler.printhandler.player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import model.Player;
 import model.cardfactory.Card;
 import util.Const;
 
-public class GameBoardPrintout extends PlayerPrintout {
+public class GameBoardPrintOut extends PlayerCreation {
 
 	public void drawGameBoard(int style, Player player, Player computer) {
 		switch (style) {
