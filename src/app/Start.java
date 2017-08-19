@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Scanner;
 
 import handler.*;
-import handler.printhandler.MenuPrintOut;
-import handler.printhandler.card.GameBoardPrintout;
+import handler.printhandler.menu.Menu;
+import handler.printhandler.menu.MenuCreation;
+import handler.printhandler.menu.MenuPrintOut;
+import handler.printhandler.player.GameBoardPrintOut;
 import model.*;
 import model.cardfactory.*;
 import model.deck.Deck;
@@ -40,8 +42,8 @@ public class Start { // TODO test settings / change setings
 
 	// handlers
 	static DeckHandler			deckHandler					= new DeckHandler();
-	static GameBoardPrintout	gameboardPrintoutHandler	= new GameBoardPrintout();
-	static MenuPrintOut			menuPrintoutHandler			= new MenuPrintOut();
+	static GameBoardPrintOut	gameboardPrintoutHandler	= new GameBoardPrintOut();
+	static MenuCreation			menuPrintoutHandler			= new MenuCreation();
 	static RuleSetHandler		ruleSetHandler				= new RuleSetHandler();
 
 	public static void main(String[] args) { // TODO Bet
@@ -125,6 +127,7 @@ public class Start { // TODO test settings / change setings
 				break;
 
 			// computers turn
+			// TODO update screen
 			case "2": // TODO update bank
 				if (player.getCards() == null || player.getCards().size() < 1) {
 					System.out.println("please draw a card before continuing");

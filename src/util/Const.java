@@ -116,6 +116,17 @@ public class Const {
 	public static final char	LMJ											= 9568;
 	// right middle join
 	public static final char	RMJ											= 9571;
+	// menu selection
+	public static final int		MENU_MAIN									= 1;
+	public static final int		MENU_STATUS									= 2;
+	public static final int		MENU_CONTINUE								= 3;
+	public static final int		MENU_END									= 4;
+	public static final int		MENU_OVERFLOW								= 5;
+	public static final int		MENU_WIN_ROUND								= 6;
+	public static final int		MENU_SETTINGS								= 7;
+	public static final int		MENU_WIN									= 8;
+	public static final int		MENU_LOST									= 9;
+	public static final int		MENU_RETURN									= 10;
 
 	/**
 	 * Ruleset
@@ -124,4 +135,3 @@ public class Const {
 	public static final int		PLAYERS_MONEY_BEGINING						= 50;
 	public static final int		MAX_SCORE									= 1000;
 }
-

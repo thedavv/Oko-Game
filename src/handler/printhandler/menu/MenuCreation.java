@@ -261,7 +261,7 @@ public class MenuCreation extends LineCreation {
 		return sb.toString();
 	}
 
-	public String returningToMenuPrintout(int finalScore) {
+	public String createReturnToMenuPrintout(int finalScore) {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(drawLine(Settings.menuLenght, Const.TLC, Const.TRC, Const.HL, null));
@@ -282,4 +282,4 @@ public class MenuCreation extends LineCreation {
 		System.out.flush();
 	}
 
-	}
+}
