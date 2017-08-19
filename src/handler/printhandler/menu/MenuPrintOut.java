@@ -4,8 +4,14 @@ public class MenuPrintOut extends MenuCreation implements Menu{
 
 	@Override
 	public void createMenu(int menuType) {
-		// TODO Auto-generated method stub
-		
+		switch (menuType) {
+		case 1:
+			
+			break;
+
+		default:
+			break;
+		}
 	}
 	
 }
