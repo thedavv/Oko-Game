@@ -229,11 +229,6 @@ public class MenuCreation extends LineCreation {
 		return sb.toString();
 	}
 
-	public void clearScreen() {
-		System.out.print("\033[H\033[2J");
-		System.out.flush();
-	}
-
 	public String createWinScreenPrintout(int finalScore) {
 		StringBuilder sb = new StringBuilder();
 
@@ -281,4 +276,10 @@ public class MenuCreation extends LineCreation {
 
 		return sb.toString();
 	}
-}
+
+	public void clearScreen() {
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
+	}
+
+	}

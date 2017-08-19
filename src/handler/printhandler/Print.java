@@ -1,9 +1,9 @@
 package handler.printhandler;
 
-import handler.printhandler.menu.MenuPrintOut;
-import handler.printhandler.player.GameBoardPrintOut;
+import handler.printhandler.menu.Menu;
+import handler.printhandler.player.GameBoard;
 
 public interface Print {
-	MenuPrintOut printOutGameBoardHandler();
-	GameBoardPrintOut printOutMenuHandler();
+	Menu printOutGameBoardHandler();
+	GameBoard printOutMenuHandler();
 }

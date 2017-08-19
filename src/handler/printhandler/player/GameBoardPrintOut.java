@@ -7,7 +7,7 @@ import model.Player;
 import model.cardfactory.Card;
 import util.Const;
 
-public class GameBoardPrintOut extends PlayerCreation {
+public class GameBoardPrintOut extends PlayerCreation implements GameBoard{
 
 	public void drawGameBoard(int style, Player player, Player computer) {
 		switch (style) {
