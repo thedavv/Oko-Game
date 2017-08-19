@@ -5,13 +5,17 @@ import java.util.List;
 import java.util.Scanner;
 
 import handler.*;
+import handler.printhandler.Print;
+import handler.printhandler.PrintHandler;
 import handler.printhandler.menu.Menu;
 import handler.printhandler.menu.MenuCreation;
 import handler.printhandler.menu.MenuPrintOut;
+import handler.printhandler.player.GameBoard;
 import handler.printhandler.player.GameBoardPrintOut;
 import model.*;
 import model.cardfactory.*;
 import model.deck.Deck;
+import util.Const;
 import util.Settings;
 
 public class Start { // TODO test settings / change setings
@@ -29,7 +33,7 @@ public class Start { // TODO test settings / change setings
 	static List<Card>			computerHand				= new ArrayList<>();
 
 	// variables from settings
-	static int					finalScore					= 0;
+	static int					finalScore					= gameSettings.getFinalScore();
 	static Player				player						= gameSettings.getPlayer();
 	static Player				computer					= gameSettings.getComputer();
 	static int					drawingStyle				= gameSettings.getDrawStyle();
@@ -42,30 +46,33 @@ public class Start { // TODO test settings / change setings
 
 	// handlers
 	static DeckHandler			deckHandler					= new DeckHandler();
-	static GameBoardPrintOut	gameboardPrintoutHandler	= new GameBoardPrintOut();
-	static MenuCreation			menuPrintoutHandler			= new MenuCreation();
 	static RuleSetHandler		ruleSetHandler				= new RuleSetHandler();
+	static Print				printHandler				= new PrintHandler();
+	static Menu					printMenu					= printHandler.createPrintOutMenuHandler();
+	static GameBoard			printGameBoard				= printHandler.createPrintOutGameBoardHandler();
 
 	public static void main(String[] args) { // TODO Bet
+		
+		
 		Scanner sc = new Scanner(System.in);
 		cardDeck.addCards(deckHandler.createDeck());
 
 		while (!endProgram) {
-			menuPrintoutHandler.createMainMenuPrintout();
+			printMenu.createMenu(Const.MENU_MAIN);
 			input = sc.next();
 			switch (input) {
 			case "1":
 				endGame = false;
-				finalScore = gameSettings.getMaxScore();
+				finalScore = gameSettings.getFinalScore();
 				startGame(sc);
 				break;
 
 			case "2":
-				menuPrintoutHandler.createSettingsMenuPrintout();
+				printMenu.createMenu(Const.MENU_SETTINGS);
 				break;
 
 			case "3":
-				menuPrintoutHandler.createEndScreenPrintout(finalScore);
+				printMenu.createMenu(Const.MENU_END, finalScore);
 				endProgram = true;
 				break;
 
@@ -98,17 +105,18 @@ public class Start { // TODO test settings / change setings
 		while (!endGame) {
 			// TODO update Bank
 			if (ruleSetHandler.isHandValueMoreThanMaxValue(playerHandValue)) {
-				menuPrintoutHandler.createOverflowPrintout(player.getName(),
-						playerHandValue);
+				printMenu.createMenu(Const.MENU_OVERFLOW, player, playerHandValue);
 				substractLostValue(bet);
 				resetRound();
 			}
 			// TODO winning screen
 			if (isBankZero(playerBank)) {
 				endGame = true;
+				printMenu.createMenu(Const.MENU_LOST, finalScore);
 				break;
 			} else if (isBankZero(computerBank)) {
 				endGame = true;
+				printMenu.createMenu(Const.MENU_WIN, finalScore);
 				break;
 			}
 
@@ -116,10 +124,9 @@ public class Start { // TODO test settings / change setings
 			// input = sc.next();
 			bet = 4;
 
-			menuPrintoutHandler.createStatusMenuPrintout(playerHandValue, playerBank,
+			printMenu.createMenu(Const.MENU_STATUS, playerHandValue, playerBank,
 					computerBank);
-			menuPrintoutHandler.createContinueMenuPrintout();
-
+			printMenu.createMenu(Const.MENU_CONTINUE);
 			input = sc.next();
 			switch (input) {
 			case "1": // players turn
@@ -135,18 +142,16 @@ public class Start { // TODO test settings / change setings
 				}
 				computersTurn(playerHandValue);
 				// printout board
-				gameboardPrintoutHandler.drawGameBoard(drawingStyle, player, computer);
+				printGameBoard.drawGameBoard(drawingStyle, player, computer);
 
 				// player Lost substract winnings
 				if (computerHandValue < 21 && computerHandValue > playerHandValue) {
 					substractLostValue(bet);
-					menuPrintoutHandler.createWinRoundScreen(computer.getName(),
-							player.getName(), computerHandValue, playerHandValue);
+					printMenu.createMenu(Const.MENU_WIN_ROUND, player, computer, playerHandValue, computerHandValue);
 				} else {
 					// PlayerWon add score and winnings
 					addWonValue(bet);
-					menuPrintoutHandler.createWinRoundScreen(player.getName(),
-							computer.getName(), playerHandValue, computerHandValue);
+					printMenu.createMenu(Const.MENU_WIN_ROUND, player, computer, playerHandValue, computerHandValue);
 				}
 				// reset hands
 				resetRound();
@@ -155,7 +160,8 @@ public class Start { // TODO test settings / change setings
 			case "3":
 				// playe has less score when he leaves the game early
 				endGame = true;
-				finalScore = gameSettings.getMaxScore() - finalScore;
+				finalScore = gameSettings.getFinalScore() - finalScore;
+				printMenu.createMenu(Const.MENU_RETURN, finalScore);
 				resetRound();
 				break;
 
@@ -174,8 +180,7 @@ public class Start { // TODO test settings / change setings
 		while (true) {
 			// is overflow?
 			if (ruleSetHandler.isHandValueMoreThanMaxValue(computerHandValue)) {
-				menuPrintoutHandler.createOverflowPrintout(computer.getName(),
-						computerHandValue);
+				printMenu.createMenu(Const.MENU_OVERFLOW, player, playerHandValue);
 				break;
 			} else if (playerHandValue < computerHandValue) {
 				break;
@@ -198,7 +203,7 @@ public class Start { // TODO test settings / change setings
 		playerHand.add(cardDeck.getCard());
 		player.setCards(playerHand);
 		playerHandValue = ruleSetHandler.countCardsInHand(playerHand);
-		gameboardPrintoutHandler.drawGameBoard(drawingStyle, player);
+		printGameBoard.drawGameBoard(drawingStyle, player);
 
 		return playerHandValue;
 	}
@@ -219,7 +224,7 @@ public class Start { // TODO test settings / change setings
 	private static void substractLostValue(int bet) {
 		playerBank -= bet;
 		computerBank += bet;
-		finalScore -= 20;
+		finalScore -= bet * 25;
 	}
 
 	private static boolean isBankZero(int playerBank) {

@@ -19,7 +19,7 @@ public class Settings {
 	private int				drawStyle				= Const.DRAW_PLAYERS_CARDS_MIRROR_WAY;
 	private int				playersBeginingMoney	= Const.PLAYERS_MONEY_BEGINING;
 	private int				computersBeginingMoney	= Const.PLAYERS_MONEY_BEGINING;
-	private int				maxScore				= Const.MAX_SCORE;
+	private int				finalScore				= Const.MAX_SCORE;
 	
 	private Deck			deck;
 	private Deck			pile;
@@ -115,8 +115,8 @@ public class Settings {
 		this.computersBeginingMoney = computersBeginingMoney;
 	}
 	
-	public int getMaxScore() {
-		return maxScore;
+	public int getFinalScore() {
+		return finalScore;
 	}
 
 

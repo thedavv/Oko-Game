@@ -1,19 +1,21 @@
 package handler.printhandler;
 
+import handler.printhandler.menu.Menu;
 import handler.printhandler.menu.MenuPrintOut;
+import handler.printhandler.player.GameBoard;
 import handler.printhandler.player.GameBoardPrintOut;
 
 public class PrintHandler implements Print{
 
 	@Override
-	public MenuPrintOut printOutGameBoardHandler() {
+	public Menu createPrintOutMenuHandler() {
 		return new MenuPrintOut();
-		
 	}
 
 	@Override
-	public GameBoardPrintOut printOutMenuHandler() {
+	public GameBoard createPrintOutGameBoardHandler() {
 		return new GameBoardPrintOut();
 	}
+
 
 }

@@ -9,10 +9,6 @@ public class MenuPrintOut extends MenuCreation implements Menu {
 	public void createMenu(int menuType) {
 		switch (menuType) {
 		case Const.MENU_MAIN:
-			System.out.println(createContinueMenuPrintout());
-			break;
-
-		case Const.MENU_STATUS:
 			System.out.println(createMainMenuPrintout());
 			break;
 
@@ -46,6 +42,7 @@ public class MenuPrintOut extends MenuCreation implements Menu {
 		case Const.MENU_RETURN:
 			System.out.println(createReturnToMenuPrintout(finalScore));
 			break;
+
 		default:
 			break;
 		}
@@ -55,10 +52,6 @@ public class MenuPrintOut extends MenuCreation implements Menu {
 	public void createMenu(int menuType, Player player, Player computer,
 			int playerHandValue, int computerHandValue) {
 		switch (menuType) {
-		case Const.MENU_OVERFLOW:
-			System.out.println(createOverflowPrintout(player.getName(), playerHandValue));
-			break;
-
 		case Const.MENU_WIN_ROUND:
 			if (playerHandValue > computerHandValue) {
 				System.out.println(createWinRoundScreen(player.getName(),
@@ -72,5 +65,32 @@ public class MenuPrintOut extends MenuCreation implements Menu {
 		default:
 			break;
 		}
+	}
+
+	@Override
+	public void createMenu(int menuType, int playerHandValue, int playerBank,
+			int ComputerBank) {
+		switch (menuType) {
+		case Const.MENU_STATUS:
+			System.out.println(
+					createStatusMenuPrintout(playerHandValue, playerBank, ComputerBank));
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	@Override
+	public void createMenu(int menuType, Player player, int playerHandValue) {
+		switch (menuType) {
+		case Const.MENU_OVERFLOW:
+			System.out.println(createOverflowPrintout(player.getName(), playerHandValue));
+			break;
+
+		default:
+			break;
+		}
+
 	}
 }
