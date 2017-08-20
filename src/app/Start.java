@@ -5,168 +5,209 @@ import java.util.List;
 import java.util.Scanner;
 
 import handler.*;
-import handler.printhandler.Print;
-import handler.printhandler.PrintFactory;
-import handler.printhandler.menu.Menu;
-import handler.printhandler.menu.MenuCreation;
-import handler.printhandler.menu.MenuPrintOut;
-import handler.printhandler.player.GameBoard;
-import handler.printhandler.player.GameBoardPrintOut;
+import handler.game.StartHandler;
+import handler.print.Print;
+import handler.print.PrintFactory;
+import handler.print.menu.Menu;
+import handler.print.player.GameBoard;
 import model.*;
 import model.cardfactory.*;
+import model.deck.CardDeckFactory;
 import model.deck.Deck;
 import util.Const;
 import util.Settings;
 
 public class Start { // TODO test settings / change setings
+	// handlers
+	static DeckHandler		deckHandler				= new DeckHandler();
+	static StartHandler	ruleSetHandler			= new StartHandler();
+	static Print			printFactory			= new PrintFactory();
+	static CardDeckFactory	deckFactory				= new CardDeckFactory();
+	static Menu				printMenuHandler		= printFactory
+			.createPrintOutMenuHandler();
+	static GameBoard		printGameBoardHandler	= printFactory
+			.createPrintOutGameBoardHandler();
+
 	// helper variables
-	private static Settings	gameSettings		= Settings.getInstance();
-	static int				playerHandValue		= 0;
-	static int				computerHandValue	= 0;
-	static boolean			endProgram			= false;
-	static boolean			endGame				= false;
-	static String			input				= "";
-	static List<Card>		playerHand			= new ArrayList<>();
-	static List<Card>		computerHand		= new ArrayList<>();
+	static int				playerHandValue			= 0;
+	static int				computerHandValue		= 0;
+	static boolean			endProgram				= false;
+	static boolean			endGame					= false;
+	static String			input					= "";
+	static List<Card>		playerHand				= new ArrayList<>();
+	static List<Card>		computerHand			= new ArrayList<>();
+	static Deck				cardPile				= deckFactory.createCardDeck();
+	static Deck				cardDeck				= deckFactory.createCardDeck();
 
 	// variables from settings
-	static int				finalScore			= gameSettings.getFinalScore();
-	static Player			player				= gameSettings.getPlayer();
-	static Player			computer			= gameSettings.getComputer();
-	static int				drawingStyle		= gameSettings.getDrawStyle();
-	static Deck				cardDeck			= gameSettings.getDeck();
-	static Deck				cardPile			= gameSettings.getPile();
-	static int				playerBank			= gameSettings.getPlayersBeginingMoney();
-	static int				computerBank		= gameSettings.getPlayersBeginingMoney();;
+	static Settings			gameSettings			= Settings.getInstance();
 
-	// handlers
-	static DeckHandler		deckHandler			= new DeckHandler();
-	static RuleSetHandler	ruleSetHandler		= new RuleSetHandler();
-	static Print			printHandler		= new PrintFactory();
-	static Menu				printMenu			= printHandler
-			.createPrintOutMenuHandler();
-	static GameBoard		printGameBoard		= printHandler
-			.createPrintOutGameBoardHandler();
+	static int				score					= gameSettings.getFinalScore();
+	static Player			player					= gameSettings.getPlayer();
+	static Player			computer				= gameSettings.getComputer();
+	static int				drawingStyle			= gameSettings.getDrawStyle();
+	static int				playerBank				= gameSettings
+			.getPlayersBeginingMoney();
+	static int				computerBank			= gameSettings
+			.getPlayersBeginingMoney();
+	static int				bet						= gameSettings.getMinimalBet();
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		cardDeck.addCards(deckHandler.createDeck());
 
 		while (!endProgram) {
-			printMenu.createMenu(Const.MENU_MAIN);
+			printMenuHandler.createMenu(Const.MENU_MAIN);
 			input = sc.next();
 			switch (input) {
-			case "1":
-				setUpNewGame();
-				startGame(sc);
-				break;
+				case "1":
+					setUpNewGame();
+					startGame(sc);
+					break;
 
-			case "2":
-				printMenu.createMenu(Const.MENU_SETTINGS);
-				break;
+				case "2":
+					printMenuHandler.createMenu(Const.MENU_SETTINGS);
+					break;
 
-			case "3":
-				finalScore = gameSettings.getFinalScore() - finalScore;
-				printMenu.createMenu(Const.MENU_END, finalScore);
-				endProgram = true;
-				break;
+				case "3":
+					score = gameSettings.getFinalScore() - score;
+					printMenuHandler.createMenu(Const.MENU_END, score);
+					endProgram = true;
+					break;
 
-			default:
-				break;
+				default:
+					break;
 			}
 		}
-	}
-
-	/**
-	 * Methods responsible for program flow
-	 */
-	private static void resetRound() {
-
-		cardPile.addCards(playerHand);// add cards to pile
-		cardPile.addCards(computerHand);
-
-		playerHand.clear(); // drop hand
-		computerHand.clear();
-
-		computer.setCards(playerHand); // clear players cards
-		player.setCards(computerHand);
-
-		computerHandValue = 0; // reset hand counts
-		playerHandValue = 0;
 	}
 
 	private static void startGame(Scanner sc) {
 		while (!endGame) {
 			if (ruleSetHandler.isHandValueMoreThanMaxValue(playerHandValue)) {
-				printMenu.createMenu(Const.MENU_OVERFLOW, player, playerHandValue);
-				substractLostValue(gameSettings.getBet());
+				printMenuHandler.createMenu(Const.MENU_OVERFLOW, player, playerHandValue);
+				// update values
+				computerBank = ruleSetHandler.addBetValue(bet, computerBank);
+				playerBank = ruleSetHandler.substractBetValue(bet, playerBank);
+				score = ruleSetHandler.updateFinalScore(bet, score);
 				resetRound();
 			}
 
 			endGame = isGameEnd();
-			if(endGame){
+			if (endGame) {
 				break;
 			}
-			
-			printMenu.createMenu(Const.MENU_STATUS, playerHandValue, playerBank,
+
+			printMenuHandler.createMenu(Const.MENU_STATUS, playerHandValue, playerBank,
 					computerBank);
-			printMenu.createMenu(Const.MENU_CONTINUE);
+			printMenuHandler.createMenu(Const.MENU_CONTINUE);
 
 			input = sc.next();
 
 			switch (input) {
-			// players turn
-			case "1":
-				playerTurn(sc);
-				break;
-
-			// computers turn
-			case "2":
-				if (player.getCards() == null || player.getCards().size() < 1) {
-					System.out.println("please draw a card before continuing");
+				// players turn
+				case "1":
+					playerTurn(sc);
 					break;
-				}
-				computersTurn(playerHandValue);
-				// printout board
-				printGameBoard.drawGameBoard(drawingStyle, player, computer);
-				
-				// update standings
-				endRoundUpdate();
-				
-				// reset hands
-				resetRound();
-				break;
 
-			case "3":
-				// playe has less score when he leaves the game early
-				endGame = true;
-				finalScore = gameSettings.getFinalScore() - finalScore;
-				printMenu.createMenu(Const.MENU_RETURN, finalScore);
-				resetRound();
-				break;
+				// computers turn
+				case "2":
+					if (player.getCards() == null || player.getCards().size() < 1) {
+						System.out.println("please draw a card before continuing");
+						break;
+					}
+					computersTurn(playerHandValue);
+					// printout board
+					printGameBoardHandler.drawGameBoard(drawingStyle, player, computer);
 
-			default:
-				break;
+					// update standings
+					endRoundUpdate();
+
+					// reset hands
+					resetRound();
+					break;
+
+				case "3":
+					// playe has less score when he leaves the game early
+					endGame = true;
+					score = gameSettings.getFinalScore() - score;
+					printMenuHandler.createMenu(Const.MENU_RETURN, score);
+					resetRound();
+					break;
+
+				default:
+					break;
 			}
 		}
 	}
 
-	/**
-	 * methods that simulate player turn. Return hand value
-	 */
-	// TODO dont count if player overflow
+	private static void setUpNewGame() {
+		endGame = false;
+		score = gameSettings.getFinalScore();
+		playerBank = gameSettings.getPlayersBeginingMoney();
+		computerBank = gameSettings.getPlayersBeginingMoney();
+		bet = gameSettings.getMinimalBet();
+	}
+
+	private static void resetRound() {
+
+		// add cards to pile
+		cardPile.addCards(playerHand);
+		cardPile.addCards(computerHand);
+
+		// drop hand
+		playerHand.clear();
+		computerHand.clear();
+
+		// clear players cards
+		computer.setCards(playerHand);
+		player.setCards(computerHand);
+
+		// reset hand counts
+		computerHandValue = 0;
+		playerHandValue = 0;
+	}
+
+	private static int playerTurn(Scanner sc) {
+		// take card if deck is empty shuffle pile
+		// bet
+		if (playerHand == null || playerHand.size() < 1) {
+			printMenuHandler.createMenu(Const.MENU_Bet, bet);
+			bet = ruleSetHandler.setBet(sc);
+			// double down?
+		} else if (playerHand.size() == 1) {
+			printMenuHandler.createMenu(Const.MENU_DOUBLE_DOWN);
+			bet = ruleSetHandler.setBetDoubleDown(sc, bet);
+		}
+
+		// take card if deck is empty, shuffle pile
+		if (cardDeck.isEmpty()) {
+			cardDeck = ruleSetHandler.shufflePileIntoDeck(cardDeck, cardPile);
+			cardPile.clear();
+		}
+
+		playerHand.add(cardDeck.getCard());
+		player.setCards(playerHand);
+		playerHandValue = ruleSetHandler.countCardsInHand(playerHand);
+		printGameBoardHandler.drawGameBoard(drawingStyle, player);
+
+		return playerHandValue;
+	}
+
 	private static int computersTurn(int playerHandValue) {
 		// simple computer logic
 		while (true) {
 			// is overflow?
 			if (ruleSetHandler.isHandValueMoreThanMaxValue(computerHandValue)) {
-				printMenu.createMenu(Const.MENU_OVERFLOW, player, playerHandValue);
+				printMenuHandler.createMenu(Const.MENU_OVERFLOW, player, playerHandValue);
 				break;
 			} else if (playerHandValue < computerHandValue) {
 				break;
 			} else {
-				// take card if deck is empty shuffle pile
-				isDeckEmpty();
+				// take card if deck is empty, shuffle pile
+				if (cardDeck.isEmpty()) {
+					cardDeck = ruleSetHandler.shufflePileIntoDeck(cardDeck, cardPile);
+					cardPile.clear();
+				}
 				computerHand.add(cardDeck.getCard());
 				computerHandValue = ruleSetHandler.countCardsInHand(computerHand);
 			}
@@ -177,122 +218,35 @@ public class Start { // TODO test settings / change setings
 		return computerHandValue;
 	}
 
-	private static int playerTurn(Scanner sc) {
-		// take card if deck is empty shuffle pile
-		// bet
-		if (playerHand == null || playerHand.size() < 1) {
-			printMenu.createMenu(Const.MENU_Bet, gameSettings.getBet());
-			setBet(sc);
-			// double down?
-		} else if (playerHand.size() == 1) {
-			printMenu.createMenu(Const.MENU_DOUBLE_DOWN);
-			setBetDoubleDown(sc);
-		}
-
-		isDeckEmpty();
-		playerHand.add(cardDeck.getCard());
-		player.setCards(playerHand);
-		playerHandValue = ruleSetHandler.countCardsInHand(playerHand);
-		printGameBoard.drawGameBoard(drawingStyle, player);
-
-		return playerHandValue;
-	}
-
-	private static void isDeckEmpty() {
-		if (cardDeck.isEmpty()) {
-			cardDeck.addCards(cardPile.getAllCards());
-			cardDeck.shuffle();
-			cardPile.clear();
-		}
-	}
-
-	private static void addWonValue(int bet) {
-		playerBank += bet;
-		computerBank -= bet;
-	}
-
-	private static void substractLostValue(int bet) {
-		playerBank -= bet;
-		computerBank += bet;
-		finalScore -= bet * 25;
-	}
-
-	private static boolean isBankZero(int playerBank) {
-		return (playerBank <= 0) ? true : false;
-	}
-
-	private static void setBet(Scanner sc) {
-		String s = sc.next();
-		switch (s) {
-		case "1":
-		case "2":
-		case "3":
-		case "4":
-		case "5":
-		case "6":
-		case "7":
-		case "8":
-		case "9":
-		case "10":
-			gameSettings.setBet(Integer.parseInt(s));
-			break;
-		default:
-			//TODO exception
-			System.out.println("bad input");
-			break;
-		}
-
-	}
-
-	private static void setBetDoubleDown(Scanner sc) {
-		String s = sc.next();
-		switch (s) {
-		case "1":
-			gameSettings.setBet(gameSettings.getBet() * 2);
-			break;
-		case "2":
-			break;
-
-		default:
-			//TODO exception
-			System.out.println("bad input");
-			break;
-		}
-	}
-
-	private static void setUpNewGame() {
-		endGame = false;
-		finalScore = gameSettings.getFinalScore();
-		playerBank = gameSettings.getPlayersBeginingMoney();
-		computerBank = gameSettings.getPlayersBeginingMoney();
-		gameSettings.setBet(gameSettings.getMinimalBet());
-	}
-
-	private static void endRoundUpdate(){
-		//player lost
+	private static void endRoundUpdate() {
+		// player lost
 		if (computerHandValue < 21 && computerHandValue > playerHandValue) {
-			substractLostValue(gameSettings.getBet());
-			printMenu.createMenu(Const.MENU_WIN_ROUND, player, computer,
+			// update score for players
+			computerBank = ruleSetHandler.addBetValue(bet, computerBank);
+			playerBank = ruleSetHandler.substractBetValue(bet, playerBank);
+			score = ruleSetHandler.updateFinalScore(bet, score);
+			printMenuHandler.createMenu(Const.MENU_WIN_ROUND, player, computer,
 					playerHandValue, computerHandValue);
+			// PlayerWon update score and winnings
 		} else {
-			// PlayerWon add score and winnings
-			addWonValue(gameSettings.getBet());
-			printMenu.createMenu(Const.MENU_WIN_ROUND, player, computer,
+			playerBank = ruleSetHandler.addBetValue(bet, playerBank);
+			computerBank = ruleSetHandler.substractBetValue(bet, computerBank);
+			printMenuHandler.createMenu(Const.MENU_WIN_ROUND, player, computer,
 					playerHandValue, computerHandValue);
 		}
 	}
 
-	private static boolean isGameEnd(){
-		if (isBankZero(playerBank)) {
+	private static boolean isGameEnd() {
+		if (ruleSetHandler.isBankZero(playerBank)) {
 			endGame = true;
-			printMenu.createMenu(Const.MENU_LOST, finalScore);
-		} else if (isBankZero(computerBank)) {
+			printMenuHandler.createMenu(Const.MENU_LOST, score);
+		} else if (ruleSetHandler.isBankZero(computerBank)) {
 			endGame = true;
-			printMenu.createMenu(Const.MENU_WIN, finalScore);
-		} else{
+			printMenuHandler.createMenu(Const.MENU_WIN, score);
+		} else {
 			endGame = false;
 		}
-		
+
 		return endGame;
 	}
 }

@@ -1,4 +1,4 @@
-package handler.printhandler.player;
+package handler.print.player;
 
 import model.Player;
 

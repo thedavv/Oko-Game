@@ -1,4 +1,4 @@
-package handler.printhandler.menu;
+package handler.print.menu;
 
 public class LineCreation {
 	public String drawLine(int menuLenght, char leftBorder, char rightBorder,

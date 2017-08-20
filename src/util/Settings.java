@@ -19,19 +19,10 @@ public class Settings {
 	private int				drawStyle				= Const.DRAW_PLAYERS_CARDS_MIRROR_WAY;
 	private int				playersBeginingMoney	= Const.PLAYERS_MONEY_BEGINING;
 	private int				computersBeginingMoney	= Const.PLAYERS_MONEY_BEGINING;
-	private int				finalScore				= Const.MAX_SCORE;
+	private int				beginningScore			= Const.MAX_SCORE;
 	private int				minimalBet				= Const.MIN_BET;
-	private int				bet						= 2;
 
-	private Deck			deck;
-	private Deck			pile;
-	// handlers
-	private CardDeckFactory	cardDeckFactory			= new CardDeckFactory();
-
-	private Settings() {
-		this.deck = cardDeckFactory.createCardDeck();
-		this.pile = cardDeckFactory.createCardDeck();
-	}
+	private Settings() {}
 
 	public static Settings getInstance() {
 		if (instance == null) {
@@ -93,14 +84,6 @@ public class Settings {
 		this.drawStyle = drawStyle;
 	}
 
-	public Deck getDeck() {
-		return deck;
-	}
-
-	public Deck getPile() {
-		return pile;
-	}
-
 	public int getPlayersBeginingMoney() {
 		return playersBeginingMoney;
 	}
@@ -118,22 +101,14 @@ public class Settings {
 	}
 
 	public int getFinalScore() {
-		return finalScore;
+		return beginningScore;
 	}
-	
+
 	public int getMinimalBet() {
 		return minimalBet;
 	}
 
 	public void setMinimalBet(int minimalBet) {
 		this.minimalBet = minimalBet;
-	}
-
-	public int getBet() {
-		return bet;
-	}
-
-	public void setBet(int bet) {
-		this.bet = bet;
 	}
 }

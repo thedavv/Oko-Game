@@ -1,9 +1,9 @@
-package handler.printhandler;
+package handler.print;
 
-import handler.printhandler.menu.Menu;
-import handler.printhandler.menu.MenuPrintOut;
-import handler.printhandler.player.GameBoard;
-import handler.printhandler.player.GameBoardPrintOut;
+import handler.print.menu.Menu;
+import handler.print.menu.MenuPrintOut;
+import handler.print.player.GameBoard;
+import handler.print.player.GameBoardPrintOut;
 
 public class PrintFactory implements Print{
 

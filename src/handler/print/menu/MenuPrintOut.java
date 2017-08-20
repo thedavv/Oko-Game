@@ -1,4 +1,4 @@
-package handler.printhandler.menu;
+package handler.print.menu;
 
 import model.Player;
 import util.Const;
