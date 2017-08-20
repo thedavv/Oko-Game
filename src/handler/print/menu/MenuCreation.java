@@ -303,6 +303,9 @@ public class MenuCreation extends LineCreation {
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"3. MONEY RULES SETUP"));
 		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"4. BACK TO MAIN MENU"));
+		sb.append("\n");
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
 		sb.append(
@@ -311,7 +314,7 @@ public class MenuCreation extends LineCreation {
 		return sb.toString();
 	}
 
-	public String createsettingsSubmenuPlayerPrintout() {// TODO implement
+	public String createSettingsSubmenuPlayerPrintout() {// TODO implement
 															// settings menu
 		// System.out.println("╔═══════════════════════════════════════════════════╗");
 		// System.out.println("║ settings ║");
@@ -390,7 +393,7 @@ public class MenuCreation extends LineCreation {
 		return sb.toString();
 	}
 
-	public String createsettingsSubmenuMoneyPrintout() {
+	public String createSettingsSubmenuMoneyPrintout() {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(

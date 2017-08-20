@@ -23,6 +23,17 @@ public class MenuPrintOut extends MenuCreation implements Menu {
 		case Const.MENU_DOUBLE_DOWN:
 			System.out.println(createdoubleDownMenuPrintout());
 
+		case Const.MENU_SETTINGS_SUBMENU_MONEY:
+			System.out.println(createSettingsSubmenuMoneyPrintout());
+			break;
+
+		case Const.MENU_SETTINGS_SUBMENU_PLAYER:
+			System.out.println(createSettingsSubmenuPlayerPrintout());
+			break;
+			
+		case Const.MENU_SETTINGS_SUBMENU_PRINTOOUT:
+			System.out.println(createSettingsSubmenuPrintout());
+			
 		default:
 			break;
 		}

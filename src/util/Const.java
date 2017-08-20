@@ -129,6 +129,9 @@ public class Const {
 	public static final int		MENU_RETURN									= 10;
 	public static final int		MENU_Bet									= 11;
 	public static final int		MENU_DOUBLE_DOWN							= 12;
+	public static final int		MENU_SETTINGS_SUBMENU_PLAYER				= 13;
+	public static final int		MENU_SETTINGS_SUBMENU_PRINTOOUT				= 14;
+	public static final int		MENU_SETTINGS_SUBMENU_MONEY					= 15;
 
 	/**
 	 * Ruleset
