@@ -345,9 +345,56 @@ public class MenuCreation extends LineCreation {
 		return sb.toString();
 	}
 
+	public String createBetInputScreen(int bet) {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(drawLine(Settings.menuLenght, Const.TLC, Const.TRC, Const.HL, null));
+		sb.append("\n");
+		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+				"SET YOUR BET"));
+		sb.append("\n");
+		sb.append(drawLine(Settings.menuLenght, Const.LMJ, Const.RMJ, Const.HL, null));
+		sb.append("\n");
+		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append("\n");
+		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+				"Bet last Round : " + bet));
+		sb.append("\n");
+		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+				"Maximum bet is : " + Const.MAX_BET));
+		sb.append("\n");
+		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append("\n");
+		sb.append(drawLine(Settings.menuLenght, Const.BLC, Const.BRC, Const.HL, null));
+
+		return sb.toString();
+	}
+
 	public void clearScreen() {
 		System.out.print("\033[H\033[2J");
 		System.out.flush();
 	}
 
+	public String createdoubleDownMenuPrintout(){
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(drawLine(Settings.menuLenght, Const.TLC, Const.TRC, Const.HL, null));
+		sb.append("\n");
+		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+				"DOUBLE DOWN ON BET??"));
+		sb.append("\n");
+		sb.append(drawLine(Settings.menuLenght, Const.LMJ, Const.RMJ, Const.HL, null));
+		sb.append("\n");
+		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append("\n");
+		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, "1. YES"));
+		sb.append("\n");
+		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, "2. NO"));
+		sb.append("\n");
+		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append("\n");
+		sb.append(drawLine(Settings.menuLenght, Const.BLC, Const.BRC, Const.HL, null));
+
+		return sb.toString();
+	}
 }

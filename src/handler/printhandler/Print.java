@@ -5,5 +5,6 @@ import handler.printhandler.player.GameBoard;
 
 public interface Print {
 	Menu createPrintOutMenuHandler();
+
 	GameBoard createPrintOutGameBoardHandler();
 }

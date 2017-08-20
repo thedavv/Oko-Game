@@ -127,6 +127,8 @@ public class Const {
 	public static final int		MENU_WIN									= 8;
 	public static final int		MENU_LOST									= 9;
 	public static final int		MENU_RETURN									= 10;
+	public static final int		MENU_Bet									= 11;
+	public static final int		MENU_DOUBLE_DOWN							= 12;
 
 	/**
 	 * Ruleset
@@ -134,4 +136,6 @@ public class Const {
 	public static final int		MAX_HAND_VALUE								= 21;
 	public static final int		PLAYERS_MONEY_BEGINING						= 50;
 	public static final int		MAX_SCORE									= 1000;
+	public static final int		MIN_BET										= 2;
+	public static final int		MAX_BET										= 10;
 }

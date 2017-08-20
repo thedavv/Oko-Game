@@ -19,6 +19,9 @@ public class MenuPrintOut extends MenuCreation implements Menu {
 		case Const.MENU_SETTINGS:
 			System.out.println(createSettingsMenuPrintout());
 			break;
+			
+		case Const.MENU_DOUBLE_DOWN:
+			System.out.println(createdoubleDownMenuPrintout());
 
 		default:
 			break;
@@ -26,21 +29,26 @@ public class MenuPrintOut extends MenuCreation implements Menu {
 	}
 
 	@Override
-	public void createMenu(int menuType, int finalScore) {
+	public void createMenu(int menuType, int score) {
 		switch (menuType) {
 		case Const.MENU_END:
-			System.out.println(createEndScreenPrintout(finalScore));
+			System.out.println(createEndScreenPrintout(score));
 			break;
+
 		case Const.MENU_WIN:
-			System.out.println(createWinScreenPrintout(finalScore));
+			System.out.println(createWinScreenPrintout(score));
 			break;
 
 		case Const.MENU_LOST:
-			System.out.println(createLostScreenPrintout(finalScore));
+			System.out.println(createLostScreenPrintout(score));
 			break;
 
 		case Const.MENU_RETURN:
-			System.out.println(createReturnToMenuPrintout(finalScore));
+			System.out.println(createReturnToMenuPrintout(score));
+			break;
+
+		case Const.MENU_Bet:
+			System.out.println(createBetInputScreen(score));
 			break;
 
 		default:

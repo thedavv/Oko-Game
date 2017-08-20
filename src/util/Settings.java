@@ -20,7 +20,9 @@ public class Settings {
 	private int				playersBeginingMoney	= Const.PLAYERS_MONEY_BEGINING;
 	private int				computersBeginingMoney	= Const.PLAYERS_MONEY_BEGINING;
 	private int				finalScore				= Const.MAX_SCORE;
-	
+	private int				minimalBet				= Const.MIN_BET;
+	private int				bet						= 2;
+
 	private Deck			deck;
 	private Deck			pile;
 	// handlers
@@ -114,10 +116,24 @@ public class Settings {
 	public void setComputersBeginingMoney(int computersBeginingMoney) {
 		this.computersBeginingMoney = computersBeginingMoney;
 	}
-	
+
 	public int getFinalScore() {
 		return finalScore;
 	}
+	
+	public int getMinimalBet() {
+		return minimalBet;
+	}
 
+	public void setMinimalBet(int minimalBet) {
+		this.minimalBet = minimalBet;
+	}
 
+	public int getBet() {
+		return bet;
+	}
+
+	public void setBet(int bet) {
+		this.bet = bet;
+	}
 }
