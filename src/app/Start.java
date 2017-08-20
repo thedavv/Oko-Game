@@ -102,16 +102,12 @@ public class Start { // TODO test settings / change setings
 				substractLostValue(gameSettings.getBet());
 				resetRound();
 			}
-			if (isBankZero(playerBank)) {
-				endGame = true;
-				printMenu.createMenu(Const.MENU_LOST, finalScore);
-				break;
-			} else if (isBankZero(computerBank)) {
-				endGame = true;
-				printMenu.createMenu(Const.MENU_WIN, finalScore);
+
+			endGame = isGameEnd();
+			if(endGame){
 				break;
 			}
-
+			
 			printMenu.createMenu(Const.MENU_STATUS, playerHandValue, playerBank,
 					computerBank);
 			printMenu.createMenu(Const.MENU_CONTINUE);
@@ -133,18 +129,10 @@ public class Start { // TODO test settings / change setings
 				computersTurn(playerHandValue);
 				// printout board
 				printGameBoard.drawGameBoard(drawingStyle, player, computer);
-
-				// player Lost substract winnings
-				if (computerHandValue < 21 && computerHandValue > playerHandValue) {
-					substractLostValue(gameSettings.getBet());
-					printMenu.createMenu(Const.MENU_WIN_ROUND, player, computer,
-							playerHandValue, computerHandValue);
-				} else {
-					// PlayerWon add score and winnings
-					addWonValue(gameSettings.getBet());
-					printMenu.createMenu(Const.MENU_WIN_ROUND, player, computer,
-							playerHandValue, computerHandValue);
-				}
+				
+				// update standings
+				endRoundUpdate();
+				
 				// reset hands
 				resetRound();
 				break;
@@ -278,5 +266,33 @@ public class Start { // TODO test settings / change setings
 		playerBank = gameSettings.getPlayersBeginingMoney();
 		computerBank = gameSettings.getPlayersBeginingMoney();
 		gameSettings.setBet(gameSettings.getMinimalBet());
+	}
+
+	private static void endRoundUpdate(){
+		//player lost
+		if (computerHandValue < 21 && computerHandValue > playerHandValue) {
+			substractLostValue(gameSettings.getBet());
+			printMenu.createMenu(Const.MENU_WIN_ROUND, player, computer,
+					playerHandValue, computerHandValue);
+		} else {
+			// PlayerWon add score and winnings
+			addWonValue(gameSettings.getBet());
+			printMenu.createMenu(Const.MENU_WIN_ROUND, player, computer,
+					playerHandValue, computerHandValue);
+		}
+	}
+
+	private static boolean isGameEnd(){
+		if (isBankZero(playerBank)) {
+			endGame = true;
+			printMenu.createMenu(Const.MENU_LOST, finalScore);
+		} else if (isBankZero(computerBank)) {
+			endGame = true;
+			printMenu.createMenu(Const.MENU_WIN, finalScore);
+		} else{
+			endGame = false;
+		}
+		
+		return endGame;
 	}
 }
