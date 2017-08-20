@@ -1,20 +1,13 @@
 package util;
 
-import model.Player;
-import model.deck.CardDeckFactory;
-import model.deck.Deck;
-
 //TODO rework to static variables
 public class Settings {
-	public static int		menuLenght				= Const.DRAW_MENU_X_SIZE;
-
 	private static Settings	instance;
+	private int				menuLenght				= Const.DRAW_MENU_X_SIZE;
 	private int				cardSizeX				= Const.CARD_SIZE_X;
 	private int				cardSizeY				= Const.CARD_SIZE_Y;
 	// TODO add exception for setting space too low
 	private int				spaceBetweenPlayers		= Const.SPACE_BETWEEN_PLAYERS;
-	private Player			player					= new Player("player");
-	private Player			computer				= new Player("computer");
 	private int				cardPartialSizeX		= Const.CARD_PARTIAL_SIZE_X;
 	private int				drawStyle				= Const.DRAW_PLAYERS_CARDS_MIRROR_WAY;
 	private int				playersBeginingMoney	= Const.PLAYERS_MONEY_BEGINING;
@@ -22,7 +15,8 @@ public class Settings {
 	private int				beginningScore			= Const.MAX_SCORE;
 	private int				minimalBet				= Const.MIN_BET;
 
-	private Settings() {}
+	private Settings() {
+	}
 
 	public static Settings getInstance() {
 		if (instance == null) {
@@ -47,21 +41,9 @@ public class Settings {
 		return spaceBetweenPlayers;
 	}
 
-	// TODO exception for small large pace
+	// TODO exception for small/ large pace
 	public void setSpaceBetweenPlayers(int spaceBetweenPlayers) {
 		this.spaceBetweenPlayers = spaceBetweenPlayers;
-	}
-
-	public Player getPlayer() {
-		return player;
-	}
-
-	public void setPlayerName(String name) {
-		this.player.setName(name);
-	}
-
-	public Player getComputer() {
-		return computer;
 	}
 
 	public int getCardSizeX() {
@@ -74,6 +56,10 @@ public class Settings {
 
 	public int getCardPartialSizeX() {
 		return cardPartialSizeX;
+	}
+
+	public void setCardPartialSizeX(int cardPartialSizeX) {
+		this.cardPartialSizeX = cardPartialSizeX;
 	}
 
 	public int getDrawStyle() {
@@ -100,8 +86,12 @@ public class Settings {
 		this.computersBeginingMoney = computersBeginingMoney;
 	}
 
-	public int getFinalScore() {
+	public int getBeginningScore() {
 		return beginningScore;
+	}
+
+	public void setBeginningScore(int beginningScore) {
+		this.beginningScore = beginningScore;
 	}
 
 	public int getMinimalBet() {
@@ -111,4 +101,13 @@ public class Settings {
 	public void setMinimalBet(int minimalBet) {
 		this.minimalBet = minimalBet;
 	}
+
+	public int getMenuLenght() {
+		return menuLenght;
+	}
+
+	public void setMenuLenght(int menuLenght) {
+		this.menuLenght = menuLenght;
+	}
+
 }

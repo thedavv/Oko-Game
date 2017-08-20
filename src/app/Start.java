@@ -20,14 +20,14 @@ import util.Settings;
 public class Start { // TODO test settings / change setings
 	// handlers
 	static DeckHandler		deckHandler				= new DeckHandler();
-	static StartHandler	ruleSetHandler			= new StartHandler();
+	static StartHandler	ruleSetHandler				= new StartHandler();
 	static Print			printFactory			= new PrintFactory();
 	static CardDeckFactory	deckFactory				= new CardDeckFactory();
 	static Menu				printMenuHandler		= printFactory
 			.createPrintOutMenuHandler();
 	static GameBoard		printGameBoardHandler	= printFactory
 			.createPrintOutGameBoardHandler();
-
+	
 	// helper variables
 	static int				playerHandValue			= 0;
 	static int				computerHandValue		= 0;
@@ -38,13 +38,13 @@ public class Start { // TODO test settings / change setings
 	static List<Card>		computerHand			= new ArrayList<>();
 	static Deck				cardPile				= deckFactory.createCardDeck();
 	static Deck				cardDeck				= deckFactory.createCardDeck();
+	static Player			player					= new Player("Player");
+	static Player			computer				= new Player("Computer");
 
 	// variables from settings
 	static Settings			gameSettings			= Settings.getInstance();
 
-	static int				score					= gameSettings.getFinalScore();
-	static Player			player					= gameSettings.getPlayer();
-	static Player			computer				= gameSettings.getComputer();
+	static int				score					= gameSettings.getBeginningScore();
 	static int				drawingStyle			= gameSettings.getDrawStyle();
 	static int				playerBank				= gameSettings
 			.getPlayersBeginingMoney();
@@ -70,7 +70,7 @@ public class Start { // TODO test settings / change setings
 					break;
 
 				case "3":
-					score = gameSettings.getFinalScore() - score;
+					score = gameSettings.getBeginningScore() - score;
 					printMenuHandler.createMenu(Const.MENU_END, score);
 					endProgram = true;
 					break;
@@ -129,7 +129,7 @@ public class Start { // TODO test settings / change setings
 				case "3":
 					// playe has less score when he leaves the game early
 					endGame = true;
-					score = gameSettings.getFinalScore() - score;
+					score = gameSettings.getBeginningScore() - score;
 					printMenuHandler.createMenu(Const.MENU_RETURN, score);
 					resetRound();
 					break;
@@ -142,7 +142,7 @@ public class Start { // TODO test settings / change setings
 
 	private static void setUpNewGame() {
 		endGame = false;
-		score = gameSettings.getFinalScore();
+		score = gameSettings.getBeginningScore();
 		playerBank = gameSettings.getPlayersBeginingMoney();
 		computerBank = gameSettings.getPlayersBeginingMoney();
 		bet = gameSettings.getMinimalBet();

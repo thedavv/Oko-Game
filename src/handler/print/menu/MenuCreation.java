@@ -4,6 +4,8 @@ import util.Const;
 import util.Settings;
 
 public class MenuCreation extends LineCreation {
+	private static Settings settings = Settings.getInstance();
+
 	/**
 	 * Method for printing out main menu
 	 */
@@ -14,31 +16,35 @@ public class MenuCreation extends LineCreation {
 		// System.out.println("╠═══════════════════════════════════════════════════╣");
 		// System.out.println("║ ║");
 		// System.out.println("║ 1. NEW GAME ║");
-		// System.out.println("║ 2. SETTINGS ║");
+		// System.out.println("║ 2. settings ║");
 		// System.out.println("║ 3. EXIT ║");
 		// System.out.println("║ ║");
 		// System.out.println("╚═══════════════════════════════════════════════════╝");
 
-		sb.append(drawLine(Settings.menuLenght, Const.TLC, Const.TRC, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.TLC, Const.TRC, Const.HL, null));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"Main Menu"));
 		sb.append("\n");
 		sb.append(
-				drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, "Main Menu"));
+				drawLine(settings.getMenuLenght(), Const.LMJ, Const.RMJ, Const.HL, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.LMJ, Const.RMJ, Const.HL, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
-		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"1. NEW GAME"));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
-				"2. SETTINGS"));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"2. settings"));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, "3. EXIT"));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"3. EXIT"));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.BLC, Const.BRC, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.BLC, Const.BRC, Const.HL, null));
 
 		return sb.toString();
 	}
@@ -65,24 +71,27 @@ public class MenuCreation extends LineCreation {
 		// System.out.println("║ Computer bank remaining : ║");
 		// System.out.println("║ ║");
 
-		sb.append(drawLine(Settings.menuLenght, Const.TLC, Const.TRC, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.TLC, Const.TRC, Const.HL, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, "Status"));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"Status"));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.LMJ, Const.RMJ, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.LMJ, Const.RMJ, Const.HL, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
-				"Hand card value count   : " + playerHandValue));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"Hand card value count : " + playerHandValue));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
-				"Player bank remaining   : " + playerBank));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"Player bank remaining : " + playerBank));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"Computer bank remaining : " + ComputerBank));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 
 		return sb.toString();
 	}
@@ -102,25 +111,30 @@ public class MenuCreation extends LineCreation {
 		// System.out.println("║ ║");
 		// System.out.println("╚═══════════════════════════════════════════════════╝");
 
-		sb.append(drawLine(Settings.menuLenght, Const.LMJ, Const.RMJ, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.LMJ, Const.RMJ, Const.HL, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"Draw another Card?"));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.LMJ, Const.RMJ, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.LMJ, Const.RMJ, Const.HL, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, "1. YES"));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"1. YES"));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, "2. NO"));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"2. NO"));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"3. EXIT TO MAIN MENU"));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.BLC, Const.BRC, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.BLC, Const.BRC, Const.HL, null));
 
 		return sb.toString();
 	}
@@ -141,21 +155,24 @@ public class MenuCreation extends LineCreation {
 		// System.out.println("║ ║");
 		// System.out.println("╚═══════════════════════════════════════════════════╝");
 
-		sb.append(drawLine(Settings.menuLenght, Const.TLC, Const.TRC, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.TLC, Const.TRC, Const.HL, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"Game is closing. Have a nice day"));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.LMJ, Const.RMJ, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.LMJ, Const.RMJ, Const.HL, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"Final Score : " + finalScore));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.BLC, Const.BRC, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.BLC, Const.BRC, Const.HL, null));
 
 		return sb.toString();
 	}
@@ -179,24 +196,27 @@ public class MenuCreation extends LineCreation {
 		// System.out.println("╚═══════════════════════════════════════════════════╝");
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(drawLine(Settings.menuLenght, Const.TLC, Const.TRC, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.TLC, Const.TRC, Const.HL, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"Value of hand exeeds max value in ruleset = " + Const.MAX_HAND_VALUE));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.LMJ, Const.RMJ, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.LMJ, Const.RMJ, Const.HL, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				playerName + "s hand value: " + playerHandValue));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				playerName + " Lost."));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.BLC, Const.BRC, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.BLC, Const.BRC, Const.HL, null));
 
 		return sb.toString();
 	}
@@ -225,24 +245,27 @@ public class MenuCreation extends LineCreation {
 		// System.out.println("╚═══════════════════════════════════════════════════╝");
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(drawLine(Settings.menuLenght, Const.TLC, Const.TRC, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.TLC, Const.TRC, Const.HL, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				wonPlayerName + " won the round"));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.LMJ, Const.RMJ, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.LMJ, Const.RMJ, Const.HL, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				wonPlayerName + " hand value: " + wonPlayerHandValue));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				lostPlayerName + " hand value: " + lostPlayerHandValue));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.BLC, Const.BRC, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.BLC, Const.BRC, Const.HL, null));
 
 		return sb.toString();
 	}
@@ -252,7 +275,7 @@ public class MenuCreation extends LineCreation {
 	 */
 	public String createSettingsMenuPrintout() {// TODO implement settings menu
 		// System.out.println("╔═══════════════════════════════════════════════════╗");
-		// System.out.println("║ Settings ║");
+		// System.out.println("║ settings ║");
 		// System.out.println("╠═══════════════════════════════════════════════════╣");
 		// System.out.println("║ ║");
 		// System.out.println("║ 1. Not Implemented ║");
@@ -260,21 +283,146 @@ public class MenuCreation extends LineCreation {
 		// System.out.println("╚═══════════════════════════════════════════════════╝");
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(drawLine(Settings.menuLenght, Const.TLC, Const.TRC, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.TLC, Const.TRC, Const.HL, null));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"settings"));
 		sb.append("\n");
 		sb.append(
-				drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, "Settings"));
+				drawLine(settings.getMenuLenght(), Const.LMJ, Const.RMJ, Const.HL, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.LMJ, Const.RMJ, Const.HL, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"1. PRINTOUT SETUP"));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
-				"1. Not Implemented"));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"2. PLAYER SETUP"));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"3. MONEY RULES SETUP"));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.BLC, Const.BRC, Const.HL, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
+		sb.append("\n");
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.BLC, Const.BRC, Const.HL, null));
+
+		return sb.toString();
+	}
+
+	public String createsettingsSubmenuPlayerPrintout() {// TODO implement
+															// settings menu
+		// System.out.println("╔═══════════════════════════════════════════════════╗");
+		// System.out.println("║ settings ║");
+		// System.out.println("╠═══════════════════════════════════════════════════╣");
+		// System.out.println("║ ║");
+		// System.out.println("║ 1. Not Implemented ║");
+		// System.out.println("║ ║");
+		// System.out.println("╚═══════════════════════════════════════════════════╝");
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.TLC, Const.TRC, Const.HL, null));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"PLAYER SETUP"));
+		sb.append("\n");
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.LMJ, Const.RMJ, Const.HL, null));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"1. SET plaerName"));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"2. SET computerName"));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"3. BACK"));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
+		sb.append("\n");
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.BLC, Const.BRC, Const.HL, null));
+
+		return sb.toString();
+	}
+
+	public String createSettingsSubmenuPrintout() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.TLC, Const.TRC, Const.HL, null));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"PRINTOUT SETUP"));
+		sb.append("\n");
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.LMJ, Const.RMJ, Const.HL, null));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"1. SET menuLenght"));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"2. SET cardSizeX AND cardSizeY"));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"3.SET spaceBetweenPlayers"));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"4. SET cardPartialSizeX"));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"5. SET drawStyle"));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"6. BACK"));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
+		sb.append("\n");
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.BLC, Const.BRC, Const.HL, null));
+
+		return sb.toString();
+	}
+
+	public String createsettingsSubmenuMoneyPrintout() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.TLC, Const.TRC, Const.HL, null));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"MONEY RULES SETUP"));
+		sb.append("\n");
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.LMJ, Const.RMJ, Const.HL, null));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"1. SET playersBeginingMoney"));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"2. SET computersBeginingMoney"));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"3. SET beginningScore"));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"4. SET minimalBet"));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"6. BACK"));
+		sb.append("\n");
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.BLC, Const.BRC, Const.HL, null));
 
 		return sb.toString();
 	}
@@ -282,21 +430,24 @@ public class MenuCreation extends LineCreation {
 	public String createWinScreenPrintout(int finalScore) {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(drawLine(Settings.menuLenght, Const.LMJ, Const.RMJ, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.LMJ, Const.RMJ, Const.HL, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"YOU WON THE GAME!!"));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.LMJ, Const.RMJ, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.LMJ, Const.RMJ, Const.HL, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"YOUR FINAL SCORE IS: " + finalScore));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.BLC, Const.BRC, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.BLC, Const.BRC, Const.HL, null));
 
 		return sb.toString();
 	}
@@ -304,21 +455,24 @@ public class MenuCreation extends LineCreation {
 	public String createLostScreenPrintout(int finalScore) {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(drawLine(Settings.menuLenght, Const.LMJ, Const.RMJ, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.LMJ, Const.RMJ, Const.HL, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"YOU LOST THE GAME :("));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.LMJ, Const.RMJ, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.LMJ, Const.RMJ, Const.HL, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"YOUR FINAL SCORE IS: " + finalScore));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.BLC, Const.BRC, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.BLC, Const.BRC, Const.HL, null));
 
 		return sb.toString();
 	}
@@ -326,21 +480,24 @@ public class MenuCreation extends LineCreation {
 	public String createReturnToMenuPrintout(int finalScore) {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(drawLine(Settings.menuLenght, Const.TLC, Const.TRC, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.TLC, Const.TRC, Const.HL, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"RETURNING TO MAIN MENU"));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.LMJ, Const.RMJ, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.LMJ, Const.RMJ, Const.HL, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"YOUR FINAL SCORE IS: " + finalScore));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.BLC, Const.BRC, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.BLC, Const.BRC, Const.HL, null));
 
 		return sb.toString();
 	}
@@ -348,24 +505,27 @@ public class MenuCreation extends LineCreation {
 	public String createBetInputScreen(int bet) {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(drawLine(Settings.menuLenght, Const.TLC, Const.TRC, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.TLC, Const.TRC, Const.HL, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"SET YOUR BET"));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.LMJ, Const.RMJ, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.LMJ, Const.RMJ, Const.HL, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"Bet last Round : " + bet));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"Maximum bet is : " + Const.MAX_BET));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.BLC, Const.BRC, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.BLC, Const.BRC, Const.HL, null));
 
 		return sb.toString();
 	}
@@ -375,25 +535,30 @@ public class MenuCreation extends LineCreation {
 		System.out.flush();
 	}
 
-	public String createdoubleDownMenuPrintout(){
+	public String createdoubleDownMenuPrintout() {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(drawLine(Settings.menuLenght, Const.TLC, Const.TRC, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.TLC, Const.TRC, Const.HL, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP,
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"DOUBLE DOWN ON BET??"));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.LMJ, Const.RMJ, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.LMJ, Const.RMJ, Const.HL, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, "1. YES"));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"1. YES"));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, "2. NO"));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"2. NO"));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
-		sb.append(drawLine(Settings.menuLenght, Const.BLC, Const.BRC, Const.HL, null));
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.BLC, Const.BRC, Const.HL, null));
 
 		return sb.toString();
 	}
