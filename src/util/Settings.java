@@ -46,7 +46,14 @@ public class Settings {
 	}
 
 	// TODO exception for small/ large pace
-	public void setSpaceBetweenPlayers(int spaceBetweenPlayers) {
+	public void setSpaceBetweenPlayers(int spaceBetweenPlayers)
+			throws DimensionsException {
+		if (spaceBetweenPlayers > Const.MAX_SPACE_BETWEEN_PLAYERS
+				|| spaceBetweenPlayers < Const.MIN_SPACE_BETWEEN_PLAYERS) {
+			throw new DimensionsException("Bad card size dimenzion. Max card dimenzion is"
+					+ Const.MAX_SPACE_BETWEEN_PLAYERS + "Min card dimenzion is"
+					+ Const.MIN_SPACE_BETWEEN_PLAYERS);
+		}
 		this.spaceBetweenPlayers = spaceBetweenPlayers;
 	}
 
@@ -62,7 +69,14 @@ public class Settings {
 		return cardPartialSizeX;
 	}
 
-	public void setCardPartialSizeX(int cardPartialSizeX) {
+	public void setCardPartialSizeX(int cardPartialSizeX) throws DimensionsException {
+		if ((cardPartialSizeX > cardSizeX - 1) || (cardPartialSizeX < 3)) {
+			throw new DimensionsException(
+					"Bad imput for printing out bottom card. Max dimension: "
+							+ (cardSizeX - 1) + "Min dimension: "
+							+ Const.MIN_BOTOM_CARD_SIZE);
+		}
+
 		this.cardPartialSizeX = cardPartialSizeX;
 	}
 
@@ -70,7 +84,23 @@ public class Settings {
 		return drawStyle;
 	}
 
-	public void setDrawStyle(int drawStyle) {
+	public void setDrawStyle(int drawStyle) throws InvalidArgumentException {
+		switch (drawStyle) {
+			case Const.DRAW_PLAYERS_CARDS_SAME_WAY_TOP_CARD_LEFT:
+				drawStyle = Const.DRAW_PLAYERS_CARDS_SAME_WAY_TOP_CARD_LEFT;
+				break;
+			case Const.DRAW_PLAYERS_CARDS_SAME_WAY_TOP_CARD_RIGHT:
+				drawStyle = Const.DRAW_PLAYERS_CARDS_SAME_WAY_TOP_CARD_RIGHT;
+				break;
+			case Const.DRAW_PLAYERS_CARDS_MIRROR_WAY:
+				drawStyle = Const.DRAW_PLAYERS_CARDS_MIRROR_WAY;
+				break;
+			case Const.DRAW_PLAYERS_CARDS_REVERSE_MIRROR_WAY:
+				drawStyle = Const.DRAW_PLAYERS_CARDS_REVERSE_MIRROR_WAY;
+				break;
+			default:
+				throw new InvalidArgumentException("Selected Draw style doesnt exist.");
+		}
 		this.drawStyle = drawStyle;
 	}
 
@@ -78,7 +108,11 @@ public class Settings {
 		return playersBeginingMoney;
 	}
 
-	public void setPlayersBeginingMoney(int playersBeginingMoney) {
+	public void setPlayersBeginingMoney(int playersBeginingMoney)
+			throws InvalidArgumentException {
+		if (playersBeginingMoney < 1) {
+			throw new InvalidArgumentException("Player money cant be less then 1");
+		}
 		this.playersBeginingMoney = playersBeginingMoney;
 	}
 
@@ -86,7 +120,11 @@ public class Settings {
 		return computersBeginingMoney;
 	}
 
-	public void setComputersBeginingMoney(int computersBeginingMoney) {
+	public void setComputersBeginingMoney(int computersBeginingMoney)
+			throws InvalidArgumentException {
+		if (computersBeginingMoney < 1) {
+			throw new InvalidArgumentException("Computer money cant be less then 1");
+		}
 		this.computersBeginingMoney = computersBeginingMoney;
 	}
 
@@ -102,23 +140,37 @@ public class Settings {
 		return minimalBet;
 	}
 
-	public void setMinimalBet(int minimalBet) {
+	public void setMinimalBet(int minimalBet) throws InvalidArgumentException {
+		if (minimalBet < 0 || minimalBet >= Const.MAX_BET) {
+			throw new InvalidArgumentException(
+					"Bet cant be more than maximal bet, or less than 0");
+		}
 		this.minimalBet = minimalBet;
+
 	}
 
 	public int getMenuLenght() {
 		return menuLenght;
 	}
 
-	public void setMenuLenght(int menuLenght) {
+	public void setMenuLenght(int menuLenght) throws DimensionsException {
+		if(menuLenght < Const.DRAW_MENU_X_SIZE){
+			throw new DimensionsException("menu cant be less than: " +  Const.DRAW_MENU_X_SIZE);
+		}
 		this.menuLenght = menuLenght;
 	}
 
-	public void setPlayerName(String name) {
+	public void setPlayerName(String name) throws InvalidArgumentException {
+		if(name.length() < 1){
+			throw new InvalidArgumentException("Name cant be blank space");
+		}
 		this.player.setName(name);
 	}
 
-	public void setComputerName(String name) {
+	public void setComputerName(String name) throws InvalidArgumentException {
+		if(name.length() < 1){
+			throw new InvalidArgumentException("Name cant be blank space");
+		}
 		this.computer.setName(name);
 	}
 
@@ -134,7 +186,10 @@ public class Settings {
 		return maximalBet;
 	}
 
-	public void setMaximalBet(int maximalBet) {
+	public void setMaximalBet(int maximalBet) throws InvalidArgumentException {
+		if(maximalBet <= Const.MIN_BET || maximalBet > playersBeginingMoney || maximalBet > computersBeginingMoney){
+			throw new InvalidArgumentException("Maximal bet can be less than minimal bet or more than starting money");
+		}
 		this.maximalBet = maximalBet;
 	}
 }

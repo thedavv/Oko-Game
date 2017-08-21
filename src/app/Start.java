@@ -5,6 +5,7 @@ import java.util.Scanner;
 import model.*;
 import util.Const;
 import util.DimensionsException;
+import util.InvalidArgumentException;
 
 public class Start extends GameModel{ // TODO test settings / change setings
 	public static void main(String[] args) {
@@ -242,7 +243,11 @@ public class Start extends GameModel{ // TODO test settings / change setings
 			case "1":
 				System.out.println("Set Lenght of menus. X - size");
 				value = sc.nextInt();
-				gameSettings.setMenuLenght(value);
+				try {
+					gameSettings.setMenuLenght(value);
+				} catch (DimensionsException e1) {
+					e1.printStackTrace();
+				}
 				break;
 			case "2":
 				System.out.println("Set printout size of cards");
@@ -259,12 +264,20 @@ public class Start extends GameModel{ // TODO test settings / change setings
 			case "3":
 				System.out.println("Set space between player cards");
 				value = sc.nextInt();
-				gameSettings.setSpaceBetweenPlayers(value);
+				try {
+					gameSettings.setSpaceBetweenPlayers(value);
+				} catch (DimensionsException e) {
+					e.printStackTrace();
+				}
 				break;
 			case "4":
 				value = sc.nextInt();
 				System.out.println("Set the size of bottom card");
-				gameSettings.setCardPartialSizeX(value);
+				try {
+					gameSettings.setCardPartialSizeX(value);
+				} catch (DimensionsException e) {
+					e.printStackTrace();
+				}
 				break;
 			case "5":
 				value = sc.nextInt();
@@ -273,7 +286,11 @@ public class Start extends GameModel{ // TODO test settings / change setings
 				System.out.println("2. Same Way From right to left. Most right card top");
 				System.out.println("3. Mirror way");
 				System.out.println("4. Reverse mirror way");
-				gameSettings.setDrawStyle(value);
+				try {
+					gameSettings.setDrawStyle(value);
+				} catch (InvalidArgumentException e) {
+					e.printStackTrace();
+				}
 				break;
 			case "6":
 				break;
@@ -287,11 +304,19 @@ public class Start extends GameModel{ // TODO test settings / change setings
 		switch (input) {
 			case "1":
 				System.out.println("Set Player name: ");
-				gameSettings.setPlayerName(input);
+				try {
+					gameSettings.setPlayerName(input);
+				} catch (InvalidArgumentException e) {
+					e.printStackTrace();
+				}
 				break;
 			case "2":
 				System.out.println("Set Computer name: ");
-				gameSettings.setComputerName(input);
+				try {
+					gameSettings.setComputerName(input);
+				} catch (InvalidArgumentException e) {
+					e.printStackTrace();
+				}
 				break;
 			default:
 				break;
@@ -305,12 +330,20 @@ public class Start extends GameModel{ // TODO test settings / change setings
 			case "1":
 				value = sc.nextInt();
 				System.out.println("Set player beginning bank");
-				gameSettings.setPlayersBeginingMoney(value);
+				try {
+					gameSettings.setPlayersBeginingMoney(value);
+				} catch (InvalidArgumentException e) {
+					e.printStackTrace();
+				}
 				break;
 			case "2":
 				value = sc.nextInt();
 				System.out.println("Set computers beginning money");
-				gameSettings.setComputersBeginingMoney(value);
+				try {
+					gameSettings.setComputersBeginingMoney(value);
+				} catch (InvalidArgumentException e) {
+					e.printStackTrace();
+				}
 				break;
 			case "3":
 				value = sc.nextInt();
@@ -320,12 +353,20 @@ public class Start extends GameModel{ // TODO test settings / change setings
 			case "4":
 				System.out.println("Set minimal value player can bet");
 				value = sc.nextInt();
-				gameSettings.setMinimalBet(value);
+				try {
+					gameSettings.setMinimalBet(value);
+				} catch (InvalidArgumentException e) {
+					e.printStackTrace();
+				}
 				break;
 			case "5":
 				System.out.println("Set maximum value player can bet");
 				value = sc.nextInt();
-				gameSettings.setMaximalBet(value);
+				try {
+					gameSettings.setMaximalBet(value);
+				} catch (InvalidArgumentException e) {
+					e.printStackTrace();
+				}
 				break;
 			case "6":
 				break;
