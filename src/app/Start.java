@@ -21,36 +21,36 @@ import util.Settings;
 
 public class Start {
 	// handlers
-	static DeckHandler	   deckHandler			 = new DeckHandler();
-	static StartHandler	   startHandler			 = new StartHandler();
-	static Print		   printFactory			 = new PrintFactory();
-	static CardDeckFactory deckFactory			 = new CardDeckFactory();
-	static Menu			   printMenuHandler		 = printFactory
+	private static DeckHandler	   deckHandler			 = new DeckHandler();
+	private static StartHandler	   startHandler			 = new StartHandler();
+	private static Print		   printFactory			 = new PrintFactory();
+	private static CardDeckFactory deckFactory			 = new CardDeckFactory();
+	private static Menu			   printMenuHandler		 = printFactory
 			.createPrintOutMenuHandler();
 	static GameBoard	   printGameBoardHandler = printFactory
 			.createPrintOutGameBoardHandler();
 
 	// helper variables
-	static int			   playerHandValue		 = 0;
-	static int			   computerHandValue	 = 0;
-	static boolean		   endProgram			 = false;
-	static boolean		   endGame				 = false;
-	static String		   input				 = "";
-	static List<Card>	   playerHand			 = new ArrayList<>();
-	static List<Card>	   computerHand			 = new ArrayList<>();
-	static Deck			   cardPile				 = deckFactory.createCardDeck();
-	static Deck			   cardDeck				 = deckFactory.createCardDeck();
-	static Player		   player				 = new Player("Player");
-	static Player		   computer				 = new Player("Computer");
+	private static int			   playerHandValue		 = 0;
+	private static int			   computerHandValue	 = 0;
+	private static boolean		   endProgram			 = false;
+	private static boolean		   endGame				 = false;
+	private static String		   input				 = "";
+	private static List<Card>	   playerHand			 = new ArrayList<>();
+	private static List<Card>	   computerHand			 = new ArrayList<>();
+	private static Deck			   cardPile				 = deckFactory.createCardDeck();
+	private static Deck			   cardDeck				 = deckFactory.createCardDeck();
+	private static Player		   player				 = new Player("Player");
+	private static Player		   computer				 = new Player("Computer");
 
 	// variables from settings
-	static Settings		   gameSettings			 = Settings.getInstance();
+	private static Settings		   gameSettings			 = Settings.getInstance();
 
-	static int			   score				 = gameSettings.getBeginningScore();
-	static int			   drawingStyle			 = gameSettings.getDrawStyle();
-	static int			   playerBank			 = gameSettings.getPlayersBeginingMoney();
-	static int			   computerBank			 = gameSettings.getPlayersBeginingMoney();
-	static int			   bet					 = gameSettings.getMinimalBet();
+	private static int			   score				 = gameSettings.getBeginningScore();
+	private static int			   drawingStyle			 = gameSettings.getDrawStyle();
+	private static int			   playerBank			 = gameSettings.getPlayersBeginingMoney();
+	private static int			   computerBank			 = gameSettings.getPlayersBeginingMoney();
+	private static int			   bet					 = gameSettings.getMinimalBet();
 
 	public static void main(String[] args) {
 		cardDeck.addCards(deckHandler.createDeck());
