@@ -53,9 +53,10 @@ public class Start {
 	static int			   bet					 = gameSettings.getMinimalBet();
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
 		cardDeck.addCards(deckHandler.createDeck());
-
+		cardDeck.shuffle();
+		
+		Scanner sc = new Scanner(System.in);
 		while (!endProgram) {
 			printMenuHandler.createMenu(Const.MENU_MAIN);
 			input = sc.next();
@@ -198,6 +199,7 @@ public class Start {
 		// take card if deck is empty, shuffle pile
 		if (cardDeck.isEmpty()) {
 			cardDeck = startHandler.shufflePileIntoDeck(cardDeck, cardPile);
+			cardDeck.shuffle();
 			cardPile.clear();
 		}
 
@@ -223,6 +225,7 @@ public class Start {
 				// take card if deck is empty, shuffle pile
 				if (cardDeck.isEmpty()) {
 					cardDeck = startHandler.shufflePileIntoDeck(cardDeck, cardPile);
+					cardDeck.shuffle();
 					cardPile.clear();
 				}
 				computerHand.add(cardDeck.getCard());
