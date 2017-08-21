@@ -554,7 +554,6 @@ public class MenuCreation extends LineCreation {
 					str));
 			sb.append("\n");
 		}
-
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
 		sb.append(
