@@ -10,7 +10,6 @@ import handler.print.Print;
 import handler.print.PrintFactory;
 import handler.print.menu.Menu;
 import handler.print.player.GameBoard;
-import handler.print.player.LineCreation;
 import model.*;
 import model.cardfactory.Card;
 import model.deck.CardDeckFactory;
@@ -28,7 +27,7 @@ public class Start {
 	private static CardDeckFactory deckFactory			 = new CardDeckFactory();
 	private static Menu			   printMenuHandler		 = printFactory
 			.createPrintOutMenuHandler();
-	static GameBoard	   printGameBoardHandler = printFactory
+	static GameBoard			   printGameBoardHandler = printFactory
 			.createPrintOutGameBoardHandler();
 
 	// helper variables
@@ -47,10 +46,13 @@ public class Start {
 	// variables from settings
 	private static Settings		   gameSettings			 = Settings.getInstance();
 
-	private static int			   score				 = gameSettings.getBeginningScore();
+	private static int			   score				 = gameSettings
+			.getBeginningScore();
 	private static int			   drawingStyle			 = gameSettings.getDrawStyle();
-	private static int			   playerBank			 = gameSettings.getPlayersBeginingMoney();
-	private static int			   computerBank			 = gameSettings.getPlayersBeginingMoney();
+	private static int			   playerBank			 = gameSettings
+			.getPlayersBeginingMoney();
+	private static int			   computerBank			 = gameSettings
+			.getPlayersBeginingMoney();
 	private static int			   bet					 = gameSettings.getMinimalBet();
 
 	public static void main(String[] args) {
@@ -158,7 +160,7 @@ public class Start {
 		playerBank = gameSettings.getPlayersBeginingMoney();
 		computerBank = gameSettings.getPlayersBeginingMoney();
 		bet = gameSettings.getMinimalBet();
-		
+
 		cardPile.clear();
 		cardDeck.clear();
 		cardDeck.addCards(deckHandler.createDeck());

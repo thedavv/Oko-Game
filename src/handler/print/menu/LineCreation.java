@@ -7,7 +7,8 @@ package handler.print.menu;
  */
 public class LineCreation {
 	/**
-	 * Method for creating line. for line parameters use <Code>util.Const</Code> line constants
+	 * Method for creating line. for line parameters use <Code>util.Const</Code>
+	 * line constants
 	 * 
 	 * @param menuLenght
 	 *            - is the lenght of menu x size
@@ -31,7 +32,7 @@ public class LineCreation {
 			for (int i = 0; i < menuLenght - 2; i++) {
 				sb.append(middleSection);
 			}
-		// with text
+			// with text
 		} else {
 			// space between border
 			sb.append(middleSection);

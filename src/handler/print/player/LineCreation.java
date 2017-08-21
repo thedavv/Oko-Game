@@ -28,7 +28,7 @@ public class LineCreation {
 				sb.append(createRightSideOfLine(sizeX / 2, rightBorder, middleSection,
 						null));
 			}
-		// not null
+			// not null
 		} else {
 			sb.append(createLeftSideOfLine(sizeX / 2, leftBorder, middleSection,
 					middleSectionText.get(0)));
@@ -51,6 +51,7 @@ public class LineCreation {
 		}
 		return sb.toString();
 	}
+
 	@Deprecated
 	public String createCompleteLineRLOld(int handSize, int sizeX, int sizePartial,
 			String leftBorder, String rightBorder, String join, String middleSection,
@@ -187,7 +188,7 @@ public class LineCreation {
 				sb.append(createRightSideOfLine(sizeX / 2, rightBorder, middleSection,
 						null));
 			}
-		// not null
+			// not null
 		} else {
 			sb.append(createLeftSideOfLine(sizeX / 2, leftBorder, middleSection,
 					middleSectionText.get(handSize - 1)));
@@ -234,7 +235,7 @@ public class LineCreation {
 					middleSectionText.get(handSize - 1)));
 			sb.append(createRightSideOfLine(sizeX / 2, rightBorder, middleSection,
 					middleSectionText.get(handSize - 1)));
-			
+
 			// hand size - first card - last card
 			for (int i = handSize - 2; i >= 0; i--) {
 				sb.insert(0, createLeftSideOfLine(sizePartial, join, middleSection,
@@ -243,6 +244,5 @@ public class LineCreation {
 		}
 		return sb.toString();
 	}
-
 
 }
