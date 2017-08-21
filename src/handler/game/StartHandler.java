@@ -69,7 +69,7 @@ public class StartHandler {
 		int bet = sc.nextInt();
 
 		if ((bet < settings.getMinimalBet()) || (bet > settings.getMaximalBet())) {
-			System.out.println(
+			System.err.println(
 					"bad input setting to minimal input: " + settings.getMinimalBet());
 			bet = settings.getMinimalBet();
 		}
