@@ -11,7 +11,7 @@ public class Settings {
 	private int				cardSizeY			   = Const.CARD_SIZE_Y;
 	private int				spaceBetweenPlayers	   = Const.SPACE_BETWEEN_PLAYERS;
 	private int				cardPartialSizeX	   = Const.CARD_PARTIAL_SIZE_X;
-	private int				drawStyle			   = Const.DRAW_PLAYERS_CARDS_MIRROR_WAY;
+	private int				drawStyle			   = Const.DRAW_PLAYERS_CARDS_REVERSE_MIRROR_WAY;
 	private int				playersBeginingMoney   = Const.PLAYERS_MONEY_BEGINING;
 	private int				computersBeginingMoney = Const.PLAYERS_MONEY_BEGINING;
 	private int				beginningScore		   = Const.MAX_SCORE;

@@ -3,7 +3,8 @@ package handler.print.player;
 import java.util.List;
 
 public class LineCreation {
-	public String createCompleteLineLR(int handSize, int sizeX, int sizePartial,
+	@Deprecated
+	public String createCompleteLineLROld(int handSize, int sizeX, int sizePartial,
 			String leftBorder, String rightBorder, String join, String middleSection,
 			List<String> middleSectionText) {
 		StringBuilder sb = new StringBuilder();
@@ -27,7 +28,7 @@ public class LineCreation {
 				sb.append(createRightSideOfLine(sizeX / 2, rightBorder, middleSection,
 						null));
 			}
-			// not null
+		// not null
 		} else {
 			sb.append(createLeftSideOfLine(sizeX / 2, leftBorder, middleSection,
 					middleSectionText.get(0)));
@@ -50,8 +51,8 @@ public class LineCreation {
 		}
 		return sb.toString();
 	}
-
-	public String createCompleteLineRL(int handSize, int sizeX, int sizePartial,
+	@Deprecated
+	public String createCompleteLineRLOld(int handSize, int sizeX, int sizePartial,
 			String leftBorder, String rightBorder, String join, String middleSection,
 			List<String> middleSectionText) {
 		StringBuilder sb = new StringBuilder();
@@ -161,4 +162,87 @@ public class LineCreation {
 
 		return sb.toString();
 	}
+
+	public String createCompleteLineLR(int handSize, int sizeX, int sizePartial,
+			String leftBorder, String rightBorder, String join, String middleSection,
+			List<String> middleSectionText) {
+		StringBuilder sb = new StringBuilder();
+
+		// if null
+		if (middleSectionText == null) {
+			sb.append(createLeftSideOfLine(sizeX / 2, leftBorder, middleSection, null));
+
+			// hand size - first card - last card
+			for (int i = 1; i < handSize - 1; i++) {
+				sb.append(createRightSideOfLine(sizePartial, join, middleSection, null));
+			}
+			// has hand one card?
+			if (handSize > 1) {
+				sb.append(createRightSideOfLine(sizePartial, rightBorder, middleSection,
+						null));
+				// append after first left side
+				sb.insert(sizeX / 2,
+						createRightSideOfLine(sizeX / 2, join, middleSection, null));
+			} else {
+				sb.append(createRightSideOfLine(sizeX / 2, rightBorder, middleSection,
+						null));
+			}
+		// not null
+		} else {
+			sb.append(createLeftSideOfLine(sizeX / 2, leftBorder, middleSection,
+					middleSectionText.get(handSize - 1)));
+			sb.insert(sizeX / 2, createRightSideOfLine(sizeX / 2, join, middleSection,
+					middleSectionText.get(handSize - 1)));
+			// hand size - first card - last card
+			for (int i = handSize - 2; i >= 0; i--) {
+				sb.append(createRightSideOfLine(sizePartial, join, middleSection,
+						middleSectionText.get(i)));
+			}
+		}
+		return sb.toString();
+	}
+
+	public String createCompleteLineRL(int handSize, int sizeX, int sizePartial,
+			String leftBorder, String rightBorder, String join, String middleSection,
+			List<String> middleSectionText) {
+		StringBuilder sb = new StringBuilder();
+
+		// if null
+		if (middleSectionText == null) {
+			// append right side
+			sb.append(createRightSideOfLine(sizeX / 2, rightBorder, middleSection, null));
+			// hand size - first card - last card
+			for (int i = 1; i < handSize - 1; i++) {
+				sb.insert(0,
+						createLeftSideOfLine(sizePartial, join, middleSection, null));
+			}
+			// has hand one card?
+			if (handSize > 1) {
+				sb.insert(0, createLeftSideOfLine(sizePartial, leftBorder, middleSection,
+						null));
+				// append after first left side
+				sb.insert(sb.length() - sizeX / 2,
+						createLeftSideOfLine(sizeX / 2, join, middleSection, null));
+			} else {
+				sb.insert(0,
+						createLeftSideOfLine(sizeX / 2, leftBorder, middleSection, null));
+			}
+			// not null
+		} else {
+			// append right side
+			sb.append(createLeftSideOfLine(sizeX / 2, leftBorder, middleSection,
+					middleSectionText.get(handSize - 1)));
+			sb.append(createRightSideOfLine(sizeX / 2, rightBorder, middleSection,
+					middleSectionText.get(handSize - 1)));
+			
+			// hand size - first card - last card
+			for (int i = handSize - 2; i >= 0; i--) {
+				sb.insert(0, createLeftSideOfLine(sizePartial, join, middleSection,
+						middleSectionText.get(i)));
+			}
+		}
+		return sb.toString();
+	}
+
+
 }
