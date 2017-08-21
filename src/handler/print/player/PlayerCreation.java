@@ -11,9 +11,6 @@ import util.Settings;
 public class PlayerCreation extends LineCreation {
 	private static Settings settings = Settings.getInstance();
 
-	/**
-	 * private methods for printing out players
-	 */
 	public String createBothPlayersStringRepresentationSameStyleLR(Player player,
 			Player computer) {
 		StringBuilder sb = new StringBuilder();
@@ -557,10 +554,6 @@ public class PlayerCreation extends LineCreation {
 		return sb.toString();
 	}
 
-	/**
-	 *
-	 * /** Private methods for adjusting board printout with settings
-	 */
 	public String setSpaceBetweenPlayers() {
 		StringBuilder sb = new StringBuilder();
 

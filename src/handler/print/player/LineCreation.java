@@ -3,9 +3,6 @@ package handler.print.player;
 import java.util.List;
 
 public class LineCreation {
-	/**
-	 * private methods for creating card lines
-	 */
 	public String createCompleteLineLR(int handSize, int sizeX, int sizePartial,
 			String leftBorder, String rightBorder, String join, String middleSection,
 			List<String> middleSectionText) {

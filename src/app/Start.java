@@ -21,38 +21,36 @@ import util.Settings;
 
 public class Start {
 	// handlers
-	static DeckHandler		   deckHandler			 = new DeckHandler();
-	static StartHandler		   startHandler		 = new StartHandler();
-	static Print			   printFactory			 = new PrintFactory();
-	static CardDeckFactory	   deckFactory			 = new CardDeckFactory();
-	static Menu				   printMenuHandler		 = printFactory
+	static DeckHandler	   deckHandler			 = new DeckHandler();
+	static StartHandler	   startHandler			 = new StartHandler();
+	static Print		   printFactory			 = new PrintFactory();
+	static CardDeckFactory deckFactory			 = new CardDeckFactory();
+	static Menu			   printMenuHandler		 = printFactory
 			.createPrintOutMenuHandler();
-	static GameBoard printGameBoardHandler = printFactory
+	static GameBoard	   printGameBoardHandler = printFactory
 			.createPrintOutGameBoardHandler();
 
 	// helper variables
-	static int				   playerHandValue		 = 0;
-	static int				   computerHandValue	 = 0;
-	static boolean			   endProgram			 = false;
-	static boolean			   endGame				 = false;
-	static String			   input				 = "";
-	static List<Card>		   playerHand			 = new ArrayList<>();
-	static List<Card>		   computerHand			 = new ArrayList<>();
-	static Deck				   cardPile				 = deckFactory.createCardDeck();
-	static Deck				   cardDeck				 = deckFactory.createCardDeck();
-	static Player			   player				 = new Player("Player");
-	static Player			   computer				 = new Player("Computer");
+	static int			   playerHandValue		 = 0;
+	static int			   computerHandValue	 = 0;
+	static boolean		   endProgram			 = false;
+	static boolean		   endGame				 = false;
+	static String		   input				 = "";
+	static List<Card>	   playerHand			 = new ArrayList<>();
+	static List<Card>	   computerHand			 = new ArrayList<>();
+	static Deck			   cardPile				 = deckFactory.createCardDeck();
+	static Deck			   cardDeck				 = deckFactory.createCardDeck();
+	static Player		   player				 = new Player("Player");
+	static Player		   computer				 = new Player("Computer");
 
 	// variables from settings
-	static Settings			   gameSettings			 = Settings.getInstance();
+	static Settings		   gameSettings			 = Settings.getInstance();
 
-	static int				   score				 = gameSettings.getBeginningScore();
-	static int				   drawingStyle			 = gameSettings.getDrawStyle();
-	static int				   playerBank			 = gameSettings
-			.getPlayersBeginingMoney();
-	static int				   computerBank			 = gameSettings
-			.getPlayersBeginingMoney();
-	static int				   bet					 = gameSettings.getMinimalBet();
+	static int			   score				 = gameSettings.getBeginningScore();
+	static int			   drawingStyle			 = gameSettings.getDrawStyle();
+	static int			   playerBank			 = gameSettings.getPlayersBeginingMoney();
+	static int			   computerBank			 = gameSettings.getPlayersBeginingMoney();
+	static int			   bet					 = gameSettings.getMinimalBet();
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -61,14 +59,14 @@ public class Start {
 		while (!endProgram) {
 			printMenuHandler.createMenu(Const.MENU_MAIN);
 			input = sc.next();
-			
+
 			switch (input) {
-				//new game
+				// new game
 				case "1":
 					setUpNewGame();
 					startGame(sc);
 					break;
-				//settings
+				// settings
 				case "2":
 					printMenuHandler.createMenu(Const.MENU_SETTINGS);
 					settingsMain(sc);
@@ -77,15 +75,17 @@ public class Start {
 
 				case "3":
 					printMenuHandler.createMenu(Const.MENU_END, score);
-					startHandler.storeFinalScore(player.getName(), score, gameSettings.getScoreFile());
+					startHandler.storeFinalScore(player.getName(), score,
+							gameSettings.getScoreFile());
 					endProgram = true;
 					break;
-				//scoreboard	
+				// scoreboard
 				case "4":
-					String s = startHandler.getFinalScoreLeaderboard(gameSettings.getScoreFile());
+					String s = startHandler
+							.getFinalScoreLeaderboard(gameSettings.getScoreFile());
 					printMenuHandler.createMenu(Const.MENU_SCOREBOARD, s);
 					break;
-					
+
 				default:
 					break;
 			}
@@ -182,7 +182,7 @@ public class Start {
 
 	/**
 	 * Player and computer turns
-	 * */
+	 */
 	private static int playerTurn(Scanner sc) {
 		// take card if deck is empty shuffle pile
 		// bet
@@ -237,7 +237,7 @@ public class Start {
 
 	/**
 	 * update score
-	 * */
+	 */
 	private static void endRoundUpdate() {
 		// player lost
 		if (computerHandValue < 21 && computerHandValue > playerHandValue) {
@@ -273,7 +273,7 @@ public class Start {
 
 	/**
 	 * Methods responsible for settings update
-	 * */
+	 */
 	private static void settingsMain(Scanner sc) {
 		input = sc.next();
 		switch (input) {
@@ -333,8 +333,8 @@ public class Start {
 				}
 				break;
 			case "4":
-				value = sc.nextInt();
 				System.out.println("Set the size of bottom card");
+				value = sc.nextInt();
 				try {
 					gameSettings.setCardPartialSizeX(value);
 				} catch (DimensionsException e) {
@@ -342,12 +342,12 @@ public class Start {
 				}
 				break;
 			case "5":
-				value = sc.nextInt();
 				System.out.println("Set drawing style");
 				System.out.println("1. Same Way From Left to right. Most reft card top");
 				System.out.println("2. Same Way From right to left. Most right card top");
 				System.out.println("3. Mirror way");
 				System.out.println("4. Reverse mirror way");
+				value = sc.nextInt();
 				try {
 					gameSettings.setDrawStyle(value);
 				} catch (InvalidArgumentException e) {
