@@ -5,7 +5,7 @@ import handler.print.menu.MenuPrintOut;
 import handler.print.player.GameBoard;
 import handler.print.player.GameBoardPrintOut;
 
-public class PrintFactory implements Print{
+public class PrintFactory implements Print {
 
 	@Override
 	public Menu createPrintOutMenuHandler() {

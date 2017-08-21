@@ -1,5 +1,7 @@
 package util;
 
+import java.io.File;
+
 import model.Player;
 
 public class Settings {
@@ -7,7 +9,6 @@ public class Settings {
 	private int				menuLenght			   = Const.DRAW_MENU_X_SIZE;
 	private int				cardSizeX			   = Const.CARD_SIZE_X;
 	private int				cardSizeY			   = Const.CARD_SIZE_Y;
-	// TODO add exceptions for setters
 	private int				spaceBetweenPlayers	   = Const.SPACE_BETWEEN_PLAYERS;
 	private int				cardPartialSizeX	   = Const.CARD_PARTIAL_SIZE_X;
 	private int				drawStyle			   = Const.DRAW_PLAYERS_CARDS_MIRROR_WAY;
@@ -18,6 +19,7 @@ public class Settings {
 	private int				maximalBet			   = Const.MAX_BET;
 	private Player			player				   = new Player("player");
 	private Player			computer			   = new Player("computer");
+	private File			scoreFile			   = new File("scoreboard.txt");
 
 	private Settings() {
 	}
@@ -45,7 +47,6 @@ public class Settings {
 		return spaceBetweenPlayers;
 	}
 
-	// TODO exception for small/ large pace
 	public void setSpaceBetweenPlayers(int spaceBetweenPlayers)
 			throws DimensionsException {
 		if (spaceBetweenPlayers > Const.MAX_SPACE_BETWEEN_PLAYERS
@@ -154,21 +155,22 @@ public class Settings {
 	}
 
 	public void setMenuLenght(int menuLenght) throws DimensionsException {
-		if(menuLenght < Const.DRAW_MENU_X_SIZE){
-			throw new DimensionsException("menu cant be less than: " +  Const.DRAW_MENU_X_SIZE);
+		if (menuLenght < Const.DRAW_MENU_X_SIZE) {
+			throw new DimensionsException(
+					"menu cant be less than: " + Const.DRAW_MENU_X_SIZE);
 		}
 		this.menuLenght = menuLenght;
 	}
 
 	public void setPlayerName(String name) throws InvalidArgumentException {
-		if(name.length() < 1){
+		if (name.length() < 1) {
 			throw new InvalidArgumentException("Name cant be blank space");
 		}
 		this.player.setName(name);
 	}
 
 	public void setComputerName(String name) throws InvalidArgumentException {
-		if(name.length() < 1){
+		if (name.length() < 1) {
 			throw new InvalidArgumentException("Name cant be blank space");
 		}
 		this.computer.setName(name);
@@ -187,9 +189,15 @@ public class Settings {
 	}
 
 	public void setMaximalBet(int maximalBet) throws InvalidArgumentException {
-		if(maximalBet <= Const.MIN_BET || maximalBet > playersBeginingMoney || maximalBet > computersBeginingMoney){
-			throw new InvalidArgumentException("Maximal bet can be less than minimal bet or more than starting money");
+		if (maximalBet <= Const.MIN_BET || maximalBet > playersBeginingMoney
+				|| maximalBet > computersBeginingMoney) {
+			throw new InvalidArgumentException(
+					"Maximal bet can be less than minimal bet or more than starting money");
 		}
 		this.maximalBet = maximalBet;
+	}
+
+	public File getScoreFile() {
+		return scoreFile;
 	}
 }

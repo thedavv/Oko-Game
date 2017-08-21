@@ -135,13 +135,14 @@ public class Const {
 	public static final int		MENU_SETTINGS_SUBMENU_PLAYER			   = 13;
 	public static final int		MENU_SETTINGS_SUBMENU_PRINTOOUT			   = 14;
 	public static final int		MENU_SETTINGS_SUBMENU_MONEY				   = 15;
+	public static final int		MENU_SCOREBOARD							   = 16;
 
 	/**
 	 * Ruleset
 	 */
 	public static final int		MAX_HAND_VALUE							   = 21;
 	public static final int		PLAYERS_MONEY_BEGINING					   = 50;
-	public static final int		MAX_SCORE								   = 1000;
+	public static final int		MAX_SCORE								   = 0;
 	public static final int		MIN_BET									   = 1;
 	public static final int		MAX_BET									   = 10;
 }

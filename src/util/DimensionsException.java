@@ -1,8 +1,8 @@
 package util;
 
 public class DimensionsException extends Exception {
-	private static final long	serialVersionUID	= -8121524851474561971L;
-	private int[]				dimensions;
+	private static final long serialVersionUID = -8121524851474561971L;
+	private int[]			  dimensions;
 
 	public DimensionsException() {
 	}

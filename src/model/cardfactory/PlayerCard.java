@@ -10,8 +10,8 @@ import model.cardproperty.Value;
  *         and color
  */
 public class PlayerCard implements Card {
-	private Color	color;
-	private Value	value;
+	private Color color;
+	private Value value;
 
 	public PlayerCard(Color color, Value value) {
 		this.color = color;

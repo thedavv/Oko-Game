@@ -11,16 +11,6 @@ public class MenuCreation extends LineCreation {
 	 */
 	public String createMainMenuPrintout() {
 		StringBuilder sb = new StringBuilder();
-		// System.out.println("╔═══════════════════════════════════════════════════╗");
-		// System.out.println("║ Main Menu ║");
-		// System.out.println("╠═══════════════════════════════════════════════════╣");
-		// System.out.println("║ ║");
-		// System.out.println("║ 1. NEW GAME ║");
-		// System.out.println("║ 2. settings ║");
-		// System.out.println("║ 3. EXIT ║");
-		// System.out.println("║ ║");
-		// System.out.println("╚═══════════════════════════════════════════════════╝");
-
 		sb.append(
 				drawLine(settings.getMenuLenght(), Const.TLC, Const.TRC, Const.HL, null));
 		sb.append("\n");
@@ -40,6 +30,9 @@ public class MenuCreation extends LineCreation {
 		sb.append("\n");
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"3. EXIT"));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"4. HIGH SCORE TABLE"));
 		sb.append("\n");
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
@@ -97,7 +90,7 @@ public class MenuCreation extends LineCreation {
 	}
 
 	/**
-	 * Method for continue menu printout
+	 * Method for creating continue menu printout
 	 */
 	public String createContinueMenuPrintout() {
 		StringBuilder sb = new StringBuilder();
@@ -560,6 +553,33 @@ public class MenuCreation extends LineCreation {
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"2. NO"));
 		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
+		sb.append("\n");
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.BLC, Const.BRC, Const.HL, null));
+
+		return sb.toString();
+	}
+
+	public String createScoreBoardPrintout(String data) {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.TLC, Const.TRC, Const.HL, null));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"SCOREBOARD"));
+		sb.append("\n");
+		sb.append(
+				drawLine(settings.getMenuLenght(), Const.LMJ, Const.RMJ, Const.HL, null));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
+		sb.append("\n");
+		for (String str : data.split("\n")) {
+			sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, str));
+			sb.append("\n");
+		}
+		
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
 		sb.append(

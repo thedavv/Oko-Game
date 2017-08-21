@@ -113,4 +113,16 @@ public class MenuPrintOut extends MenuCreation implements Menu {
 		}
 
 	}
+
+	@Override
+	public void createMenu(int menuType, String data) {
+		switch (menuType) {
+			case Const.MENU_SCOREBOARD:
+				System.out.println(createScoreBoardPrintout(data));
+				break;
+
+			default:
+				break;
+			}
+	}
 }
