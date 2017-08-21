@@ -22,7 +22,8 @@ public class MenuPrintOut extends MenuCreation implements Menu {
 			
 		case Const.MENU_DOUBLE_DOWN:
 			System.out.println(createdoubleDownMenuPrintout());
-
+			break;
+			
 		case Const.MENU_SETTINGS_SUBMENU_MONEY:
 			System.out.println(createSettingsSubmenuMoneyPrintout());
 			break;
@@ -69,10 +70,10 @@ public class MenuPrintOut extends MenuCreation implements Menu {
 
 	@Override
 	public void createMenu(int menuType, Player player, Player computer,
-			int playerHandValue, int computerHandValue) {
+			int playerHandValue, int computerHandValue, boolean playerWon) {
 		switch (menuType) {
 		case Const.MENU_WIN_ROUND:
-			if (playerHandValue > computerHandValue) {
+			if (playerWon) {
 				System.out.println(createWinRoundScreen(player.getName(),
 						computer.getName(), playerHandValue, computerHandValue));
 			} else {

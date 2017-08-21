@@ -4,20 +4,20 @@ import model.Player;
 
 public class Settings {
 	private static Settings	instance;
-	private int				menuLenght				= Const.DRAW_MENU_X_SIZE;
-	private int				cardSizeX				= Const.CARD_SIZE_X;
-	private int				cardSizeY				= Const.CARD_SIZE_Y;
+	private int				menuLenght			   = Const.DRAW_MENU_X_SIZE;
+	private int				cardSizeX			   = Const.CARD_SIZE_X;
+	private int				cardSizeY			   = Const.CARD_SIZE_Y;
 	// TODO add exceptions for setters
-	private int				spaceBetweenPlayers		= Const.SPACE_BETWEEN_PLAYERS;
-	private int				cardPartialSizeX		= Const.CARD_PARTIAL_SIZE_X;
-	private int				drawStyle				= Const.DRAW_PLAYERS_CARDS_MIRROR_WAY;
-	private int				playersBeginingMoney	= Const.PLAYERS_MONEY_BEGINING;
-	private int				computersBeginingMoney	= Const.PLAYERS_MONEY_BEGINING;
-	private int				beginningScore			= Const.MAX_SCORE;
-	private int				minimalBet				= Const.MIN_BET;
-	private int				maximalBet				= Const.MAX_BET;
-	private Player			player					= new Player("player");
-	private Player			computer				= new Player("computer");
+	private int				spaceBetweenPlayers	   = Const.SPACE_BETWEEN_PLAYERS;
+	private int				cardPartialSizeX	   = Const.CARD_PARTIAL_SIZE_X;
+	private int				drawStyle			   = Const.DRAW_PLAYERS_CARDS_MIRROR_WAY;
+	private int				playersBeginingMoney   = Const.PLAYERS_MONEY_BEGINING;
+	private int				computersBeginingMoney = Const.PLAYERS_MONEY_BEGINING;
+	private int				beginningScore		   = Const.MAX_SCORE;
+	private int				minimalBet			   = Const.MIN_BET;
+	private int				maximalBet			   = Const.MAX_BET;
+	private Player			player				   = new Player("player");
+	private Player			computer			   = new Player("computer");
 
 	private Settings() {
 	}
@@ -114,19 +114,19 @@ public class Settings {
 		this.menuLenght = menuLenght;
 	}
 
-	public void setPlayerName(String name){
+	public void setPlayerName(String name) {
 		this.player.setName(name);
 	}
-	
-	public void setComputerName(String name){
+
+	public void setComputerName(String name) {
 		this.computer.setName(name);
 	}
-	
-	public Player getPlayer(){
+
+	public Player getPlayer() {
 		return player;
 	}
-	
-	public Player getComputer(){
+
+	public Player getComputer() {
 		return computer;
 	}
 

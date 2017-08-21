@@ -12,5 +12,5 @@ public interface Menu {
 	void createMenu(int menuType, int playerHandValue, int playerBank, int ComputerBank);
 
 	void createMenu(int menuType, Player player, Player computer, int playerHandValue,
-			int computerHandValue);
+			int computerHandValue, boolean playerWon);
 }

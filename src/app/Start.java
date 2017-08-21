@@ -1,56 +1,12 @@
 package app;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-import handler.*;
-import handler.game.StartHandler;
-import handler.print.Print;
-import handler.print.PrintFactory;
-import handler.print.menu.Menu;
-import handler.print.player.GameBoard;
 import model.*;
-import model.cardfactory.*;
-import model.deck.CardDeckFactory;
-import model.deck.Deck;
 import util.Const;
 import util.DimensionsException;
-import util.Settings;
 
-public class Start { // TODO test settings / change setings
-	// handlers
-	static DeckHandler	   deckHandler			 = new DeckHandler();
-	static StartHandler	   ruleSetHandler		 = new StartHandler();
-	static Print		   printFactory			 = new PrintFactory();
-	static CardDeckFactory deckFactory			 = new CardDeckFactory();
-	static Menu			   printMenuHandler		 = printFactory
-			.createPrintOutMenuHandler();
-	static GameBoard	   printGameBoardHandler = printFactory
-			.createPrintOutGameBoardHandler();
-
-	// helper variables
-	static int			   playerHandValue		 = 0;
-	static int			   computerHandValue	 = 0;
-	static boolean		   endProgram			 = false;
-	static boolean		   endGame				 = false;
-	static String		   input				 = "";
-	static List<Card>	   playerHand			 = new ArrayList<>();
-	static List<Card>	   computerHand			 = new ArrayList<>();
-	static Deck			   cardPile				 = deckFactory.createCardDeck();
-	static Deck			   cardDeck				 = deckFactory.createCardDeck();
-	static Player		   player				 = new Player("Player");
-	static Player		   computer				 = new Player("Computer");
-
-	// variables from settings
-	static Settings		   gameSettings			 = Settings.getInstance();
-
-	static int			   score				 = gameSettings.getBeginningScore();
-	static int			   drawingStyle			 = gameSettings.getDrawStyle();
-	static int			   playerBank			 = gameSettings.getPlayersBeginingMoney();
-	static int			   computerBank			 = gameSettings.getPlayersBeginingMoney();
-	static int			   bet					 = gameSettings.getMinimalBet();
-
+public class Start extends GameModel{ // TODO test settings / change setings
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		cardDeck.addCards(deckHandler.createDeck());
@@ -202,7 +158,7 @@ public class Start { // TODO test settings / change setings
 		while (true) {
 			// is overflow?
 			if (ruleSetHandler.isHandValueMoreThanMaxValue(computerHandValue)) {
-				printMenuHandler.createMenu(Const.MENU_OVERFLOW, player, playerHandValue);
+				printMenuHandler.createMenu(Const.MENU_OVERFLOW, computer, computerHandValue);
 				break;
 			} else if (playerHandValue < computerHandValue) {
 				break;
@@ -230,13 +186,13 @@ public class Start { // TODO test settings / change setings
 			playerBank = ruleSetHandler.substractBetValue(bet, playerBank);
 			score = ruleSetHandler.updateFinalScore(bet, score);
 			printMenuHandler.createMenu(Const.MENU_WIN_ROUND, player, computer,
-					playerHandValue, computerHandValue);
+					playerHandValue, computerHandValue, false);
 			// PlayerWon update score and winnings
 		} else {
 			playerBank = ruleSetHandler.addBetValue(bet, playerBank);
 			computerBank = ruleSetHandler.substractBetValue(bet, computerBank);
 			printMenuHandler.createMenu(Const.MENU_WIN_ROUND, player, computer,
-					playerHandValue, computerHandValue);
+					playerHandValue, computerHandValue, true);
 		}
 	}
 
@@ -380,13 +336,13 @@ public class Start { // TODO test settings / change setings
 	}
 
 	private static void updateStartFromGameSettings() {
-		Start.player.setName(gameSettings.getPlayer().getName());
-		Start.computer.setName(gameSettings.getPlayer().getName());
+		GameModel.player.setName(gameSettings.getPlayer().getName());
+		GameModel.computer.setName(gameSettings.getPlayer().getName());
 
-		Start.score 	   = gameSettings.getBeginningScore();
-		Start.drawingStyle = gameSettings.getDrawStyle();
-		Start.playerBank   = gameSettings.getPlayersBeginingMoney();
-		Start.computerBank = gameSettings.getPlayersBeginingMoney();
-		Start.bet 		   = gameSettings.getMinimalBet();
+		GameModel.score 	   = gameSettings.getBeginningScore();
+		GameModel.drawingStyle = gameSettings.getDrawStyle();
+		GameModel.playerBank   = gameSettings.getPlayersBeginingMoney();
+		GameModel.computerBank = gameSettings.getPlayersBeginingMoney();
+		GameModel.bet 		   = gameSettings.getMinimalBet();
 	}
 }
