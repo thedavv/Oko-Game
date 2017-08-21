@@ -382,7 +382,7 @@ public class Start { // TODO test settings / change setings
 	private static void updateStartFromGameSettings() {
 		Start.player.setName(gameSettings.getPlayer().getName());
 		Start.computer.setName(gameSettings.getPlayer().getName());
-		
+
 		Start.score 	   = gameSettings.getBeginningScore();
 		Start.drawingStyle = gameSettings.getDrawStyle();
 		Start.playerBank   = gameSettings.getPlayersBeginingMoney();
