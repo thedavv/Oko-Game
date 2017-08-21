@@ -264,7 +264,7 @@ public class MenuCreation extends LineCreation {
 	}
 
 	/**
-	 * Method for printing out settings menu
+	 * Method that creates settings menu
 	 */
 	public String createSettingsMenuPrintout() {
 		// System.out.println("╔═══════════════════════════════════════════════════╗");
@@ -307,6 +307,9 @@ public class MenuCreation extends LineCreation {
 		return sb.toString();
 	}
 
+	/**
+	 * Method that creates settings submenu for Player
+	 */
 	public String createSettingsSubmenuPlayerPrintout() {
 		// System.out.println("╔═══════════════════════════════════════════════════╗");
 		// System.out.println("║ settings ║");
@@ -345,6 +348,9 @@ public class MenuCreation extends LineCreation {
 		return sb.toString();
 	}
 
+	/**
+	 * Method that creates settings submenu for Printout game Board
+	 */
 	public String createSettingsSubmenuPrintout() {
 		StringBuilder sb = new StringBuilder();
 
@@ -385,6 +391,9 @@ public class MenuCreation extends LineCreation {
 		return sb.toString();
 	}
 
+	/**
+	 * Method that creates settings submenu for Money
+	 */
 	public String createSettingsSubmenuMoneyPrintout() {
 		StringBuilder sb = new StringBuilder();
 
@@ -425,6 +434,9 @@ public class MenuCreation extends LineCreation {
 		return sb.toString();
 	}
 
+	/**
+	 * Method that creates Win screen
+	 */
 	public String createWinScreenPrintout(int finalScore) {
 		StringBuilder sb = new StringBuilder();
 
@@ -450,6 +462,9 @@ public class MenuCreation extends LineCreation {
 		return sb.toString();
 	}
 
+	/**
+	 * MMethod that creates Lost screen
+	 */
 	public String createLostScreenPrintout(int finalScore) {
 		StringBuilder sb = new StringBuilder();
 
@@ -475,6 +490,9 @@ public class MenuCreation extends LineCreation {
 		return sb.toString();
 	}
 
+	/**
+	 * Method that creates Return screen
+	 */
 	public String createReturnToMenuPrintout(int finalScore) {
 		StringBuilder sb = new StringBuilder();
 
@@ -500,6 +518,9 @@ public class MenuCreation extends LineCreation {
 		return sb.toString();
 	}
 
+	/**
+	 * Method that creates Bet screen
+	 */
 	public String createBetInputScreen(int bet) {
 		StringBuilder sb = new StringBuilder();
 
@@ -528,11 +549,17 @@ public class MenuCreation extends LineCreation {
 		return sb.toString();
 	}
 
+	/**
+	 * Method for cls
+	 */
 	public void clearScreen() {
 		System.out.print("\033[H\033[2J");
 		System.out.flush();
 	}
 
+	/**
+	 * Method that creates Double down screen
+	 */
 	public String createdoubleDownMenuPrintout() {
 		StringBuilder sb = new StringBuilder();
 
@@ -561,6 +588,9 @@ public class MenuCreation extends LineCreation {
 		return sb.toString();
 	}
 
+	/**
+	 * Method that creates ScoreBoard screen
+	 */
 	public String createScoreBoardPrintout(String data) {
 		StringBuilder sb = new StringBuilder();
 
@@ -576,10 +606,11 @@ public class MenuCreation extends LineCreation {
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
 		for (String str : data.split("\n")) {
-			sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, str));
+			sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+					str));
 			sb.append("\n");
 		}
-		
+
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
 		sb.append(
