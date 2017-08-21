@@ -59,7 +59,7 @@ public class MenuPrintOut extends MenuCreation implements Menu {
 				System.out.println(createReturnToMenuPrintout(score));
 				break;
 
-			case Const.MENU_Bet:
+			case Const.MENU_BET:
 				System.out.println(createBetInputScreen(score));
 				break;
 

@@ -187,7 +187,7 @@ public class Start {
 		// take card if deck is empty shuffle pile
 		// bet
 		if (playerHand == null || playerHand.size() < 1) {
-			printMenuHandler.createMenu(Const.MENU_Bet, bet);
+			printMenuHandler.createMenu(Const.MENU_BET, bet);
 			bet = startHandler.setBet(sc);
 			// double down?
 		} else if (playerHand.size() == 1) {

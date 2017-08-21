@@ -134,7 +134,7 @@ public class Const {
 	public static final int		MENU_WIN								   = 8;
 	public static final int		MENU_LOST								   = 9;
 	public static final int		MENU_RETURN								   = 10;
-	public static final int		MENU_Bet								   = 11;
+	public static final int		MENU_BET								   = 11;
 	public static final int		MENU_DOUBLE_DOWN						   = 12;
 	public static final int		MENU_SETTINGS_SUBMENU_PLAYER			   = 13;
 	public static final int		MENU_SETTINGS_SUBMENU_PRINTOOUT			   = 14;

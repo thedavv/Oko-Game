@@ -32,7 +32,7 @@ public class MenuCreation extends LineCreation {
 				"3. EXIT"));
 		sb.append("\n");
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
-				"4. HIGH SCORE TABLE"));
+				"4. SCOREBOARD"));
 		sb.append("\n");
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
@@ -55,15 +55,6 @@ public class MenuCreation extends LineCreation {
 	public String createStatusMenuPrintout(int playerHandValue, int playerBank,
 			int ComputerBank) {
 		StringBuilder sb = new StringBuilder();
-		// System.out.println("╔═══════════════════════════════════════════════════╗");
-		// System.out.println("║ Status ║");
-		// System.out.println("╠═══════════════════════════════════════════════════╣");
-		// System.out.println("║ ║");
-		// System.out.println("║ Hand card value count : ║");
-		// System.out.println("║ Player bank remaining : ║");
-		// System.out.println("║ Computer bank remaining : ║");
-		// System.out.println("║ ║");
-
 		sb.append(
 				drawLine(settings.getMenuLenght(), Const.TLC, Const.TRC, Const.HL, null));
 		sb.append("\n");
@@ -94,15 +85,6 @@ public class MenuCreation extends LineCreation {
 	 */
 	public String createContinueMenuPrintout() {
 		StringBuilder sb = new StringBuilder();
-		// System.out.println("╠═══════════════════════════════════════════════════╣");
-		// System.out.println("║ Draw another Card? ║");
-		// System.out.println("╠═══════════════════════════════════════════════════╣");
-		// System.out.println("║ ║");
-		// System.out.println("║ 1. Yes ║");
-		// System.out.println("║ 2. No ║");
-		// System.out.println("║ 3. EXIT TO MAIN MENU ║");
-		// System.out.println("║ ║");
-		// System.out.println("╚═══════════════════════════════════════════════════╝");
 
 		sb.append(
 				drawLine(settings.getMenuLenght(), Const.LMJ, Const.RMJ, Const.HL, null));
@@ -140,14 +122,6 @@ public class MenuCreation extends LineCreation {
 	 */
 	public String createEndScreenPrintout(int finalScore) {
 		StringBuilder sb = new StringBuilder();
-		// System.out.println("╠═══════════════════════════════════════════════════╣");
-		// System.out.println("║ Game is closing. Have a nice day ║");
-		// System.out.println("╠═══════════════════════════════════════════════════╣");
-		// System.out.println("║ ║");
-		// System.out.println("║ Final Score : unimplemented ║");
-		// System.out.println("║ ║");
-		// System.out.println("╚═══════════════════════════════════════════════════╝");
-
 		sb.append(
 				drawLine(settings.getMenuLenght(), Const.TLC, Const.TRC, Const.HL, null));
 		sb.append("\n");
@@ -179,14 +153,6 @@ public class MenuCreation extends LineCreation {
 	 *            is the players hand value
 	 */
 	public String createOverflowPrintout(String playerName, int playerHandValue) {
-		// System.out.println("╔═══════════════════════════════════════════════════╗");
-		// System.out.println("║ Value of hand exeeds max value in ruleset ║");
-		// System.out.println("╠═══════════════════════════════════════════════════╣");
-		// System.out.println("║ ║");
-		// System.out.println("║ Players hand value: ║");
-		// System.out.println("║ Player Lost. ║");
-		// System.out.println("║ ║");
-		// System.out.println("╚═══════════════════════════════════════════════════╝");
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(
@@ -228,14 +194,6 @@ public class MenuCreation extends LineCreation {
 	 */
 	public String createWinRoundScreen(String wonPlayerName, String lostPlayerName,
 			int wonPlayerHandValue, int lostPlayerHandValue) {
-		// System.out.println("╔═══════════════════════════════════════════════════╗");
-		// System.out.println("║ Player won the round ║");
-		// System.out.println("╠═══════════════════════════════════════════════════╣");
-		// System.out.println("║ ║");
-		// System.out.println("║ Player hand value = ║");
-		// System.out.println("║ Player hand value = ║");
-		// System.out.println("║ ║");
-		// System.out.println("╚═══════════════════════════════════════════════════╝");
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(
@@ -267,13 +225,6 @@ public class MenuCreation extends LineCreation {
 	 * Method that creates settings menu
 	 */
 	public String createSettingsMenuPrintout() {
-		// System.out.println("╔═══════════════════════════════════════════════════╗");
-		// System.out.println("║ settings ║");
-		// System.out.println("╠═══════════════════════════════════════════════════╣");
-		// System.out.println("║ ║");
-		// System.out.println("║ 1. Not Implemented ║");
-		// System.out.println("║ ║");
-		// System.out.println("╚═══════════════════════════════════════════════════╝");
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(
@@ -294,7 +245,7 @@ public class MenuCreation extends LineCreation {
 				"2. PLAYER SETUP"));
 		sb.append("\n");
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
-				"3. MONEY RULES SETUP"));
+				"3. BANK RULES SETUP"));
 		sb.append("\n");
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"4. BACK TO MAIN MENU"));
@@ -311,13 +262,6 @@ public class MenuCreation extends LineCreation {
 	 * Method that creates settings submenu for Player
 	 */
 	public String createSettingsSubmenuPlayerPrintout() {
-		// System.out.println("╔═══════════════════════════════════════════════════╗");
-		// System.out.println("║ settings ║");
-		// System.out.println("╠═══════════════════════════════════════════════════╣");
-		// System.out.println("║ ║");
-		// System.out.println("║ 1. Not Implemented ║");
-		// System.out.println("║ ║");
-		// System.out.println("╚═══════════════════════════════════════════════════╝");
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(
