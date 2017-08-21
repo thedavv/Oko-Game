@@ -27,7 +27,7 @@ public class Start {
 	static CardDeckFactory	   deckFactory			 = new CardDeckFactory();
 	static Menu				   printMenuHandler		 = printFactory
 			.createPrintOutMenuHandler();
-	protected static GameBoard printGameBoardHandler = printFactory
+	static GameBoard printGameBoardHandler = printFactory
 			.createPrintOutGameBoardHandler();
 
 	// helper variables
@@ -61,12 +61,14 @@ public class Start {
 		while (!endProgram) {
 			printMenuHandler.createMenu(Const.MENU_MAIN);
 			input = sc.next();
+			
 			switch (input) {
+				//new game
 				case "1":
 					setUpNewGame();
 					startGame(sc);
 					break;
-
+				//settings
 				case "2":
 					printMenuHandler.createMenu(Const.MENU_SETTINGS);
 					settingsMain(sc);
@@ -78,7 +80,7 @@ public class Start {
 					startHandler.storeFinalScore(player.getName(), score, gameSettings.getScoreFile());
 					endProgram = true;
 					break;
-					
+				//scoreboard	
 				case "4":
 					String s = startHandler.getFinalScoreLeaderboard(gameSettings.getScoreFile());
 					printMenuHandler.createMenu(Const.MENU_SCOREBOARD, s);

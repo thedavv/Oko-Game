@@ -23,8 +23,8 @@ public class StartHandler {
 	/**
 	 * Method for counting cards in hand
 	 *
-	 * @param hand
-	 *            is players hand
+	 * @param -
+	 *            hand is players hand
 	 * @return total int card value in hand
 	 */
 	public int countCardsInHand(List<Card> hand) {
@@ -47,6 +47,15 @@ public class StartHandler {
 		return (handValue > Const.MAX_HAND_VALUE) ? true : false;
 	}
 
+	/**
+	 * Method for shuffling pile to deck
+	 * 
+	 * @param -
+	 *            cardDeck is Deck of cards
+	 * @param -
+	 *            cardPile is Pile of used cards
+	 * @return deck with shuffled cards from pile
+	 */
 	public Deck shufflePileIntoDeck(Deck cardDeck, Deck cardPile) {
 		cardDeck.addCards(cardPile.getAllCards());
 		cardDeck.shuffle();
@@ -54,21 +63,49 @@ public class StartHandler {
 		return cardDeck;
 	}
 
+	/**
+	 * Method that subtracting from players bank
+	 * 
+	 * @param - bet is players bet
+	 * @param -  playerBank is players bank
+	 * @return playerBank 
+	 */
 	public int substractBetValue(int bet, int playerBank) {
 		return playerBank - bet;
 	}
 
+	/**
+	 * Method for adding bet to players bank
+	 * 
+	 * @param - bet is players bet
+	 * @param -  playerBank is players bank
+	 * @return playerBank
+	 */
 	public int addBetValue(int bet, int playerBank) {
 		return playerBank + bet;
 	}
 
+	/**
+	 * Method for subtracting score if player lost the round
+	 * 
+	 * @param bet - bet is players bet
+	 * @param score - is players score
+	 * @return score;
+	 */
 	public int updateScorePlayerLost(int bet, int score) {
 		if (score - bet < 0) {
 			return 0;
 		}
 		return score - bet;
 	}
-
+	
+	/**
+	 * Method for adding score if player won the round
+	 * 
+	 * @param bet - bet is players bet
+	 * @param score - is players score
+	 * @return score. Returns double value if player double downed;
+	 */
 	public int updateScorePlayerWon(int bet, int score) {
 		if (bet > settings.getMaximalBet()) {
 			return score + bet * 2;
@@ -76,10 +113,22 @@ public class StartHandler {
 		return score + bet;
 	}
 
+	/**
+	 * Method for checking if player bank is <=0
+	 * 
+	 * @param - playerBank
+	 * @return true if players bank is less than 0
+	 */
 	public boolean isBankZero(int playerBank) {
 		return (playerBank <= 0) ? true : false;
 	}
 
+	/**
+	 * Method for setting the plazers bet for the round
+	 * 
+	 * @param sc - is Scanner 
+	 * @return bet if bet is set wrong it returns minimal bet value
+	 */
 	public int setBet(Scanner sc) {
 		int bet = sc.nextInt();
 
@@ -92,6 +141,14 @@ public class StartHandler {
 		return bet;
 	}
 
+	
+	/**
+	 * Method that sets bet value times two
+	 * 
+	 * @param sc - is Scanner 
+	 * @param bet - is players bet this round
+	 * @return bet * 2
+	 */
 	public int setBetDoubleDown(Scanner sc, int bet) {
 		String s = sc.next();
 
@@ -111,6 +168,13 @@ public class StartHandler {
 	}
 
 	// TODO
+	/**
+	 * Method for storing score into txt file
+	 * 
+	 * @param - playerName is players name
+	 * @param - finalScore is final score that player gained
+	 * @param - file is selected file for writting
+	 */
 	public void storeFinalScore(String playerName, int finalScore, File file) {
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
 			bw.write("Player: " + playerName + " Score: " + finalScore);
@@ -120,6 +184,12 @@ public class StartHandler {
 		}
 	}
 
+	/**
+	 * Method for reading score file
+	 * 
+	 * @param - file is selected file with score
+	 * @return String representation of file contents
+	 */
 	public String getFinalScoreLeaderboard(File file) {
 		StringBuilder sb = new StringBuilder();
 
