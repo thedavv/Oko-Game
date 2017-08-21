@@ -390,8 +390,8 @@ public class Start {
 		input = sc.next();
 		switch (input) {
 			case "1":
-				value = sc.nextInt();
 				System.out.println("Set player beginning bank");
+				value = sc.nextInt();
 				try {
 					gameSettings.setPlayersBeginingMoney(value);
 				} catch (InvalidArgumentException e) {
@@ -399,8 +399,8 @@ public class Start {
 				}
 				break;
 			case "2":
-				value = sc.nextInt();
 				System.out.println("Set computers beginning money");
+				value = sc.nextInt();
 				try {
 					gameSettings.setComputersBeginingMoney(value);
 				} catch (InvalidArgumentException e) {
@@ -408,8 +408,8 @@ public class Start {
 				}
 				break;
 			case "3":
-				value = sc.nextInt();
 				System.out.println("Set beginning score");
+				value = sc.nextInt();
 				gameSettings.setBeginningScore(value);
 				break;
 			case "4":
