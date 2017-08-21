@@ -54,9 +54,6 @@ public class Start {
 	private static int			   bet					 = gameSettings.getMinimalBet();
 
 	public static void main(String[] args) {
-		cardDeck.addCards(deckHandler.createDeck());
-		cardDeck.shuffle();
-		
 		Scanner sc = new Scanner(System.in);
 		while (!endProgram) {
 			printMenuHandler.createMenu(Const.MENU_MAIN);
@@ -161,6 +158,11 @@ public class Start {
 		playerBank = gameSettings.getPlayersBeginingMoney();
 		computerBank = gameSettings.getPlayersBeginingMoney();
 		bet = gameSettings.getMinimalBet();
+		
+		cardPile.clear();
+		cardDeck.clear();
+		cardDeck.addCards(deckHandler.createDeck());
+		cardDeck.shuffle();
 	}
 
 	private static void resetRound() {
