@@ -66,9 +66,11 @@ public class StartHandler {
 	/**
 	 * Method that subtracting from players bank
 	 * 
-	 * @param - bet is players bet
-	 * @param -  playerBank is players bank
-	 * @return playerBank 
+	 * @param -
+	 *            bet is players bet
+	 * @param -
+	 *            playerBank is players bank
+	 * @return playerBank
 	 */
 	public int substractBetValue(int bet, int playerBank) {
 		return playerBank - bet;
@@ -77,8 +79,10 @@ public class StartHandler {
 	/**
 	 * Method for adding bet to players bank
 	 * 
-	 * @param - bet is players bet
-	 * @param -  playerBank is players bank
+	 * @param -
+	 *            bet is players bet
+	 * @param -
+	 *            playerBank is players bank
 	 * @return playerBank
 	 */
 	public int addBetValue(int bet, int playerBank) {
@@ -88,8 +92,10 @@ public class StartHandler {
 	/**
 	 * Method for subtracting score if player lost the round
 	 * 
-	 * @param bet - bet is players bet
-	 * @param score - is players score
+	 * @param bet
+	 *            - bet is players bet
+	 * @param score
+	 *            - is players score
 	 * @return score;
 	 */
 	public int updateScorePlayerLost(int bet, int score) {
@@ -98,12 +104,14 @@ public class StartHandler {
 		}
 		return score - bet;
 	}
-	
+
 	/**
 	 * Method for adding score if player won the round
 	 * 
-	 * @param bet - bet is players bet
-	 * @param score - is players score
+	 * @param bet
+	 *            - bet is players bet
+	 * @param score
+	 *            - is players score
 	 * @return score. Returns double value if player double downed;
 	 */
 	public int updateScorePlayerWon(int bet, int score) {
@@ -116,7 +124,8 @@ public class StartHandler {
 	/**
 	 * Method for checking if player bank is <=0
 	 * 
-	 * @param - playerBank
+	 * @param -
+	 *            playerBank
 	 * @return true if players bank is less than 0
 	 */
 	public boolean isBankZero(int playerBank) {
@@ -126,7 +135,8 @@ public class StartHandler {
 	/**
 	 * Method for setting the plazers bet for the round
 	 * 
-	 * @param sc - is Scanner 
+	 * @param sc
+	 *            - is Scanner
 	 * @return bet if bet is set wrong it returns minimal bet value
 	 */
 	public int setBet(Scanner sc) {
@@ -141,12 +151,13 @@ public class StartHandler {
 		return bet;
 	}
 
-	
 	/**
 	 * Method that sets bet value times two
 	 * 
-	 * @param sc - is Scanner 
-	 * @param bet - is players bet this round
+	 * @param sc
+	 *            - is Scanner
+	 * @param bet
+	 *            - is players bet this round
 	 * @return bet * 2
 	 */
 	public int setBetDoubleDown(Scanner sc, int bet) {
@@ -171,9 +182,12 @@ public class StartHandler {
 	/**
 	 * Method for storing score into txt file
 	 * 
-	 * @param - playerName is players name
-	 * @param - finalScore is final score that player gained
-	 * @param - file is selected file for writting
+	 * @param -
+	 *            playerName is players name
+	 * @param -
+	 *            finalScore is final score that player gained
+	 * @param -
+	 *            file is selected file for writting
 	 */
 	public void storeFinalScore(String playerName, int finalScore, File file) {
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
@@ -187,7 +201,8 @@ public class StartHandler {
 	/**
 	 * Method for reading score file
 	 * 
-	 * @param - file is selected file with score
+	 * @param -
+	 *            file is selected file with score
 	 * @return String representation of file contents
 	 */
 	public String getFinalScoreLeaderboard(File file) {

@@ -5,6 +5,10 @@ package util;
  */
 public class Const {
 	/**
+	 * Line constants
+	 * */
+	
+	/**
 	 * Space " "
 	 */
 	public static final char	SP										   = Character.MIN_VALUE;;
