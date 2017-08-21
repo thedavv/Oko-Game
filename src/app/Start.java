@@ -15,42 +15,41 @@ import model.cardfactory.*;
 import model.deck.CardDeckFactory;
 import model.deck.Deck;
 import util.Const;
+import util.DimensionsException;
 import util.Settings;
 
 public class Start { // TODO test settings / change setings
 	// handlers
-	static DeckHandler		deckHandler				= new DeckHandler();
-	static StartHandler	ruleSetHandler				= new StartHandler();
-	static Print			printFactory			= new PrintFactory();
-	static CardDeckFactory	deckFactory				= new CardDeckFactory();
-	static Menu				printMenuHandler		= printFactory
+	static DeckHandler	   deckHandler			 = new DeckHandler();
+	static StartHandler	   ruleSetHandler		 = new StartHandler();
+	static Print		   printFactory			 = new PrintFactory();
+	static CardDeckFactory deckFactory			 = new CardDeckFactory();
+	static Menu			   printMenuHandler		 = printFactory
 			.createPrintOutMenuHandler();
-	static GameBoard		printGameBoardHandler	= printFactory
+	static GameBoard	   printGameBoardHandler = printFactory
 			.createPrintOutGameBoardHandler();
-	
+
 	// helper variables
-	static int				playerHandValue			= 0;
-	static int				computerHandValue		= 0;
-	static boolean			endProgram				= false;
-	static boolean			endGame					= false;
-	static String			input					= "";
-	static List<Card>		playerHand				= new ArrayList<>();
-	static List<Card>		computerHand			= new ArrayList<>();
-	static Deck				cardPile				= deckFactory.createCardDeck();
-	static Deck				cardDeck				= deckFactory.createCardDeck();
-	static Player			player					= new Player("Player");
-	static Player			computer				= new Player("Computer");
+	static int			   playerHandValue		 = 0;
+	static int			   computerHandValue	 = 0;
+	static boolean		   endProgram			 = false;
+	static boolean		   endGame				 = false;
+	static String		   input				 = "";
+	static List<Card>	   playerHand			 = new ArrayList<>();
+	static List<Card>	   computerHand			 = new ArrayList<>();
+	static Deck			   cardPile				 = deckFactory.createCardDeck();
+	static Deck			   cardDeck				 = deckFactory.createCardDeck();
+	static Player		   player				 = new Player("Player");
+	static Player		   computer				 = new Player("Computer");
 
 	// variables from settings
-	static Settings			gameSettings			= Settings.getInstance();
+	static Settings		   gameSettings			 = Settings.getInstance();
 
-	static int				score					= gameSettings.getBeginningScore();
-	static int				drawingStyle			= gameSettings.getDrawStyle();
-	static int				playerBank				= gameSettings
-			.getPlayersBeginingMoney();
-	static int				computerBank			= gameSettings
-			.getPlayersBeginingMoney();
-	static int				bet						= gameSettings.getMinimalBet();
+	static int			   score				 = gameSettings.getBeginningScore();
+	static int			   drawingStyle			 = gameSettings.getDrawStyle();
+	static int			   playerBank			 = gameSettings.getPlayersBeginingMoney();
+	static int			   computerBank			 = gameSettings.getPlayersBeginingMoney();
+	static int			   bet					 = gameSettings.getMinimalBet();
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -67,6 +66,8 @@ public class Start { // TODO test settings / change setings
 
 				case "2":
 					printMenuHandler.createMenu(Const.MENU_SETTINGS);
+					settingsMain(sc);
+					updateStartFromGameSettings();
 					break;
 
 				case "3":
@@ -81,6 +82,9 @@ public class Start { // TODO test settings / change setings
 		}
 	}
 
+	/**
+	 * Methods responsible for game flow
+	 */
 	private static void startGame(Scanner sc) {
 		while (!endGame) {
 			if (ruleSetHandler.isHandValueMoreThanMaxValue(playerHandValue)) {
@@ -248,5 +252,141 @@ public class Start { // TODO test settings / change setings
 		}
 
 		return endGame;
+	}
+
+	private static void settingsMain(Scanner sc) {
+		input = sc.next();
+		switch (input) {
+			case "1":
+				printMenuHandler.createMenu(Const.MENU_SETTINGS_SUBMENU_PRINTOOUT);
+				settingsSubmenuPrintout(sc);
+				break;
+			case "2":
+				printMenuHandler.createMenu(Const.MENU_SETTINGS_SUBMENU_PLAYER);
+				settingsSubmenuPlayer(sc);
+				break;
+			case "3":
+				printMenuHandler.createMenu(Const.MENU_SETTINGS_SUBMENU_MONEY);
+				settingsSubmenuMoney(sc);
+				break;
+			case "4":
+				break;
+
+			default:
+				break;
+		}
+	}
+
+	private static void settingsSubmenuPrintout(Scanner sc) {
+		int value = 0;
+		int value2 = 0;
+		input = sc.next();
+
+		switch (input) {
+			case "1":
+				System.out.println("Set Lenght of menus. X - size");
+				value = sc.nextInt();
+				gameSettings.setMenuLenght(value);
+				break;
+			case "2":
+				System.out.println("Set printout size of cards");
+				System.out.println("Set Lenght of X - size");
+				value = sc.nextInt();
+				System.out.println("Set Lenght of Y - size");
+				value2 = sc.nextInt();
+				try {
+					gameSettings.setCardSize(value, value2);
+				} catch (DimensionsException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "3":
+				System.out.println("Set space between player cards");
+				value = sc.nextInt();
+				gameSettings.setSpaceBetweenPlayers(value);
+				break;
+			case "4":
+				value = sc.nextInt();
+				System.out.println("Set the size of bottom card");
+				gameSettings.setCardPartialSizeX(value);
+				break;
+			case "5":
+				value = sc.nextInt();
+				System.out.println("Set drawing style");
+				System.out.println("1. Same Way From Left to right. Most reft card top");
+				System.out.println("2. Same Way From right to left. Most right card top");
+				System.out.println("3. Mirror way");
+				System.out.println("4. Reverse mirror way");
+				gameSettings.setDrawStyle(value);
+				break;
+			case "6":
+				break;
+			default:
+				break;
+		}
+	}
+
+	private static void settingsSubmenuPlayer(Scanner sc) {
+		input = sc.next();
+		switch (input) {
+			case "1":
+				System.out.println("Set Player name: ");
+				gameSettings.setPlayerName(input);
+				break;
+			case "2":
+				System.out.println("Set Computer name: ");
+				gameSettings.setComputerName(input);
+				break;
+			default:
+				break;
+		}
+	}
+
+	private static void settingsSubmenuMoney(Scanner sc) {
+		int value = 0;
+		input = sc.next();
+		switch (input) {
+			case "1":
+				value = sc.nextInt();
+				System.out.println("Set player beginning bank");
+				gameSettings.setPlayersBeginingMoney(value);
+				break;
+			case "2":
+				value = sc.nextInt();
+				System.out.println("Set computers beginning money");
+				gameSettings.setComputersBeginingMoney(value);
+				break;
+			case "3":
+				value = sc.nextInt();
+				System.out.println("Set beginning score");
+				gameSettings.setBeginningScore(value);
+				break;
+			case "4":
+				System.out.println("Set minimal value player can bet");
+				value = sc.nextInt();
+				gameSettings.setMinimalBet(value);
+				break;
+			case "5":
+				System.out.println("Set maximum value player can bet");
+				value = sc.nextInt();
+				gameSettings.setMaximalBet(value);
+				break;
+			case "6":
+				break;
+
+			default:
+				break;
+		}
+	}
+
+	private static void updateStartFromGameSettings() {
+		Start.player.setName(gameSettings.getPlayer().getName());
+		Start.computer.setName(gameSettings.getPlayer().getName());
+		
+		Start.score 	   = gameSettings.getBeginningScore();
+		Start.drawingStyle = gameSettings.getDrawStyle();
+		Start.playerBank   = gameSettings.getPlayersBeginingMoney();
+		Start.computerBank = gameSettings.getPlayersBeginingMoney();
+		Start.bet 		   = gameSettings.getMinimalBet();
 	}
 }

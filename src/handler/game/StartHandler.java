@@ -6,12 +6,14 @@ import java.util.Scanner;
 import model.cardfactory.Card;
 import model.deck.Deck;
 import util.Const;
+import util.Settings;
 
 /**
  * Class contains helpful methods for checking rules and handling the counts of
  * cards in hand
  */
 public class StartHandler {
+	Settings settings = Settings.getInstance();
 
 	/**
 	 * Method for counting cards in hand
@@ -64,27 +66,12 @@ public class StartHandler {
 	}
 
 	public int setBet(Scanner sc) {
-		String s = sc.next();
-		int bet;
+		int bet = sc.nextInt();
 
-		switch (s) {
-		case "1":
-		case "2":
-		case "3":
-		case "4":
-		case "5":
-		case "6":
-		case "7":
-		case "8":
-		case "9":
-		case "10":
-			bet = Integer.parseInt(s);
-			break;
-		default:
-			// TODO exception
-			System.out.println("bad input");
-			bet = 2;
-			break;
+		if ((bet < settings.getMinimalBet()) || (bet > settings.getMaximalBet())) {
+			System.out.println(
+					"bad input setting to minimal input: " + settings.getMinimalBet());
+			bet = settings.getMinimalBet();
 		}
 
 		return bet;
@@ -94,16 +81,16 @@ public class StartHandler {
 		String s = sc.next();
 
 		switch (s) {
-		case "1":
-			bet *= 2;
-			break;
-		case "2":
-			break;
+			case "1":
+				bet *= 2;
+				break;
+			case "2":
+				break;
 
-		default:
-			// TODO exception
-			System.out.println("bad input");
-			break;
+			default:
+				// TODO exception
+				System.out.println("bad input");
+				break;
 		}
 
 		return bet;

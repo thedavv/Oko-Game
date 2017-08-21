@@ -139,6 +139,6 @@ public class Const {
 	public static final int		MAX_HAND_VALUE								= 21;
 	public static final int		PLAYERS_MONEY_BEGINING						= 50;
 	public static final int		MAX_SCORE									= 1000;
-	public static final int		MIN_BET										= 2;
+	public static final int		MIN_BET										= 1;
 	public static final int		MAX_BET										= 10;
 }

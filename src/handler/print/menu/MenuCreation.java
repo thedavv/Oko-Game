@@ -36,7 +36,7 @@ public class MenuCreation extends LineCreation {
 				"1. NEW GAME"));
 		sb.append("\n");
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
-				"2. settings"));
+				"2. SETINGS"));
 		sb.append("\n");
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"3. EXIT"));
@@ -273,7 +273,7 @@ public class MenuCreation extends LineCreation {
 	/**
 	 * Method for printing out settings menu
 	 */
-	public String createSettingsMenuPrintout() {// TODO implement settings menu
+	public String createSettingsMenuPrintout() {
 		// System.out.println("╔═══════════════════════════════════════════════════╗");
 		// System.out.println("║ settings ║");
 		// System.out.println("╠═══════════════════════════════════════════════════╣");
@@ -287,7 +287,7 @@ public class MenuCreation extends LineCreation {
 				drawLine(settings.getMenuLenght(), Const.TLC, Const.TRC, Const.HL, null));
 		sb.append("\n");
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
-				"settings"));
+				"SETTINGS"));
 		sb.append("\n");
 		sb.append(
 				drawLine(settings.getMenuLenght(), Const.LMJ, Const.RMJ, Const.HL, null));
@@ -314,8 +314,7 @@ public class MenuCreation extends LineCreation {
 		return sb.toString();
 	}
 
-	public String createSettingsSubmenuPlayerPrintout() {// TODO implement
-															// settings menu
+	public String createSettingsSubmenuPlayerPrintout() {
 		// System.out.println("╔═══════════════════════════════════════════════════╗");
 		// System.out.println("║ settings ║");
 		// System.out.println("╠═══════════════════════════════════════════════════╣");
@@ -337,7 +336,7 @@ public class MenuCreation extends LineCreation {
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
-				"1. SET plaerName"));
+				"1. SET playerName"));
 		sb.append("\n");
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"2. SET computerName"));
@@ -374,7 +373,7 @@ public class MenuCreation extends LineCreation {
 				"2. SET cardSizeX AND cardSizeY"));
 		sb.append("\n");
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
-				"3.SET spaceBetweenPlayers"));
+				"3. SET spaceBetweenPlayers"));
 		sb.append("\n");
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"4. SET cardPartialSizeX"));
@@ -419,10 +418,13 @@ public class MenuCreation extends LineCreation {
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"4. SET minimalBet"));
 		sb.append("\n");
-		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
+				"5. SET maximalBet"));
 		sb.append("\n");
 		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP,
 				"6. BACK"));
+		sb.append("\n");
+		sb.append(drawLine(settings.getMenuLenght(), Const.VL, Const.VL, Const.SP, null));
 		sb.append("\n");
 		sb.append(
 				drawLine(settings.getMenuLenght(), Const.BLC, Const.BRC, Const.HL, null));
