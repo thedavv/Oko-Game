@@ -21,7 +21,7 @@ public class StartHandler {
 	Settings settings = Settings.getInstance();
 
 	/**
-	 * Method for counting cards in hand
+	 * counts cards in hand
 	 *
 	 * @param -
 	 *            hand is players hand
@@ -44,7 +44,7 @@ public class StartHandler {
 	 *         <code>Const</Settings> class
 	 */
 	public boolean isHandValueMoreThanMaxValue(int handValue) {
-		return (handValue > Const.MAX_HAND_VALUE) ? true : false;
+		return handValue > Const.MAX_HAND_VALUE;
 	}
 
 	/**
@@ -99,10 +99,7 @@ public class StartHandler {
 	 * @return score;
 	 */
 	public int updateScorePlayerLost(int bet, int score) {
-		if (score - bet < 0) {
-			return 0;
-		}
-		return score - bet;
+		return (score - bet < 0)? 0 : score - bet;
 	}
 
 	/**
@@ -115,10 +112,7 @@ public class StartHandler {
 	 * @return score. Returns double value if player double downed;
 	 */
 	public int updateScorePlayerWon(int bet, int score) {
-		if (bet > settings.getMaximalBet()) {
-			return score + bet * 2;
-		}
-		return score + bet;
+		return (bet > settings.getMaximalBet())? score + bet * 2 : score + bet;
 	}
 
 	/**
@@ -129,18 +123,24 @@ public class StartHandler {
 	 * @return true if players bank is less than 0
 	 */
 	public boolean isBankZero(int playerBank) {
-		return (playerBank <= 0) ? true : false;
+		return playerBank <= 0;
 	}
 
 	/**
-	 * Method for setting the plazers bet for the round
+	 * Method for setting the players bet for the round
 	 * 
 	 * @param sc
 	 *            - is Scanner
 	 * @return bet if bet is set wrong it returns minimal bet value
 	 */
 	public int setBet(Scanner sc) {
-		int bet = sc.nextInt();
+		int bet = settings.getMinimalBet();
+		try {
+			bet = sc.nextInt();
+		} catch (Exception e) {
+			System.err.println("bad input");
+			e.printStackTrace();
+		}
 
 		if ((bet < settings.getMinimalBet()) || (bet > settings.getMaximalBet())) {
 			System.err.println(
@@ -171,14 +171,13 @@ public class StartHandler {
 				break;
 
 			default:
-				System.out.println("bad input");
+				System.out.println("bad input, double down not acepted");
 				break;
 		}
 
 		return bet;
 	}
 
-	// TODO
 	/**
 	 * Method for storing score into txt file
 	 * 

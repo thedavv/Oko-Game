@@ -142,7 +142,7 @@ public class Start {
 					break;
 
 				case "3":
-					// playe has less score when he leaves the game early
+					// player has less score when he leaves the game early
 					endGame = true;
 					printMenuHandler.createMenu(Const.MENU_RETURN, score);
 					resetRound();
@@ -244,7 +244,7 @@ public class Start {
 	}
 
 	/**
-	 * update score
+	 * Methods for updating score
 	 */
 	private static void endRoundUpdate() {
 		// player lost
@@ -311,60 +311,76 @@ public class Start {
 
 		switch (input) {
 			case "1":
-				System.out.println("Set Lenght of menus. X - size");
-				value = sc.nextInt();
 				try {
+					System.out.println("Set Lenght of menus. X - size");
+					value = sc.nextInt();
 					gameSettings.setMenuLenght(value);
 				} catch (DimensionsException e1) {
+					e1.printStackTrace();
+				} catch (Exception e1) {
+					System.err.println("bad input");
 					e1.printStackTrace();
 				}
 				break;
 			case "2":
-				System.out.println("Set printout size of cards");
-				System.out.println("Set Lenght of X - size");
-				value = sc.nextInt();
-				System.out.println("Set Lenght of Y - size");
-				value2 = sc.nextInt();
 				try {
+					System.out.println("Set printout size of cards");
+					System.out.println("Set Lenght of X - size");
+					value = sc.nextInt();
+					System.out.println("Set Lenght of Y - size");
+					value2 = sc.nextInt();
 					gameSettings.setCardSize(value, value2);
 				} catch (DimensionsException e) {
 					e.printStackTrace();
+				} catch (Exception e1) {
+					System.err.println("bad input");
+					e1.printStackTrace();
 				}
 				break;
 			case "3":
-				System.out.println("Set space between player cards");
-				value = sc.nextInt();
 				try {
+					System.out.println("Set space between player cards");
+					value = sc.nextInt();
 					gameSettings.setSpaceBetweenPlayers(value);
 				} catch (DimensionsException e) {
 					e.printStackTrace();
+				} catch (Exception e1) {
+					System.err.println("bad input");
+					e1.printStackTrace();
 				}
 				break;
 			case "4":
-				System.out.println("Set the size of bottom card");
-				value = sc.nextInt();
 				try {
+					System.out.println("Set the size of bottom card");
+					value = sc.nextInt();
 					gameSettings.setCardPartialSizeX(value);
 				} catch (DimensionsException e) {
 					e.printStackTrace();
+				} catch (Exception e1) {
+					System.err.println("bad input");
+					e1.printStackTrace();
 				}
 				break;
 			case "5":
-				System.out.println("Set drawing style");
-				System.out.println("1. Same Way From Left to right. Most reft card top");
-				System.out.println("2. Same Way From right to left. Most right card top");
-				System.out.println("3. Mirror way");
-				System.out.println("4. Reverse mirror way");
-				value = sc.nextInt();
 				try {
+					System.out.println("Set drawing style");
+					System.out.println("1. Same Way From Left to right. Most reft card top");
+					System.out.println("2. Same Way From right to left. Most right card top");
+					System.out.println("3. Mirror way");
+					System.out.println("4. Reverse mirror way");
+					value = sc.nextInt();
 					gameSettings.setDrawStyle(value);
 				} catch (InvalidArgumentException e) {
 					e.printStackTrace();
+				} catch (Exception e1) {
+					System.err.println("bad input");
+					e1.printStackTrace();
 				}
 				break;
 			case "6":
 				break;
 			default:
+				System.err.println("bad input");
 				break;
 		}
 	}
@@ -373,22 +389,29 @@ public class Start {
 		input = sc.next();
 		switch (input) {
 			case "1":
+				System.out.println("Current player name is: " + player.getName());
 				System.out.println("Set Player name: ");
 				try {
+					input = sc.next();
 					gameSettings.setPlayerName(input);
 				} catch (InvalidArgumentException e) {
 					e.printStackTrace();
 				}
 				break;
 			case "2":
+				System.out.println("Current Computer name is: " + computer.getName());
 				System.out.println("Set Computer name: ");
 				try {
+					input = sc.next();
 					gameSettings.setComputerName(input);
 				} catch (InvalidArgumentException e) {
 					e.printStackTrace();
 				}
 				break;
+			case "3":
+				break;
 			default:
+				System.err.println("bad input");
 				break;
 		}
 	}
@@ -398,43 +421,60 @@ public class Start {
 		input = sc.next();
 		switch (input) {
 			case "1":
-				System.out.println("Set player beginning bank");
-				value = sc.nextInt();
 				try {
+					System.out.println("Set player beginning bank");
+					value = sc.nextInt();
 					gameSettings.setPlayersBeginingMoney(value);
 				} catch (InvalidArgumentException e) {
+					e.printStackTrace();
+				} catch(Exception e){
+					System.err.println("bad input");
 					e.printStackTrace();
 				}
 				break;
 			case "2":
-				System.out.println("Set computers beginning money");
-				value = sc.nextInt();
 				try {
+					System.out.println("Set computers beginning money");
+					value = sc.nextInt();
 					gameSettings.setComputersBeginingMoney(value);
 				} catch (InvalidArgumentException e) {
+					e.printStackTrace();
+				}catch(Exception e){
+					System.err.println("bad input");
 					e.printStackTrace();
 				}
 				break;
 			case "3":
-				System.out.println("Set beginning score");
-				value = sc.nextInt();
-				gameSettings.setBeginningScore(value);
+				try {
+					System.out.println("Set beginning score");
+					value = sc.nextInt();
+					gameSettings.setBeginningScore(value);
+				} catch (Exception e1) {
+					System.err.println("bad input");
+					e1.printStackTrace();
+				}
 				break;
 			case "4":
-				System.out.println("Set minimal value player can bet");
-				value = sc.nextInt();
 				try {
+					System.out.println("Set minimal value player can bet");
+					value = sc.nextInt();
 					gameSettings.setMinimalBet(value);
 				} catch (InvalidArgumentException e) {
+					e.printStackTrace();
+				} catch (Exception e) {
+					System.err.println("bad input");
 					e.printStackTrace();
 				}
 				break;
 			case "5":
-				System.out.println("Set maximum value player can bet");
-				value = sc.nextInt();
 				try {
+					System.out.println("Set maximum value player can bet");
+					value = sc.nextInt();
 					gameSettings.setMaximalBet(value);
 				} catch (InvalidArgumentException e) {
+					e.printStackTrace();
+				} catch (Exception e) {
+					System.err.println("bad input");
 					e.printStackTrace();
 				}
 				break;
@@ -448,12 +488,12 @@ public class Start {
 
 	private static void updateStartFromGameSettings() {
 		Start.player.setName(gameSettings.getPlayer().getName());
-		Start.computer.setName(gameSettings.getPlayer().getName());
+		Start.computer.setName(gameSettings.getComputer().getName());
 
 		Start.score = gameSettings.getBeginningScore();
 		Start.drawingStyle = gameSettings.getDrawStyle();
 		Start.playerBank = gameSettings.getPlayersBeginingMoney();
-		Start.computerBank = gameSettings.getPlayersBeginingMoney();
+		Start.computerBank = gameSettings.getComputersBeginingMoney();
 		Start.bet = gameSettings.getMinimalBet();
 	}
 }
