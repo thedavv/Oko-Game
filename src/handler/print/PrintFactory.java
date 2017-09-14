@@ -1,6 +1,6 @@
 package handler.print;
 
-import handler.print.menu.MenuPrintout;
+import handler.print.menu.PrintoutMenu;
 import handler.print.menu.Printout;
 import handler.print.player.GameBoard;
 import handler.print.player.GameBoardPrintOut;
@@ -17,7 +17,7 @@ public class PrintFactory {
 	 * @return MenuPrintout for different menus
 	 */
 	public Printout createPrintOutMenuHandler() {
-		return new MenuPrintout();
+		return new PrintoutMenu();
 	}
 
 	/**
