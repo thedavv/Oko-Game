@@ -5,14 +5,26 @@ import handler.print.menu.Printout;
 import handler.print.player.GameBoard;
 import handler.print.player.GameBoardPrintOut;
 
-public class PrintFactory implements Print {
+/**
+ * Factory for printing out GameBoard(Card representation of players) and
+ * printing out Printout Menus
+ */
+public class PrintFactory {
 
-	@Override
+	/**
+	 * Creates handler for menu printouts
+	 * 
+	 * @return MenuPrintout for different menus
+	 */
 	public Printout createPrintOutMenuHandler() {
 		return new MenuPrintout();
 	}
 
-	@Override
+	/**
+	 * Creates handler for Game Board printouts
+	 * 
+	 * @return GameBoardPrintOut for different game boards
+	 */
 	public GameBoard createPrintOutGameBoardHandler() {
 		return new GameBoardPrintOut();
 	}

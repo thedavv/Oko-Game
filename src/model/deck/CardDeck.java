@@ -6,6 +6,9 @@ import java.util.List;
 
 import model.cardfactory.Card;
 
+/**
+ * Use this class for creating decks like card deck or card pile.
+ */
 public class CardDeck implements Deck {
 	private List<Card> cards = new ArrayList<>();
 

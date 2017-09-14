@@ -3,6 +3,9 @@ package handler.print.menu;
 import app.Screen;
 import util.Const;
 
+/**
+ * Creates the StatusMenu menu. it contains status of current round
+ */
 public class StatusMenu extends LineCreation implements MenuCreation {
 
 	@Override

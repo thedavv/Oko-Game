@@ -2,7 +2,9 @@ package handler.print.menu;
 
 import app.Screen;
 import util.Const;
-
+/**
+ * Creates the Lost menu Screen
+ */
 public class LostMenu extends LineCreation implements MenuCreation {
 
 	@Override

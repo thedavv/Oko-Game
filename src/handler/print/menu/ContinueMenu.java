@@ -1,7 +1,9 @@
 package handler.print.menu;
 
 import util.Const;
-
+/**
+ * Creates the Continue menu Screen
+ */
 public class ContinueMenu extends LineCreation implements MenuCreation {
 
 	@Override

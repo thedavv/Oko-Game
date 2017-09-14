@@ -1,7 +1,9 @@
 package handler.print.menu;
 
 import util.Const;
-
+/**
+ * Creates the DoubleDown menu Screen
+ */
 public class DoubleDownMenu extends LineCreation implements MenuCreation {
 
 	@Override

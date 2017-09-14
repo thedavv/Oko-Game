@@ -2,7 +2,9 @@ package handler.print.menu;
 
 import app.Screen;
 import util.Const;
-
+/**
+ * Creates the ReturnMenu menu. Use it when player is returning to main menu
+ */
 public class ReturnMenu extends LineCreation implements MenuCreation {
 
 	@Override

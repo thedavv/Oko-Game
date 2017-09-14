@@ -1,7 +1,10 @@
 package handler.print.menu;
 
 import util.Const;
-
+/**
+ * Creates the SettingsSubmenuForPlayer menu. Use it to create settings submenu for player
+ * it contains choices for player
+ */
 public class SettingsSubmenuForPlayer extends LineCreation implements MenuCreation {
 
 	@Override

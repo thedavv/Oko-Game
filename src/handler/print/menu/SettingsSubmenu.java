@@ -1,7 +1,10 @@
 package handler.print.menu;
 
 import util.Const;
-
+/**
+ * Creates the SettingsSubmenu menu. Use it to create settings submenu 
+ * it contains other submenus
+ */
 public class SettingsSubmenu extends LineCreation implements MenuCreation {
 
 	@Override

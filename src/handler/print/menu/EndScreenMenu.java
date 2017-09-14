@@ -3,7 +3,9 @@ package handler.print.menu;
 import app.Screen;
 import util.Const;
 
-//TODO attribute = final score
+/**
+ * Creates the End menu Screen
+ */
 public class EndScreenMenu extends LineCreation implements MenuCreation {
 
 	@Override

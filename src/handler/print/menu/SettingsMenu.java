@@ -1,7 +1,9 @@
 package handler.print.menu;
 
 import util.Const;
-
+/**
+ * Creates the SettingsMenu menu. Use it to create SettingsMenu
+ */
 public class SettingsMenu extends LineCreation implements MenuCreation {
 
 	@Override

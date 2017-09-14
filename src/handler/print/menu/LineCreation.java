@@ -1,14 +1,13 @@
 package handler.print.menu;
 
 /**
- * Class for creating Menu line
+ * Creates the String line for Menu. It has method that creates one String line
  * 
- * @author David Racek
  */
 public class LineCreation {
 	/**
-	 * Method for creating line. for line parameters use <Code>util.Const</Code>
-	 * line constants
+	 * Creates menu line. for line parameters use <Code>util.Const</Code> line
+	 * constants
 	 * 
 	 * @param menuLenght
 	 *            - is the length of menu x size
@@ -23,8 +22,8 @@ public class LineCreation {
 	 *            borders
 	 * @return String representation of created line
 	 */
-	public String drawLine(int menuLenght, char leftBorder, char rightBorder,
-			char middleSection, String middleSectionText) {
+	public String drawLine(int menuLenght, char leftBorder, char rightBorder, char middleSection,
+			String middleSectionText) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(leftBorder);
 		// no text

@@ -5,7 +5,6 @@ import java.util.List;
 
 import handler.DeckHandler;
 import handler.game.StartHandler;
-import handler.print.Print;
 import handler.print.PrintFactory;
 import handler.print.menu.Printout;
 import handler.print.player.GameBoard;
@@ -20,7 +19,7 @@ public class Screen {
 	// handlers
 	protected static DeckHandler	 deckHandler		   = new DeckHandler();
 	protected static StartHandler	 startHandler		   = new StartHandler();
-	protected static Print			 printFactory		   = new PrintFactory();
+	protected static PrintFactory	 printFactory		   = new PrintFactory();
 	protected static CardDeckFactory deckFactory		   = new CardDeckFactory();
 	protected static GameBoard		 printGameBoardHandler = printFactory.createPrintOutGameBoardHandler();
 	protected static Printout		 printMenuHandler	   = printFactory.createPrintOutMenuHandler();

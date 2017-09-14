@@ -1,7 +1,9 @@
 package handler.print.menu;
 
 import util.Const;
-
+/**
+ * Creates the ScoreBoardMenu menu. Use it for showing the Final Scores 
+ */
 public class ScoreBoardMenu extends LineCreation implements MenuIO {
 
 	@Override

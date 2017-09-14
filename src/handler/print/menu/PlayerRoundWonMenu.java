@@ -3,6 +3,9 @@ package handler.print.menu;
 import app.Screen;
 import util.Const;
 
+/**
+ * Creates the PlayerRoundWon menu. Use it when player wins the round
+ */
 public class PlayerRoundWonMenu extends LineCreation implements MenuCreation {
 
 	@Override

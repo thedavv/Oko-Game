@@ -1,5 +1,8 @@
 package handler.print.menu;
 
+/**
+ *	This class is used for printig out String representations of created menus that, implement MenuCreation and MenuIO
+ */
 public class MenuPrintout implements Printout{
 
 	@Override

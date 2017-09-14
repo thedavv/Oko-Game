@@ -6,8 +6,8 @@ package util;
 public class Const {
 	/**
 	 * Line constants
-	 * */
-	
+	 */
+
 	/**
 	 * Space " "
 	 */

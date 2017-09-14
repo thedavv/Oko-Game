@@ -3,6 +3,10 @@ package handler.print.menu;
 import app.Screen;
 import util.Const;
 
+/**
+ * Creates menu for betting
+ * 
+ */
 public class BetMenu extends LineCreation implements MenuCreation {
 
 	@Override

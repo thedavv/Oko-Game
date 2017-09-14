@@ -3,14 +3,12 @@ package model.cardproperty;
 import util.Const;
 
 /**
- * @author David Racek
  *
- *         Enum that contains color of the cards
+ * Enum that contains color of the cards
  *
  */
 public enum Color {
-	SPADES(Const.SPADES), CLUBS(Const.CLUBS), HEARTHS(Const.HEARTHS), DIAMONDS(
-			Const.DIAMONDS);
+	SPADES(Const.SPADES), CLUBS(Const.CLUBS), HEARTHS(Const.HEARTHS), DIAMONDS(Const.DIAMONDS);
 
 	private final char color;
 

@@ -2,7 +2,9 @@ package handler.print.menu;
 
 import app.Screen;
 import util.Const;
-
+/**
+ * Creates the OverflowMenu menu Screen used when computer exceeded the max cardHandValue
+ */
 public class OverflowComputerMenu extends LineCreation implements MenuCreation {
 
 	@Override

@@ -2,7 +2,9 @@ package handler.print.menu;
 
 import app.Screen;
 import util.Const;
-
+/**
+ * Creates the Won menu Screen
+ */
 public class ComputerWonRoundMenu extends LineCreation implements MenuCreation {
 
 	@Override

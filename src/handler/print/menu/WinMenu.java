@@ -2,7 +2,9 @@ package handler.print.menu;
 
 import app.Screen;
 import util.Const;
-
+/**
+ * Creates the WinMenu menu. Use this to show game won Menu
+ */
 public class WinMenu extends LineCreation implements MenuCreation {
 
 	@Override

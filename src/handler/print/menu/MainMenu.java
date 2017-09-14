@@ -1,7 +1,9 @@
 package handler.print.menu;
 
 import util.Const;
-
+/**
+ * Creates the Main menu Screen
+ */
 public class MainMenu extends LineCreation implements MenuCreation {
 
 	@Override
