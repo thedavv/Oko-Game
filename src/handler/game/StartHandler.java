@@ -36,7 +36,7 @@ public class StartHandler {
 	}
 
 	/**
-	 * Method for calculating if hand exceeded max hand value
+	 * calculates if hand exceeded max hand value
 	 *
 	 * @param handValue
 	 *            players cards value
@@ -48,7 +48,7 @@ public class StartHandler {
 	}
 
 	/**
-	 * Method for shuffling pile to deck
+	 * shuffle pile to deck
 	 * 
 	 * @param -
 	 *            cardDeck is Deck of cards
@@ -64,7 +64,7 @@ public class StartHandler {
 	}
 
 	/**
-	 * Method that subtracting from players bank
+	 * Subtract from players bank
 	 * 
 	 * @param -
 	 *            bet is players bet
@@ -77,7 +77,7 @@ public class StartHandler {
 	}
 
 	/**
-	 * Method for adding bet to players bank
+	 * Add bet to players bank
 	 * 
 	 * @param -
 	 *            bet is players bet
@@ -90,7 +90,7 @@ public class StartHandler {
 	}
 
 	/**
-	 * Method for subtracting score if player lost the round
+	 * Subtract score if player lost the round
 	 * 
 	 * @param bet
 	 *            - bet is players bet
@@ -99,11 +99,11 @@ public class StartHandler {
 	 * @return score;
 	 */
 	public int updateScorePlayerLost(int bet, int score) {
-		return (score - bet < 0)? 0 : score - bet;
+		return (score - bet < 0) ? 0 : score - bet;
 	}
 
 	/**
-	 * Method for adding score if player won the round
+	 * Add score if player won the round
 	 * 
 	 * @param bet
 	 *            - bet is players bet
@@ -112,22 +112,22 @@ public class StartHandler {
 	 * @return score. Returns double value if player double downed;
 	 */
 	public int updateScorePlayerWon(int bet, int score) {
-		return (bet > settings.getMaximalBet())? score + bet * 2 : score + bet;
+		return (bet > settings.getMaximalBet()) ? score + bet * 2 : score + bet;
 	}
 
 	/**
-	 * Method for checking if player bank is <=0
+	 * Check if player bank is <=0
 	 * 
 	 * @param -
 	 *            playerBank
-	 * @return true if players bank is less than 0
+	 * @return true if players bank is less or equal than 0
 	 */
 	public boolean isBankZero(int playerBank) {
 		return playerBank <= 0;
 	}
 
 	/**
-	 * Method for setting the players bet for the round
+	 * Set the players bet for the round
 	 * 
 	 * @param sc
 	 *            - is Scanner
@@ -143,8 +143,7 @@ public class StartHandler {
 		}
 
 		if ((bet < settings.getMinimalBet()) || (bet > settings.getMaximalBet())) {
-			System.err.println(
-					"bad input setting to minimal input: " + settings.getMinimalBet());
+			System.err.println("bad input setting to minimal input: " + settings.getMinimalBet());
 			bet = settings.getMinimalBet();
 		}
 
@@ -152,7 +151,7 @@ public class StartHandler {
 	}
 
 	/**
-	 * Method that sets bet value times two
+	 * Set bet value times two
 	 * 
 	 * @param sc
 	 *            - is Scanner
@@ -179,7 +178,7 @@ public class StartHandler {
 	}
 
 	/**
-	 * Method for storing score into txt file
+	 * Store score into .txt file
 	 * 
 	 * @param -
 	 *            playerName is players name
@@ -198,7 +197,7 @@ public class StartHandler {
 	}
 
 	/**
-	 * Method for reading score file
+	 * Read score from .txt file
 	 * 
 	 * @param -
 	 *            file is selected file with score

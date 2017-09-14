@@ -11,11 +11,11 @@ public class LineCreation {
 	 * line constants
 	 * 
 	 * @param menuLenght
-	 *            - is the lenght of menu x size
+	 *            - is the length of menu x size
 	 * @param leftBorder
-	 *            - is left border to be apended
+	 *            - is left border to be appended
 	 * @param rightBorder
-	 *            - is right border to be apended
+	 *            - is right border to be appended
 	 * @param middleSection
 	 *            - is the middle section, usually it is <Code>Const.SP</Code>
 	 * @param middleSectionText

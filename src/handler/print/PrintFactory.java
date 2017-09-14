@@ -1,15 +1,15 @@
 package handler.print;
 
-import handler.print.menu.Menu;
-import handler.print.menu.MenuPrintOut;
+import handler.print.menu.MenuPrintout;
+import handler.print.menu.Printout;
 import handler.print.player.GameBoard;
 import handler.print.player.GameBoardPrintOut;
 
 public class PrintFactory implements Print {
 
 	@Override
-	public Menu createPrintOutMenuHandler() {
-		return new MenuPrintOut();
+	public Printout createPrintOutMenuHandler() {
+		return new MenuPrintout();
 	}
 
 	@Override
